@@ -67,7 +67,7 @@ const FAQ_ITEMS = [
     a: '사이트명이나 주소를 검색한 뒤 최근 확인일, 주소 변경 이력, 제보 접수 여부, 관련 리포트 연결 여부를 함께 확인하세요. 하나의 신호만으로 단정하지 말고 여러 항목이 반복되는지 살펴야 하며, 검증 기준 다섯 가지(최근 확인일·주소 변경·운영 정보 일치·제보 패턴·공개 신고 경로)를 단계별로 점검하면 더 안전한 판단이 가능합니다.',
   },
   {
-    q: '제보가 들어오면 바로 공개되나요?',
+    q: '제보가 들어오면 ���로 공개되나요?',
     a: '아니요. 안심고고는 접수된 제보를 즉시 공개하지 않습니다. 접수 → 검토 → 분류 → 반영 4단계를 거치며, 개인정보 마스킹과 사실 확인이 가능한 항목만 중립 표현으로 반영합니다. 부족하거나 확인이 어려운 제보는 데이터 부족 상태로 보류되며, 동일 사이트에 비슷한 제보가 반복되는 경우에만 확인 필요로 분류합니다.',
   },
   {
@@ -111,22 +111,16 @@ export default function Home() {
             {/* Label */}
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-100 mb-10">
               <span className="w-2 h-2 rounded-full bg-blue-500" />
-              <span className="text-blue-700 text-sm font-medium tracking-wide">검증 정보 플랫폼</span>
+              <span className="text-blue-700 text-body-sm font-medium tracking-wide">검증 정보 플랫폼</span>
             </div>
 
             {/* Headline */}
-            <h1
-              className="text-4xl sm:text-5xl md:text-[68px] font-bold text-neutral-900 leading-[1.12] tracking-tight mb-8"
-              style={{ wordBreak: 'keep-all', letterSpacing: '-0.02em' }}
-            >
+            <h1 className="text-h1 text-neutral-900 mb-8">
               {HERO_TITLE}
             </h1>
 
             {/* Body */}
-            <p
-              className="text-base md:text-lg text-neutral-500 leading-relaxed max-w-2xl mx-auto mb-12"
-              style={{ wordBreak: 'keep-all' }}
-            >
+            <p className="text-body-lg text-neutral-500 max-w-2xl mx-auto mb-12">
               {HERO_BODY}
             </p>
 
@@ -137,10 +131,10 @@ export default function Home() {
                 <input
                   type="text"
                   placeholder="사이트명 또는 주소를 입력하세요"
-                  className="flex-1 bg-transparent py-3 outline-none text-sm text-neutral-900 placeholder:text-neutral-400"
+                  className="flex-1 bg-transparent py-3 outline-none text-body-sm text-neutral-900 placeholder:text-neutral-400"
                 />
               </div>
-              <button className="px-6 py-3 rounded-xl bg-neutral-900 text-white text-sm font-semibold hover:bg-neutral-800 active:scale-95 transition-all whitespace-nowrap">
+              <button className="px-6 py-3 rounded-xl bg-neutral-900 text-white text-body-sm font-semibold hover:bg-neutral-800 active:scale-95 transition-all whitespace-nowrap">
                 조회하기
               </button>
             </div>
@@ -155,7 +149,7 @@ export default function Home() {
               ].map((item, i) => (
                 <div key={i} className="flex flex-col items-center gap-1.5">
                   <item.icon className="w-5 h-5 text-blue-500" />
-                  <span className="text-base font-bold text-neutral-900 leading-none">{item.value}</span>
+                  <span className="text-h4 text-neutral-900 leading-none">{item.value}</span>
                   <span className="text-xs text-neutral-500">{item.label}</span>
                 </div>
               ))}
@@ -172,16 +166,13 @@ export default function Home() {
           {/* Section heading */}
           <div className="grid lg:grid-cols-12 gap-10 mb-20">
             <div className="lg:col-span-4">
-              <p className="text-xs font-semibold tracking-widest text-blue-500 uppercase mb-4">Site Lookup</p>
-              <h2
-                className="text-3xl md:text-5xl font-bold text-neutral-900 leading-tight"
-                style={{ wordBreak: 'keep-all', letterSpacing: '-0.02em' }}
-              >
+              <p className="text-label text-blue-500 mb-4">Site Lookup</p>
+              <h2 className="text-h2 text-neutral-900 mb-6">
                 {SEARCH_TITLE}
               </h2>
             </div>
             <div className="lg:col-span-8 flex items-end">
-              <p className="text-base md:text-lg text-neutral-500 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
+              <p className="text-body-lg text-neutral-500">
                 {SEARCH_P1}
               </p>
             </div>
@@ -201,8 +192,8 @@ export default function Home() {
                     {item.n}
                   </span>
                   <div>
-                    <h3 className="text-lg font-bold text-neutral-900 mb-3">{item.title}</h3>
-                    <p className="text-sm text-neutral-500 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
+                    <h3 className="text-h4 font-bold text-neutral-900 mb-3">{item.title}</h3>
+                    <p className="text-body-sm text-neutral-500">
                       {item.body}
                     </p>
                   </div>
@@ -254,7 +245,7 @@ export default function Home() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className={`font-bold text-base ${item.text}`}>{item.status}</p>
-                    <p className={`text-sm mt-1 ${item.text} opacity-60`}>{item.sub}</p>
+                    <p className={`text-body-sm mt-1 ${item.text} opacity-60`}>{item.sub}</p>
                   </div>
                 </div>
               ))}
@@ -274,15 +265,12 @@ export default function Home() {
 
           {/* Section heading */}
           <div className="max-w-3xl mb-16">
-            <p className="text-xs font-semibold tracking-widest text-emerald-600 uppercase mb-4">Verification Criteria</p>
-            <h2
-              className="text-3xl md:text-5xl font-bold text-neutral-900 leading-tight mb-8"
-              style={{ wordBreak: 'keep-all', letterSpacing: '-0.02em' }}
-            >
+            <p className="text-label text-blue-500 mb-4">Verification Criteria</p>
+            <h2 className="text-h2 text-neutral-900 leading-tight mb-8">
               {CRITERIA_TITLE}
             </h2>
-            <p className="text-base md:text-lg text-neutral-500 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
-              {CRITERIA_INTRO}
+            <p className="text-body-lg text-neutral-500">
+              {CRITERIA_P1}
             </p>
           </div>
 
@@ -305,8 +293,8 @@ export default function Home() {
                   </div>
                   <span className="text-xs font-mono font-bold text-emerald-400 mt-1">{item.n}</span>
                 </div>
-                <h3 className="text-lg font-bold text-neutral-900 mb-2">{item.title}</h3>
-                <p className="text-sm text-neutral-500 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
+                <h3 className="text-h4 text-neutral-900 mb-2">{item.title}</h3>
+                <p className="text-body-sm text-neutral-500 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
                   {item.desc}
                 </p>
               </div>
@@ -316,12 +304,12 @@ export default function Home() {
           {/* Detailed paragraphs */}
           <div className="grid lg:grid-cols-2 gap-8 mb-12">
             <div className="p-6 rounded-xl bg-white border border-neutral-200">
-              <p className="text-sm text-neutral-600 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
+              <p className="text-body-sm text-neutral-600 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
                 {CRITERIA_P1}
               </p>
             </div>
             <div className="p-6 rounded-xl bg-white border border-neutral-200">
-              <p className="text-sm text-neutral-600 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
+              <p className="text-body-sm text-neutral-600 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
                 {CRITERIA_P2}
               </p>
             </div>
@@ -339,7 +327,7 @@ export default function Home() {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white border border-neutral-200 text-sm text-neutral-600 hover:border-blue-300 hover:text-blue-600 transition-colors"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white border border-neutral-200 text-body-sm text-neutral-600 hover:border-blue-300 hover:text-blue-600 transition-colors"
               >
                 <ExternalLink className="w-4 h-4" />
                 {link.name}
@@ -349,7 +337,7 @@ export default function Home() {
 
           {/* Disclaimer */}
           <div className="p-6 rounded-xl bg-neutral-100 border border-neutral-200">
-            <p className="text-sm text-neutral-500 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
+            <p className="text-body-sm text-neutral-500 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
               {CRITERIA_DISCLAIMER}
             </p>
           </div>
@@ -364,20 +352,17 @@ export default function Home() {
           {/* Section heading */}
           <div className="grid lg:grid-cols-12 gap-10 mb-16">
             <div className="lg:col-span-5">
-              <p className="text-xs font-semibold tracking-widest text-amber-600 uppercase mb-4">Reports & History</p>
-              <h2
-                className="text-3xl md:text-5xl font-bold text-neutral-900 leading-tight mb-6"
-                style={{ wordBreak: 'keep-all', letterSpacing: '-0.02em' }}
-              >
+              <p className="text-label text-blue-500 mb-4">Report Submission</p>
+              <h2 className="text-h2 text-neutral-900 leading-tight mb-6">
                 {REPORT_TITLE}
               </h2>
-              <p className="text-base md:text-lg text-neutral-500 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
-                {REPORT_P1}
+              <p className="text-body-lg text-neutral-500 mb-8">
+                {REPORT_INTRO}
               </p>
             </div>
             <div className="lg:col-span-7 flex items-end">
               <div className="w-full p-6 rounded-2xl bg-amber-50 border border-amber-100">
-                <p className="text-sm text-amber-800 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
+                <p className="text-body-sm text-amber-800 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
                   {REPORT_P2}
                 </p>
               </div>
@@ -423,10 +408,10 @@ export default function Home() {
                   </span>
                   <span className="text-xs text-neutral-400">{report.date}</span>
                 </div>
-                <h3 className="text-base font-bold text-neutral-900 mb-3 group-hover:text-amber-700 transition-colors">
+                <h3 className="text-h4 text-neutral-900 mb-3 group-hover:text-amber-700 transition-colors">
                   {report.title}
                 </h3>
-                <div className="flex items-center gap-2 text-sm text-neutral-500">
+                <div className="flex items-center gap-2 text-body-sm text-neutral-500">
                   <AlertTriangle className="w-4 h-4 text-amber-500" />
                   <span>{report.signal}</span>
                 </div>
@@ -454,7 +439,7 @@ export default function Home() {
                 <div className="w-10 h-10 rounded-xl bg-white border border-neutral-200 flex items-center justify-center">
                   <item.icon className="w-5 h-5 text-amber-600" />
                 </div>
-                <span className="text-sm font-medium text-neutral-700">{item.label}</span>
+                <span className="text-body-sm font-medium text-neutral-700">{item.label}</span>
               </div>
             ))}
           </div>
@@ -475,7 +460,7 @@ export default function Home() {
                 ].map((link, i) => (
                   <button
                     key={i}
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white text-sm font-medium transition-colors"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white text-body-sm font-medium transition-colors"
                   >
                     <link.icon className="w-4 h-4" />
                     {link.label}
@@ -494,16 +479,13 @@ export default function Home() {
         <div className="max-w-6xl mx-auto">
 
           {/* Section heading */}
-          <div className="text-center mb-20">
-            <p className="text-xs font-semibold tracking-widest text-indigo-600 uppercase mb-4">Categories</p>
-            <h2
-              className="text-3xl md:text-5xl font-bold text-neutral-900 leading-tight mb-6 max-w-3xl mx-auto"
-              style={{ wordBreak: 'keep-all', letterSpacing: '-0.02em' }}
-            >
-              {CATEGORY_TITLE}
+          <div className="text-center mb-16">
+            <p className="text-label text-blue-500 mb-4">Verification Criteria</p>
+            <h2 className="text-h2 text-neutral-900 leading-tight mb-6">
+              {CRITERIA_TITLE}
             </h2>
-            <p className="text-base md:text-lg text-neutral-500 leading-relaxed max-w-3xl mx-auto" style={{ wordBreak: 'keep-all' }}>
-              {CATEGORY_INTRO}
+            <p className="text-body-lg text-neutral-500">
+              {CRITERIA_INTRO}
             </p>
           </div>
 
@@ -563,8 +545,8 @@ export default function Home() {
                   <div className={`w-12 h-12 rounded-xl ${c.iconBg} border ${c.iconBorder} flex items-center justify-center mb-4`}>
                     <cat.icon className={`w-6 h-6 ${c.iconColor}`} />
                   </div>
-                  <h3 className="text-base font-bold text-neutral-900 mb-2">{cat.title}</h3>
-                  <p className="text-sm text-neutral-500 leading-relaxed flex-1" style={{ wordBreak: 'keep-all' }}>
+                  <h3 className="text-h4 text-neutral-900 mb-2">{cat.title}</h3>
+                  <p className="text-body-sm text-neutral-500 leading-relaxed flex-1" style={{ wordBreak: 'keep-all' }}>
                     {cat.desc}
                   </p>
                   <div className="mt-4 pt-4 border-t border-neutral-100 flex items-center justify-between">
@@ -579,12 +561,12 @@ export default function Home() {
           {/* Detailed paragraphs */}
           <div className="grid lg:grid-cols-2 gap-6 mb-16">
             <div className="p-6 rounded-xl bg-white border border-neutral-200">
-              <p className="text-sm text-neutral-600 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
+              <p className="text-body-sm text-neutral-600 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
                 {CATEGORY_P1}
               </p>
             </div>
             <div className="p-6 rounded-xl bg-white border border-neutral-200">
-              <p className="text-sm text-neutral-600 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
+              <p className="text-body-sm text-neutral-600 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
                 {CATEGORY_P2}
               </p>
             </div>
@@ -594,15 +576,15 @@ export default function Home() {
           <div className="p-8 rounded-2xl bg-gradient-to-br from-indigo-600 to-indigo-500 text-center">
             <Layers className="w-10 h-10 text-white/80 mx-auto mb-4" />
             <h3 className="text-xl font-bold text-white mb-3">안심고고�� 검색·조회·제보·가이드로 이동하는 허브입니다</h3>
-            <p className="text-sm text-white/70 mb-6 max-w-xl mx-auto" style={{ wordBreak: 'keep-all' }}>
+            <p className="text-body-sm text-white/70 mb-6 max-w-xl mx-auto" style={{ wordBreak: 'keep-all' }}>
               처음 방문한 사용자는 검색창에서 바로 확인하고, 반복 방문 사용자는 최신 리포트와 변경 이력부터 확인할 수 있습니다.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-3">
-              <button className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-indigo-700 text-sm font-semibold hover:bg-indigo-50 transition-colors">
+              <button className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-indigo-700 text-body-sm font-semibold hover:bg-indigo-50 transition-colors">
                 <Search className="w-4 h-4" />
                 사이트 조회
               </button>
-              <button className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white/10 border border-white/20 text-white text-sm font-semibold hover:bg-white/20 transition-colors">
+              <button className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white/10 border border-white/20 text-white text-body-sm font-semibold hover:bg-white/20 transition-colors">
                 <FileText className="w-4 h-4" />
                 최신 리포트
                 <ArrowRight className="w-4 h-4" />
@@ -620,19 +602,16 @@ export default function Home() {
           {/* Section heading */}
           <div className="grid lg:grid-cols-12 gap-10 mb-16">
             <div className="lg:col-span-5">
-              <p className="text-xs font-semibold tracking-widest text-rose-600 uppercase mb-4">Report Submission</p>
-              <h2
-                className="text-3xl md:text-5xl font-bold text-neutral-900 leading-tight mb-6"
-                style={{ wordBreak: 'keep-all', letterSpacing: '-0.02em' }}
-              >
-                {SUBMIT_TITLE}
-              </h2>
-              <p className="text-base md:text-lg text-neutral-500 leading-relaxed mb-8" style={{ wordBreak: 'keep-all' }}>
-                {SUBMIT_INTRO}
-              </p>
+            <p className="text-label text-blue-500 mb-4">Report Submission</p>
+            <h2 className="text-h2 text-neutral-900 leading-tight mb-6">
+              {REPORT_TITLE}
+            </h2>
+            <p className="text-body-lg text-neutral-500 mb-8">
+              {REPORT_INTRO}
+            </p>
               <a
                 href="/support/contact/"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-rose-600 text-white text-sm font-semibold hover:bg-rose-700 transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-rose-600 text-white text-body-sm font-semibold hover:bg-rose-700 transition-colors"
               >
                 <Send className="w-4 h-4" />
                 제보 페이지로 이동
@@ -678,8 +657,8 @@ export default function Home() {
                       </div>
                       <span className="text-xs font-mono font-bold text-rose-400">{step.n}</span>
                     </div>
-                    <h3 className="text-base font-bold text-neutral-900 mb-2">{step.title}</h3>
-                    <p className="text-sm text-neutral-500 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
+                    <h3 className="text-h4 text-neutral-900 mb-2">{step.title}</h3>
+                    <p className="text-body-sm text-neutral-500 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
                       {step.desc}
                     </p>
                   </div>
@@ -691,12 +670,12 @@ export default function Home() {
           {/* Exclusions and info */}
           <div className="grid lg:grid-cols-2 gap-6 mb-12">
             <div className="p-6 rounded-xl bg-slate-50 border border-neutral-100">
-              <p className="text-sm text-neutral-600 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
+              <p className="text-body-sm text-neutral-600 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
                 {SUBMIT_P1}
               </p>
             </div>
             <div className="p-6 rounded-xl bg-slate-50 border border-neutral-100">
-              <p className="text-sm text-neutral-600 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
+              <p className="text-body-sm text-neutral-600 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
                 {SUBMIT_P2}
               </p>
             </div>
@@ -712,7 +691,7 @@ export default function Home() {
               {['허위 제보', '경쟁 사이트 비방', '개인정보 노출', '확인되지 않은 주장성 문구'].map((item) => (
                 <span
                   key={item}
-                  className="px-3 py-1.5 rounded-lg bg-white border border-red-100 text-sm text-red-700"
+                  className="px-3 py-1.5 rounded-lg bg-white border border-red-100 text-body-sm text-red-700"
                 >
                   {item}
                 </span>
@@ -725,20 +704,20 @@ export default function Home() {
             <div className="flex items-start gap-4">
               <Lock className="w-5 h-5 text-neutral-500 flex-shrink-0 mt-0.5" />
               <div>
-                <p className="text-sm text-neutral-600 leading-relaxed mb-3" style={{ wordBreak: 'keep-all' }}>
+                <p className="text-body-sm text-neutral-600 leading-relaxed mb-3" style={{ wordBreak: 'keep-all' }}>
                   {SUBMIT_P3}
                 </p>
                 <div className="flex flex-wrap gap-3">
                   <a
                     href="/support/terms/"
-                    className="inline-flex items-center gap-1 text-sm text-neutral-500 hover:text-blue-600 transition-colors"
+                    className="inline-flex items-center gap-1 text-body-sm text-neutral-500 hover:text-blue-600 transition-colors"
                   >
                     <ScrollText className="w-4 h-4" />
                     이용약관
                   </a>
                   <a
                     href="/support/privacy/"
-                    className="inline-flex items-center gap-1 text-sm text-neutral-500 hover:text-blue-600 transition-colors"
+                    className="inline-flex items-center gap-1 text-body-sm text-neutral-500 hover:text-blue-600 transition-colors"
                   >
                     <Lock className="w-4 h-4" />
                     개인정보처리방침
@@ -757,14 +736,11 @@ export default function Home() {
 
           {/* Section heading */}
           <div className="text-center mb-16">
-            <p className="text-xs font-semibold tracking-widest text-cyan-600 uppercase mb-4">Prevention Guide</p>
-            <h2
-              className="text-3xl md:text-5xl font-bold text-neutral-900 leading-tight mb-6 max-w-3xl mx-auto"
-              style={{ wordBreak: 'keep-all', letterSpacing: '-0.02em' }}
-            >
+            <p className="text-label text-blue-500 mb-4">Prevention Guide</p>
+            <h2 className="text-h2 text-neutral-900 leading-tight mb-6 max-w-3xl mx-auto">
               {GUIDE_TITLE}
             </h2>
-            <p className="text-base md:text-lg text-neutral-500 leading-relaxed max-w-3xl mx-auto" style={{ wordBreak: 'keep-all' }}>
+            <p className="text-body-lg text-neutral-500 max-w-3xl mx-auto">
               {GUIDE_P1}
             </p>
           </div>
@@ -799,7 +775,7 @@ export default function Home() {
                   className={`flex items-center gap-4 p-5 rounded-xl border ${colorMap[signal.color]}`}
                 >
                   <signal.icon className={`w-5 h-5 flex-shrink-0 ${iconColorMap[signal.color]}`} />
-                  <span className="text-sm font-medium" style={{ wordBreak: 'keep-all' }}>{signal.label}</span>
+                  <span className="text-body-sm font-medium" style={{ wordBreak: 'keep-all' }}>{signal.label}</span>
                 </div>
               )
             })}
@@ -821,8 +797,8 @@ export default function Home() {
                 <div className="w-11 h-11 rounded-xl bg-cyan-50 border border-cyan-100 flex items-center justify-center mb-4 group-hover:bg-cyan-100 transition-colors">
                   <guide.icon className="w-5 h-5 text-cyan-600" />
                 </div>
-                <h3 className="text-base font-bold text-neutral-900 mb-2 group-hover:text-cyan-700 transition-colors">{guide.title}</h3>
-                <p className="text-sm text-neutral-500" style={{ wordBreak: 'keep-all' }}>{guide.desc}</p>
+                <h3 className="text-h4 text-neutral-900 mb-2 group-hover:text-cyan-700 transition-colors">{guide.title}</h3>
+                <p className="text-body-sm text-neutral-500" style={{ wordBreak: 'keep-all' }}>{guide.desc}</p>
               </a>
             ))}
           </div>
@@ -830,12 +806,12 @@ export default function Home() {
           {/* Content paragraphs */}
           <div className="grid lg:grid-cols-2 gap-6 mb-16">
             <div className="p-6 rounded-xl bg-white border border-neutral-200">
-              <p className="text-sm text-neutral-600 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
+              <p className="text-body-sm text-neutral-600 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
                 {GUIDE_P2}
               </p>
             </div>
             <div className="p-6 rounded-xl bg-white border border-neutral-200">
-              <p className="text-sm text-neutral-600 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
+              <p className="text-body-sm text-neutral-600 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
                 {GUIDE_P3}
               </p>
             </div>
@@ -849,8 +825,8 @@ export default function Home() {
                   <Siren className="w-7 h-7 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-white mb-1">금전 피해가 의심되는 경우</h3>
-                  <p className="text-sm text-white/80" style={{ wordBreak: 'keep-all' }}>
+                  <h3 className="text-h4 text-white mb-1">금전 피해가 의심되는 경우</h3>
+                  <p className="text-body-sm text-white/80" style={{ wordBreak: 'keep-all' }}>
                     추가 입금을 즉시 중단하세요
                   </p>
                 </div>
@@ -864,7 +840,7 @@ export default function Home() {
                 ].map((action, i) => (
                   <span
                     key={i}
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-sm text-white"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-body-sm text-white"
                   >
                     <action.icon className="w-4 h-4" />
                     {action.label}
@@ -883,11 +859,8 @@ export default function Home() {
 
           {/* Section heading */}
           <div className="text-center mb-16">
-            <p className="text-xs font-semibold tracking-widest text-purple-600 uppercase mb-4">FAQ</p>
-            <h2
-              className="text-3xl md:text-5xl font-bold text-neutral-900 leading-tight"
-              style={{ wordBreak: 'keep-all', letterSpacing: '-0.02em' }}
-            >
+            <p className="text-label text-blue-500 mb-4">FAQ</p>
+            <h2 className="text-h2 text-neutral-900 leading-tight">
               {FAQ_TITLE}
             </h2>
           </div>
@@ -914,7 +887,7 @@ export default function Home() {
                 </button>
                 {openFaq === i && (
                   <div className="px-6 py-5 border-t border-neutral-100 bg-neutral-50">
-                    <p className="text-sm text-neutral-600 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
+                    <p className="text-body-sm text-neutral-600 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
                       {item.a}
                     </p>
                   </div>
@@ -925,12 +898,12 @@ export default function Home() {
 
           {/* Bottom CTA */}
           <div className="mt-16 p-8 rounded-2xl bg-purple-50 border border-purple-100 text-center">
-            <p className="text-sm text-neutral-600 mb-4" style={{ wordBreak: 'keep-all' }}>
+            <p className="text-body-sm text-neutral-600 mb-4" style={{ wordBreak: 'keep-all' }}>
               더 궁금한 점이 있으신가요?
             </p>
             <a
               href="/support/contact/"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-purple-600 text-white text-sm font-semibold hover:bg-purple-700 transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-purple-600 text-white text-body-sm font-semibold hover:bg-purple-700 transition-colors"
             >
               <Send className="w-4 h-4" />
               제보 또는 문의하기
