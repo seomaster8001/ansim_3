@@ -1,4 +1,4 @@
-import { Search, Check, AlertCircle, Minus, Shield, TrendingUp, Database, Users, Calendar, Globe, FileText, MessageSquare, ExternalLink, ArrowRight, Clock, AlertTriangle, BookOpen, ChevronRight, CheckCircle, BarChart3, ShieldCheck, Layers, Send, ClipboardList, Filter, CheckSquare, XCircle, Lock, ScrollText } from 'lucide-react'
+import { Search, Check, AlertCircle, Minus, Shield, TrendingUp, Database, Users, Calendar, Globe, FileText, MessageSquare, ExternalLink, ArrowRight, Clock, AlertTriangle, BookOpen, ChevronRight, CheckCircle, BarChart3, ShieldCheck, Layers, Send, ClipboardList, Filter, CheckSquare, XCircle, Lock, ScrollText, Link2, Banknote, PhoneOff, Eye, Archive, Siren } from 'lucide-react'
 
 /* ─── 원문 텍스트 ─────────────────────────── */
 const HERO_TITLE = '먹튀검증, 사이트 조회와 제보 확인까지 한 번에'
@@ -48,6 +48,14 @@ const SUBMIT_P2 =
   '제보 내용이 부족하거나 사실 확인이 어려운 경우에는 공개하지 않거나 데이터 부족 상태로 보류합니다. 동일한 사이트에 비슷한 제보가 반복되면 확인 필요 항목으로 분류할 수 있지만, 단일 제보만으로 특정 사이트를 단정하지 않습니다. 허위 제보, 경쟁 사이트 비방, 개인정보 노출, 확인되지 않은 주장성 문구는 반영 대상에서 제외됩니다.'
 const SUBMIT_P3 =
   '개인정보가 포함된 내용은 마스킹 기준에 따라 처리되며, 데이터 처리 기준과 이용자의 권리는 이용약관과 개인정보처리방침에서 확인할 수 있습니다.'
+
+const GUIDE_TITLE = '피해예방 가이드를 함께 확인하세요'
+const GUIDE_P1 =
+  '먹튀 의심 사이트는 대부분 한 가지 신호만으로 드러나지 않습니다. 주소가 반복적으로 바뀌거나, 환전 지연 후 추가 입금을 요구하거나, 고객센터 응답이 갑자기 중단되는 등 여러 신호가 동시에 나타나는 경우가 많아, 단일 정보보다 신호 패턴을 함께 확인해야 정확한 판단이 가능합니다.'
+const GUIDE_P2 =
+  '안심고고는 사이트 조회 결과와 함께 관련 피해예방 가이드를 연결합니다. 주소 변경 시 확인해야 할 체크포인트, 피싱 사이트 구별법, 환전 지연 대응법, 추가 입금 요구 대처법을 함께 보면 단순 조회보다 더 안전하게 판단할 수 있습니다.'
+const GUIDE_P3 =
+  '처음 확인하는 사이트라면 사이트 상세 정보만 보지 말고, 관련 리포트와 가이드까지 함께 확인하는 것이 좋습니다. 특히 금전 피해가 의심되는 경우에는 추가 입금을 중단하고, 대화 기록·입금 내역·주소 변경 내역을 보관한 뒤 공공 신고 경로를 확인해야 합니다.'
 
 export default function Home() {
   return (
@@ -720,6 +728,132 @@ export default function Home() {
                     개인정보처리방침
                   </a>
                 </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* ── PREVENTION GUIDE SECTION ── */}
+      <section className="py-28 md:py-36 px-6 md:px-20 bg-slate-50 border-t border-neutral-100">
+        <div className="max-w-6xl mx-auto">
+
+          {/* Section heading */}
+          <div className="text-center mb-16">
+            <p className="text-xs font-semibold tracking-widest text-cyan-600 uppercase mb-4">Prevention Guide</p>
+            <h2
+              className="text-3xl md:text-5xl font-bold text-neutral-900 leading-tight mb-6 max-w-3xl mx-auto"
+              style={{ wordBreak: 'keep-all', letterSpacing: '-0.02em' }}
+            >
+              {GUIDE_TITLE}
+            </h2>
+            <p className="text-base md:text-lg text-neutral-500 leading-relaxed max-w-3xl mx-auto" style={{ wordBreak: 'keep-all' }}>
+              {GUIDE_P1}
+            </p>
+          </div>
+
+          {/* Warning signals grid */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-16">
+            {[
+              { icon: Globe, label: '주소가 반복적으로 변경', color: 'amber' },
+              { icon: Banknote, label: '환전 지연 후 추가 입금 요구', color: 'red' },
+              { icon: PhoneOff, label: '고객센터 응답 갑자기 중단', color: 'rose' },
+              { icon: Link2, label: '피싱 유사 주소 사용', color: 'orange' },
+              { icon: FileText, label: '운영 정보 불일치', color: 'amber' },
+              { icon: Clock, label: '최근 확인일 오래됨', color: 'neutral' },
+            ].map((signal, i) => {
+              const colorMap: Record<string, string> = {
+                amber: 'bg-amber-50 border-amber-200 text-amber-700',
+                red: 'bg-red-50 border-red-200 text-red-700',
+                rose: 'bg-rose-50 border-rose-200 text-rose-700',
+                orange: 'bg-orange-50 border-orange-200 text-orange-700',
+                neutral: 'bg-neutral-100 border-neutral-200 text-neutral-700',
+              }
+              const iconColorMap: Record<string, string> = {
+                amber: 'text-amber-500',
+                red: 'text-red-500',
+                rose: 'text-rose-500',
+                orange: 'text-orange-500',
+                neutral: 'text-neutral-500',
+              }
+              return (
+                <div
+                  key={i}
+                  className={`flex items-center gap-4 p-5 rounded-xl border ${colorMap[signal.color]}`}
+                >
+                  <signal.icon className={`w-5 h-5 flex-shrink-0 ${iconColorMap[signal.color]}`} />
+                  <span className="text-sm font-medium" style={{ wordBreak: 'keep-all' }}>{signal.label}</span>
+                </div>
+              )
+            })}
+          </div>
+
+          {/* Guide cards */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
+            {[
+              { icon: Globe, title: '주소 변경 체크포인트', desc: '주소 변경 시 확인해야 할 항목' },
+              { icon: Eye, title: '피싱 사이트 구별법', desc: '유사 도메인과 원본 구분 방법' },
+              { icon: Clock, title: '환전 지연 대응법', desc: '환전 지연 시 확인할 절차' },
+              { icon: Banknote, title: '추가 입금 요구 대처', desc: '추가 입금 요구 시 대응 방법' },
+            ].map((guide, i) => (
+              <a
+                key={i}
+                href="/guide/"
+                className="group p-6 rounded-2xl bg-white border border-neutral-200 hover:border-cyan-300 hover:shadow-lg hover:shadow-cyan-50 transition-all"
+              >
+                <div className="w-11 h-11 rounded-xl bg-cyan-50 border border-cyan-100 flex items-center justify-center mb-4 group-hover:bg-cyan-100 transition-colors">
+                  <guide.icon className="w-5 h-5 text-cyan-600" />
+                </div>
+                <h3 className="text-base font-bold text-neutral-900 mb-2 group-hover:text-cyan-700 transition-colors">{guide.title}</h3>
+                <p className="text-sm text-neutral-500" style={{ wordBreak: 'keep-all' }}>{guide.desc}</p>
+              </a>
+            ))}
+          </div>
+
+          {/* Content paragraphs */}
+          <div className="grid lg:grid-cols-2 gap-6 mb-16">
+            <div className="p-6 rounded-xl bg-white border border-neutral-200">
+              <p className="text-sm text-neutral-600 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
+                {GUIDE_P2}
+              </p>
+            </div>
+            <div className="p-6 rounded-xl bg-white border border-neutral-200">
+              <p className="text-sm text-neutral-600 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
+                {GUIDE_P3}
+              </p>
+            </div>
+          </div>
+
+          {/* Emergency action box */}
+          <div className="p-8 rounded-2xl bg-gradient-to-br from-red-600 to-rose-600">
+            <div className="flex flex-col md:flex-row md:items-center gap-6">
+              <div className="flex items-center gap-4">
+                <div className="w-14 h-14 rounded-2xl bg-white/20 flex items-center justify-center flex-shrink-0">
+                  <Siren className="w-7 h-7 text-white" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-white mb-1">금전 피해가 의심되는 경우</h3>
+                  <p className="text-sm text-white/80" style={{ wordBreak: 'keep-all' }}>
+                    추가 입금을 즉시 중단하세요
+                  </p>
+                </div>
+              </div>
+              <div className="flex-1 flex flex-wrap gap-2 md:justify-end">
+                {[
+                  { icon: MessageSquare, label: '대화 기록 보관' },
+                  { icon: Banknote, label: '입금 내역 보관' },
+                  { icon: Archive, label: '주소 변경 내역 보관' },
+                  { icon: ExternalLink, label: '공공 신고 경로 확인' },
+                ].map((action, i) => (
+                  <span
+                    key={i}
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-sm text-white"
+                  >
+                    <action.icon className="w-4 h-4" />
+                    {action.label}
+                  </span>
+                ))}
               </div>
             </div>
           </div>
