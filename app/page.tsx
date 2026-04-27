@@ -461,80 +461,73 @@ export default function Home() {
       </section>
 
       {/* ── CATEGORIES SECTION ── */}
-      <section className="py-28 md:py-36 px-6 md:px-20 bg-slate-50 border-t border-neutral-100">
-        <div className="max-w-6xl mx-auto">
+      <section className="py-24 md:py-32 px-6 md:px-20 bg-slate-50 border-t border-neutral-100">
+        <div className="max-w-5xl mx-auto">
 
           {/* Section heading */}
-          <div className="text-center mb-16">
+          <div className="text-center mb-14">
             <p className="text-label text-blue-500 mb-4">Categories</p>
             <h2 className="text-h2 text-neutral-900 leading-tight mb-6">
               {CATEGORY_TITLE}
             </h2>
-            <p className="text-body-lg text-neutral-500 max-w-3xl mx-auto">
+            <p className="text-body-lg text-neutral-500 max-w-2xl mx-auto">
               {CATEGORY_INTRO}
             </p>
           </div>
 
-          {/* Category cards - 5 columns */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-16">
+          {/* Category navigation - horizontal scroll on mobile, grid on desktop */}
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-14">
             {[
-              { icon: ShieldCheck, title: '보증업체', desc: '검증 기준을 통과한 사이트 정보', href: '/safety/' },
-              { icon: FileText, title: '먹튀검증 리포트', desc: '제보 이력과 주소 변경 사건별 기록', href: '/review/' },
-              { icon: BarChart3, title: '스포츠 분석', desc: 'KBO·MLB·EPL 경기 데이터와 라이브스코어', href: '/picks/' },
-              { icon: BookOpen, title: '피해예방 가이드', desc: '환전 지연, 피싱 주소, 주소 변경 리스크 체크', href: '/guide/' },
-              { icon: Database, title: '데이터센터', desc: '변경 이력, 검증 현황, 카테고리별 흐름 요약', href: '/data/' },
+              { icon: ShieldCheck, title: '보증업체', href: '/safety/' },
+              { icon: FileText, title: '먹튀검증 리포트', href: '/review/' },
+              { icon: BarChart3, title: '스포츠 분석', href: '/picks/' },
+              { icon: BookOpen, title: '피해예방 가이드', href: '/guide/' },
+              { icon: Database, title: '데이터센터', href: '/data/' },
             ].map((cat, i) => (
               <a
                 key={i}
                 href={cat.href}
-                className="group flex flex-col p-5 rounded-2xl bg-white border border-neutral-200 hover:border-blue-300 hover:shadow-lg hover:shadow-blue-50 transition-all"
+                className="group flex items-center gap-3 p-4 rounded-xl bg-white border border-neutral-200 hover:border-blue-300 hover:shadow-md transition-all"
               >
-                <div className="w-12 h-12 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center mb-4 group-hover:bg-blue-100 transition-colors">
-                  <cat.icon className="w-6 h-6 text-blue-600" />
+                <div className="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center flex-shrink-0 group-hover:bg-blue-100 transition-colors">
+                  <cat.icon className="w-5 h-5 text-blue-600" />
                 </div>
-                <h3 className="text-h4 text-neutral-900 mb-2">{cat.title}</h3>
-                <p className="text-body-sm text-neutral-500 leading-relaxed flex-1" style={{ wordBreak: 'keep-all' }}>
-                  {cat.desc}
-                </p>
-                <div className="mt-4 pt-4 border-t border-neutral-100 flex items-center justify-between">
-                  <span className="text-xs text-neutral-400">바로가기</span>
-                  <ChevronRight className="w-4 h-4 text-neutral-400 group-hover:text-blue-500 group-hover:translate-x-1 transition-all" />
-                </div>
+                <span className="text-body-sm font-medium text-neutral-900 group-hover:text-blue-600 transition-colors">{cat.title}</span>
               </a>
             ))}
           </div>
 
-          {/* Detailed paragraphs */}
-          <div className="grid lg:grid-cols-2 gap-6 mb-16">
-            <div className="p-6 rounded-xl bg-white border border-neutral-200">
-              <p className="text-body-sm text-neutral-600 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
+          {/* Category descriptions */}
+          <div className="space-y-4 mb-14">
+            <div className="p-5 rounded-xl bg-white border border-neutral-200">
+              <p className="text-body-sm text-neutral-600" style={{ wordBreak: 'keep-all' }}>
                 {CATEGORY_P1}
               </p>
             </div>
-            <div className="p-6 rounded-xl bg-white border border-neutral-200">
-              <p className="text-body-sm text-neutral-600 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
+            <div className="p-5 rounded-xl bg-white border border-neutral-200">
+              <p className="text-body-sm text-neutral-600" style={{ wordBreak: 'keep-all' }}>
                 {CATEGORY_P2}
               </p>
             </div>
           </div>
 
-          {/* Hub CTA */}
-          <div className="p-8 rounded-2xl bg-gradient-to-br from-blue-600 to-blue-500 text-center">
-            <Layers className="w-10 h-10 text-white/80 mx-auto mb-4" />
-            <h3 className="text-h3 text-white mb-3">안심고고는 검색·조회·제보·가이드로 이동하는 허브입니다</h3>
-            <p className="text-body-sm text-white/70 mb-6 max-w-xl mx-auto" style={{ wordBreak: 'keep-all' }}>
-              처음 방문한 사용자는 검색창에서 바로 확인하고, 반복 방문 사용자는 최신 리포트와 변경 이력부터 확인할 수 있습니다.
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-3">
-              <button className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-blue-700 text-body-sm font-semibold hover:bg-blue-50 transition-colors">
-                <Search className="w-4 h-4" />
+          {/* Hub message - simplified */}
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-6 p-6 rounded-xl bg-neutral-900">
+            <div className="flex items-center gap-4">
+              <div className="w-10 h-10 rounded-lg bg-blue-600 flex items-center justify-center flex-shrink-0">
+                <Layers className="w-5 h-5 text-white" />
+              </div>
+              <p className="text-body-sm text-white" style={{ wordBreak: 'keep-all' }}>
+                처음 방문한 사용자는 검색창에서 바로 확인하고, 반복 방문 사용자는 최신 리포트와 변경 이력부터 확인할 수 있습니다.
+              </p>
+            </div>
+            <div className="flex gap-2 flex-shrink-0">
+              <a href="/" className="px-4 py-2 rounded-lg bg-white text-neutral-900 text-body-sm font-medium hover:bg-neutral-100 transition-colors">
                 사이트 조회
-              </button>
-              <button className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white/10 border border-white/20 text-white text-body-sm font-semibold hover:bg-white/20 transition-colors">
-                <FileText className="w-4 h-4" />
+              </a>
+              <a href="/review/" className="px-4 py-2 rounded-lg bg-white/10 text-white text-body-sm font-medium hover:bg-white/20 transition-colors">
                 최신 리포트
-                <ArrowRight className="w-4 h-4" />
-              </button>
+              </a>
             </div>
           </div>
 
