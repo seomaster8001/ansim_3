@@ -46,7 +46,7 @@ const SUBMIT_TITLE = '제보는 검토 후 반영됩니다'
 const SUBMIT_INTRO =
   '주소 변경, 접속 불가, 환전 지연, 추가 입금 요구, 운영 정보 불일치가 의심되는 경우 제보 페이지를 통해 내용을 보낼 수 있습니다. 제보는 익명으로 접수할 수 있으며, 접수된 내용은 즉시 공개되지 않고 검토 절차를 거친 뒤 확인 가능한 항목만 반영됩니다.'
 const SUBMIT_P1 =
-  '제보 절차는 네 단계로 진행됩니다. 첫째는 접수입니다. 사용자가 사이트명, 현재 주소, 제보 유형, 상세 내용을 입력합니다. 둘째는 검토입니다. 접수된 내용에서 개인정보와 민감 정보가 포함되어 있는지 확인하고 필요한 경우 마스킹합니다. 셋째는 분류입니다. 주소 변경·환전 지연·추가 입금 요구·접속 불가·운영 정보 불일치 등 유형별로 묶습니다. 넷째는 반영입니다. 확인 가능한 항목만 사이트 상세 페이지, 검증 리포�����, 변경 이력에 반영합니다.'
+  '제보 절차는 네 단계로 진행됩니다. 첫째는 접수입니다. 사용자가 사이트명, 현재 주소, 제보 유형, 상세 내용을 입력합니다. 둘째는 검토입니다. 접수된 내용에서 개인정보와 민감 정보가 포함되어 있는지 확인하고 필요한 경우 마스킹합니다. 셋째는 분류입니다. 주소 변경·환전 지연·추가 입금 요구·접속 불가·운영 정보 불일치 등 유형별로 묶습니다. 넷째는 반영입니다. 확인 가능한 항목만 사이트 상세 페이지, 검증 리포�������, 변경 이력에 반영합니다.'
 const SUBMIT_P2 =
   '제보 내용이 부족하거나 사실 확인이 어려운 경우에는 공개하지 않거나 데이터 부족 상태로 보류합니다. 동일한 사이트에 비슷한 제보가 반복되면 확인 필요 항목으로 분류할 수 있지만, 단일 제보만으로 특정 사이트를 단정하지 않습니다. 허위 제보, 경쟁 사이트 비방, 개인정보 노출, 확인되지 않은 주장성 문구는 반영 대상에서 제외됩니다.'
 const SUBMIT_P3 =
@@ -475,52 +475,36 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Category navigation - horizontal scroll on mobile, grid on desktop */}
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-14">
+          {/* 5 Category cards with descriptions */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
             {[
-              { icon: ShieldCheck, title: '보증업체', href: '/safety/' },
-              { icon: FileText, title: '먹튀검증 리포트', href: '/review/' },
-              { icon: BarChart3, title: '스포츠 분석', href: '/picks/' },
-              { icon: BookOpen, title: '피해예방 가이드', href: '/guide/' },
-              { icon: Database, title: '데이터센터', href: '/data/' },
+              { icon: ShieldCheck, title: '보증업체', desc: '검증 기준을 통과한 사이트 정보', href: '/safety/' },
+              { icon: FileText, title: '먹튀검증 리포트', desc: '제보 이력과 주소 변경 사건별 기록', href: '/review/' },
+              { icon: BarChart3, title: '스포츠 분석', desc: 'KBO·MLB·EPL 경기 데이터와 라이브스코어', href: '/picks/' },
+              { icon: BookOpen, title: '피해예방 가이드', desc: '환전 지연, 피싱 주소, 주소 변경 리스크 체크', href: '/guide/' },
+              { icon: Database, title: '데이터센터', desc: '변경 이력, 검증 현황, 카테고리별 흐름 요약', href: '/data/' },
             ].map((cat, i) => (
               <a
                 key={i}
                 href={cat.href}
-                className="group flex items-center gap-3 p-4 rounded-xl bg-white border border-neutral-200 hover:border-blue-300 hover:shadow-md transition-all"
+                className="group flex items-start gap-4 p-5 rounded-xl bg-white border border-neutral-200 hover:border-blue-300 hover:shadow-md transition-all"
               >
                 <div className="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center flex-shrink-0 group-hover:bg-blue-100 transition-colors">
                   <cat.icon className="w-5 h-5 text-blue-600" />
                 </div>
-                <span className="text-body-sm font-medium text-neutral-900 group-hover:text-blue-600 transition-colors">{cat.title}</span>
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-h4 text-neutral-900 mb-1 group-hover:text-blue-600 transition-colors">{cat.title}</h3>
+                  <p className="text-body-sm text-neutral-500" style={{ wordBreak: 'keep-all' }}>{cat.desc}</p>
+                </div>
               </a>
             ))}
           </div>
 
-          {/* Category descriptions */}
-          <div className="space-y-4 mb-14">
-            <div className="p-5 rounded-xl bg-white border border-neutral-200">
-              <p className="text-body-sm text-neutral-600" style={{ wordBreak: 'keep-all' }}>
-                {CATEGORY_P1}
-              </p>
-            </div>
-            <div className="p-5 rounded-xl bg-white border border-neutral-200">
-              <p className="text-body-sm text-neutral-600" style={{ wordBreak: 'keep-all' }}>
-                {CATEGORY_P2}
-              </p>
-            </div>
-          </div>
-
-          {/* Hub message - simplified */}
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-6 p-6 rounded-xl bg-neutral-900">
-            <div className="flex items-center gap-4">
-              <div className="w-10 h-10 rounded-lg bg-blue-600 flex items-center justify-center flex-shrink-0">
-                <Layers className="w-5 h-5 text-white" />
-              </div>
-              <p className="text-body-sm text-white" style={{ wordBreak: 'keep-all' }}>
-                처음 방문한 사용자는 검색창에서 바로 확인하고, 반복 방문 사용자는 최신 리포트와 변경 이력부터 확인할 수 있습니다.
-              </p>
-            </div>
+          {/* Hub CTA */}
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-5 rounded-xl bg-neutral-900">
+            <p className="text-body-sm text-white" style={{ wordBreak: 'keep-all' }}>
+              처음 방문자는 검색창에서, 반복 방문자는 최신 리포트부터 확인하세요.
+            </p>
             <div className="flex gap-2 flex-shrink-0">
               <a href="/" className="px-4 py-2 rounded-lg bg-white text-neutral-900 text-body-sm font-medium hover:bg-neutral-100 transition-colors">
                 사이트 조회
