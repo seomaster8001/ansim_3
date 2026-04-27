@@ -1,4 +1,4 @@
-import { Search, Check, AlertCircle, Minus, Shield, TrendingUp, Database, Users } from 'lucide-react'
+import { Search, Check, AlertCircle, Minus, Shield, TrendingUp, Database, Users, Calendar, Globe, FileText, MessageSquare, ExternalLink } from 'lucide-react'
 
 /* ─── 원문 텍스트 ─────────────────────────── */
 const HERO_TITLE = '먹튀검증, 사이트 조회와 제보 확인까지 한 번에'
@@ -12,6 +12,16 @@ const SEARCH_P2 =
   '먹튀 의심 여부는 한 가지 신호만으로 판단하지 않습니다. 최근 확인일이 오래되었는지, 주소가 자주 바뀌었는지, 운영 정보가 일치하는지, 환전 지연이나 추가 입금 요구 같은 제보가 반복되는지를 함께 봅니다. 안심고고는 이러한 신호를 모아 사용자가 접속 전 확인할 수 있도록 정리합니다.'
 const SEARCH_P3 =
   '검색 결과에는 사이트명, 현재 상태, 마지막 확인일, 주소 변경 이력, 관련 제보, 연결된 가이드가 함께 표시됩니다. 확인 가능한 정보가 충분하지 않은 경우에는 단정하지 않고 데이터 부족 또는 확인 필요 상태로 표시합니다.'
+
+const CRITERIA_TITLE = '검증 기준은 근거 중심으로 정리합니다'
+const CRITERIA_INTRO =
+  '안심고고는 특정 사이트를 감정적으로 단정하지 않습니다. 최근 확인일, 주소 변경 이력, 운영 정보 일치 여부, 사용자 제보 내용, 공개 신고 가능 경로를 함께 검토해 검증 통과·확인 필요·데이터 부족 같은 중립 라벨로 분류하며, 모든 항목은 자체 갱신 데이터에 근거합니다.'
+const CRITERIA_P1 =
+  '검증 기준은 크게 다섯 가지입니다. 첫째는 최근 확인일입니다. 마지막 확인일이 오래되었거나 접속 상태가 반복적으로 바뀌면 추가 확인이 필요합니다. 둘째는 주소 변경 이력입니다. 짧은 기간에 도메인이 여러 번 바뀌거나 유사 주소가 반복되면 피싱 또는 추적 회피 가능성을 함께 봅니다. 셋째는 운영 정보 일치 여부입니다. 사이트명, 안내 문구, 고객센터 정보, 공지 내용이 서로 맞지 않으면 확인 필요 신호로 분류합니다.'
+const CRITERIA_P2 =
+  '넷째는 사용자 제보 패턴입니다. 단일 제보만으로 단정하지 않고, 환전 지연·추가 입금 요구·고객센터 응답 중단·주소 변경 안내 누락 같은 유사한 제보가 반복되는지 확인합니다. 다섯째는 공개 신고·보안 경로입니다. 피해 신고와 보안 확인이 필요한 경우 KISA, 금융감독원, 더치트 같은 공공·신뢰 출처의 공개 자료를 참고할 수 있도록 안내합니다.'
+const CRITERIA_DISCLAIMER =
+  '안심고고는 공식기관이 아니며, 위 출처들과 어떠한 협력·소속 관계도 없습니다. 자체 확인 항목과 외부 신고 경로를 구분해 표시하며, 단정적인 결론 표현 대신 "확인 필요·데이터 부족·검증 기준 통과"처럼 사용자가 근거를 보고 판단할 수 있는 중립 표현을 사용합니다.'
 
 export default function Home() {
   return (
@@ -203,6 +213,95 @@ export default function Home() {
                 * 결과 표시 예시입니다. 실제 결과는 검색 후 확인됩니다.
               </p>
             </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* ── VERIFICATION CRITERIA SECTION ── */}
+      <section className="py-28 md:py-36 px-6 md:px-20 bg-slate-50 border-t border-neutral-100">
+        <div className="max-w-6xl mx-auto">
+
+          {/* Section heading */}
+          <div className="max-w-3xl mb-16">
+            <p className="text-xs font-semibold tracking-widest text-emerald-600 uppercase mb-4">Verification Criteria</p>
+            <h2
+              className="text-3xl md:text-5xl font-bold text-neutral-900 leading-tight mb-8"
+              style={{ wordBreak: 'keep-all', letterSpacing: '-0.02em' }}
+            >
+              {CRITERIA_TITLE}
+            </h2>
+            <p className="text-base md:text-lg text-neutral-500 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
+              {CRITERIA_INTRO}
+            </p>
+          </div>
+
+          {/* 5 Criteria Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mb-16">
+            {[
+              { n: '01', icon: Calendar, title: '최근 확인일', desc: '마지막 확인일이 오래되었거나 접속 상태가 반복적으로 바뀌면 추가 확인이 필요합니다.' },
+              { n: '02', icon: Globe, title: '주소 변경 이력', desc: '짧은 기간에 도메인이 여러 번 바뀌거나 유사 주소가 반복되면 피싱 또는 추적 회피 가능성을 함께 봅니다.' },
+              { n: '03', icon: FileText, title: '운영 정보 일치 여부', desc: '사이트명, 안내 문구, 고객센터 정보, 공지 내용이 서로 맞지 않으면 확인 필요 신호로 분류합니다.' },
+              { n: '04', icon: MessageSquare, title: '사용자 제보 패턴', desc: '단일 제보만으로 단정하지 않고, 환전 지연·추가 입금 요구·고객센터 응답 중단 같은 유사 제보가 반복되는지 확인합니다.' },
+              { n: '05', icon: ExternalLink, title: '공개 신고·보안 경로', desc: '피해 신고와 보안 확인이 필요한 경우 KISA, 금융감독원, 더치트 같은 공공·신뢰 출처를 안내합니다.' },
+            ].map((item) => (
+              <div
+                key={item.n}
+                className="group p-6 rounded-2xl bg-white border border-neutral-200 hover:border-emerald-300 hover:shadow-lg hover:shadow-emerald-50 transition-all"
+              >
+                <div className="flex items-start gap-4 mb-4">
+                  <div className="w-11 h-11 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center flex-shrink-0 group-hover:bg-emerald-100 transition-colors">
+                    <item.icon className="w-5 h-5 text-emerald-600" />
+                  </div>
+                  <span className="text-xs font-mono font-bold text-emerald-400 mt-1">{item.n}</span>
+                </div>
+                <h3 className="text-lg font-bold text-neutral-900 mb-2">{item.title}</h3>
+                <p className="text-sm text-neutral-500 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
+                  {item.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* Detailed paragraphs */}
+          <div className="grid lg:grid-cols-2 gap-8 mb-12">
+            <div className="p-6 rounded-xl bg-white border border-neutral-200">
+              <p className="text-sm text-neutral-600 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
+                {CRITERIA_P1}
+              </p>
+            </div>
+            <div className="p-6 rounded-xl bg-white border border-neutral-200">
+              <p className="text-sm text-neutral-600 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
+                {CRITERIA_P2}
+              </p>
+            </div>
+          </div>
+
+          {/* External links */}
+          <div className="flex flex-wrap gap-3 mb-12">
+            {[
+              { name: 'KISA', url: 'https://www.kisa.or.kr/' },
+              { name: '금융감독원', url: 'https://www.fss.or.kr/' },
+              { name: '더치트', url: 'https://thecheat.co.kr/' },
+            ].map((link) => (
+              <a
+                key={link.name}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white border border-neutral-200 text-sm text-neutral-600 hover:border-blue-300 hover:text-blue-600 transition-colors"
+              >
+                <ExternalLink className="w-4 h-4" />
+                {link.name}
+              </a>
+            ))}
+          </div>
+
+          {/* Disclaimer */}
+          <div className="p-6 rounded-xl bg-neutral-100 border border-neutral-200">
+            <p className="text-sm text-neutral-500 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
+              {CRITERIA_DISCLAIMER}
+            </p>
           </div>
 
         </div>
