@@ -535,135 +535,76 @@ export default function Home() {
       </section>
 
       {/* ── SUBMIT REPORT SECTION ── */}
-      <section className="py-28 md:py-36 px-6 md:px-20 bg-white border-t border-neutral-100">
-        <div className="max-w-6xl mx-auto">
+      <section className="py-24 md:py-32 px-6 md:px-20 bg-white border-t border-neutral-100">
+        <div className="max-w-5xl mx-auto">
 
           {/* Section heading */}
-          <div className="grid lg:grid-cols-12 gap-10 mb-16">
-            <div className="lg:col-span-5">
-              <p className="text-label text-blue-500 mb-4">Report Submission</p>
-              <h2 className="text-h2 text-neutral-900 leading-tight mb-6">
-                {SUBMIT_TITLE}
-              </h2>
-              <p className="text-body-lg text-neutral-500 mb-8">
-                {SUBMIT_INTRO}
-              </p>
-              <a
-                href="/support/contact/"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-blue-600 text-white text-body-sm font-semibold hover:bg-blue-700 transition-colors"
-              >
-                <Send className="w-4 h-4" />
-                제보 페이지로 이동
-                <ArrowRight className="w-4 h-4" />
-              </a>
-            </div>
-            <div className="lg:col-span-7">
-              {/* 4 Steps Process */}
-              <div className="grid sm:grid-cols-2 gap-4">
-                {[
-                  {
-                    n: '01',
-                    icon: ClipboardList,
-                    title: '접수',
-                    desc: '사용자가 사이트명, 현재 주소, 제보 유형, 상세 내용을 입력합니다.',
-                  },
-                  {
-                    n: '02',
-                    icon: Filter,
-                    title: '검토',
-                    desc: '접수된 내용에서 개인정보와 민감 정보가 포함되어 있는지 확인하고 필요한 경우 마스킹합니다.',
-                  },
-                  {
-                    n: '03',
-                    icon: Layers,
-                    title: '분류',
-                    desc: '주소 변경·환전 지연·추가 입금 요구·접속 불가·운영 정보 불일�� 등 유���별로 묶습니다.',
-                  },
-                  {
-                    n: '04',
-                    icon: CheckSquare,
-                    title: '반영',
-                    desc: '확인 가능한 항목만 사이트 상세 페이지, 검증 리포트, 변경 이력에 반영합니다.',
-                  },
-                ].map((step) => (
-                  <div
-                    key={step.n}
-                className="group p-5 rounded-2xl bg-slate-50 border border-neutral-100 hover:border-blue-200 hover:bg-blue-50/50 transition-all"
-              >
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-10 h-10 rounded-xl bg-white border border-neutral-200 flex items-center justify-center group-hover:border-blue-200 transition-colors">
-                    <step.icon className="w-5 h-5 text-blue-500" />
-                  </div>
-                  <span className="text-xs font-mono font-bold text-blue-400">{step.n}</span>
+          <div className="text-center mb-14">
+            <p className="text-label text-blue-500 mb-4">Report Submission</p>
+            <h2 className="text-h2 text-neutral-900 leading-tight mb-6">
+              {SUBMIT_TITLE}
+            </h2>
+            <p className="text-body-lg text-neutral-500 max-w-2xl mx-auto">
+              {SUBMIT_INTRO}
+            </p>
+          </div>
+
+          {/* 4 Steps - horizontal flow */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-14">
+            {[
+              { n: '1', title: '접수', desc: '사이트명, 주소, 제보 유형, 상세 내용 입력' },
+              { n: '2', title: '검토', desc: '개인정보·민감정보 확인 및 마스킹' },
+              { n: '3', title: '분류', desc: '주소 변경·환전 지연 등 유형별 분류' },
+              { n: '4', title: '반영', desc: '확인 가능한 항목만 리포트에 반영' },
+            ].map((step) => (
+              <div key={step.n} className="text-center p-5 rounded-xl bg-slate-50 border border-neutral-100">
+                <div className="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center mx-auto mb-3 text-body-sm font-bold">
+                  {step.n}
                 </div>
-                    <h3 className="text-h4 text-neutral-900 mb-2">{step.title}</h3>
-                    <p className="text-body-sm text-neutral-500 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
-                      {step.desc}
-                    </p>
-                  </div>
+                <h3 className="text-h4 text-neutral-900 mb-1">{step.title}</h3>
+                <p className="text-body-sm text-neutral-500" style={{ wordBreak: 'keep-all' }}>{step.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Important notes - 2 cards */}
+          <div className="grid md:grid-cols-2 gap-4 mb-10">
+            <div className="p-5 rounded-xl bg-slate-50 border border-neutral-100">
+              <h4 className="text-h4 text-neutral-900 mb-2">제보 처리 기준</h4>
+              <p className="text-body-sm text-neutral-500" style={{ wordBreak: 'keep-all' }}>
+                제보 내용이 부족하거나 사실 확인이 어려운 경우 데이터 부족 상태로 보류합니다. 동일 사이트에 비슷한 제보가 반복되면 확인 필요로 분류하지만, 단일 제보만으로 단정하지 않습니다.
+              </p>
+            </div>
+            <div className="p-5 rounded-xl bg-red-50 border border-red-100">
+              <h4 className="text-h4 text-red-800 mb-2 flex items-center gap-2">
+                <XCircle className="w-4 h-4" />
+                반영 제외 대상
+              </h4>
+              <div className="flex flex-wrap gap-2">
+                {['허위 제보', '경쟁 사이트 비방', '개인정보 노출', '확인되지 않은 주장'].map((item) => (
+                  <span key={item} className="px-2.5 py-1 rounded-md bg-white border border-red-100 text-body-sm text-red-700">
+                    {item}
+                  </span>
                 ))}
               </div>
             </div>
           </div>
 
-          {/* Exclusions and info */}
-          <div className="grid lg:grid-cols-2 gap-6 mb-12">
-            <div className="p-6 rounded-xl bg-slate-50 border border-neutral-100">
-              <p className="text-body-sm text-neutral-600 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
-                {SUBMIT_P1}
-              </p>
+          {/* Privacy + CTA */}
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-6 p-5 rounded-xl bg-neutral-100 border border-neutral-200">
+            <div className="flex items-center gap-3 text-body-sm text-neutral-500">
+              <Lock className="w-4 h-4 flex-shrink-0" />
+              <span style={{ wordBreak: 'keep-all' }}>개인정보는 마스킹 처리됩니다.</span>
+              <a href="/support/terms/" className="underline hover:text-blue-600">이용약관</a>
+              <a href="/support/privacy/" className="underline hover:text-blue-600">개인정보처리방침</a>
             </div>
-            <div className="p-6 rounded-xl bg-slate-50 border border-neutral-100">
-              <p className="text-body-sm text-neutral-600 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
-                {SUBMIT_P2}
-              </p>
-            </div>
-          </div>
-
-          {/* Exclusion list */}
-          <div className="p-6 rounded-xl bg-red-50 border border-red-100 mb-12">
-            <h4 className="font-semibold text-red-800 mb-3 flex items-center gap-2">
-              <XCircle className="w-5 h-5" />
-              반영 제외 대상
-            </h4>
-            <div className="flex flex-wrap gap-2">
-              {['허위 제보', '경쟁 사이트 비방', '개인정보 노출', '확인되지 않은 주장성 문구'].map((item) => (
-                <span
-                  key={item}
-                  className="px-3 py-1.5 rounded-lg bg-white border border-red-100 text-body-sm text-red-700"
-                >
-                  {item}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* Privacy notice */}
-          <div className="p-6 rounded-xl bg-neutral-100 border border-neutral-200">
-            <div className="flex items-start gap-4">
-              <Lock className="w-5 h-5 text-neutral-500 flex-shrink-0 mt-0.5" />
-              <div>
-                <p className="text-body-sm text-neutral-600 leading-relaxed mb-3" style={{ wordBreak: 'keep-all' }}>
-                  {SUBMIT_P3}
-                </p>
-                <div className="flex flex-wrap gap-3">
-                  <a
-                    href="/support/terms/"
-                    className="inline-flex items-center gap-1 text-body-sm text-neutral-500 hover:text-blue-600 transition-colors"
-                  >
-                    <ScrollText className="w-4 h-4" />
-                    이용약관
-                  </a>
-                  <a
-                    href="/support/privacy/"
-                    className="inline-flex items-center gap-1 text-body-sm text-neutral-500 hover:text-blue-600 transition-colors"
-                  >
-                    <Lock className="w-4 h-4" />
-                    개인정보처리방침
-                  </a>
-                </div>
-              </div>
-            </div>
+            <a
+              href="/support/contact/"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-blue-600 text-white text-body-sm font-medium hover:bg-blue-700 transition-colors flex-shrink-0"
+            >
+              <Send className="w-4 h-4" />
+              제보하기
+            </a>
           </div>
 
         </div>
