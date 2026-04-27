@@ -102,7 +102,7 @@ export default function Home() {
         {/* Subtle background */}
         <div className="absolute inset-0 bg-gradient-to-b from-slate-50 to-white" />
         {/* Left accent bar */}
-        <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-blue-500 via-cyan-400 to-emerald-400" />
+        <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-blue-500 to-emerald-500" />
 
         {/* Hero Content — center aligned */}
         <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-6 py-24 text-center">
@@ -638,7 +638,7 @@ export default function Home() {
                     n: '03',
                     icon: Layers,
                     title: '분류',
-                    desc: '주소 변경·환전 지연·추가 입금 요구·접속 불가·운영 정보 불일치 등 유형별로 묶습니다.',
+                    desc: '주소 변경·환전 지연·추가 입금 요구·접속 불가·운영 정보 불일�� 등 유형별로 묶습니다.',
                   },
                   {
                     n: '04',
@@ -649,13 +649,13 @@ export default function Home() {
                 ].map((step) => (
                   <div
                     key={step.n}
-                    className="group p-5 rounded-2xl bg-slate-50 border border-neutral-100 hover:border-rose-200 hover:bg-rose-50/50 transition-all"
+                    className="group p-5 rounded-2xl bg-slate-50 border border-neutral-100 hover:border-red-200 hover:bg-red-50/50 transition-all"
                   >
                     <div className="flex items-center gap-3 mb-3">
-                      <div className="w-10 h-10 rounded-xl bg-white border border-neutral-200 flex items-center justify-center group-hover:border-rose-200 transition-colors">
-                        <step.icon className="w-5 h-5 text-rose-500" />
+                      <div className="w-10 h-10 rounded-xl bg-white border border-neutral-200 flex items-center justify-center group-hover:border-red-200 transition-colors">
+                        <step.icon className="w-5 h-5 text-red-500" />
                       </div>
-                      <span className="text-xs font-mono font-bold text-rose-400">{step.n}</span>
+                      <span className="text-xs font-mono font-bold text-red-400">{step.n}</span>
                     </div>
                     <h3 className="text-h4 text-neutral-900 mb-2">{step.title}</h3>
                     <p className="text-body-sm text-neutral-500 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
@@ -758,15 +758,15 @@ export default function Home() {
               const colorMap: Record<string, string> = {
                 amber: 'bg-amber-50 border-amber-200 text-amber-700',
                 red: 'bg-red-50 border-red-200 text-red-700',
-                rose: 'bg-rose-50 border-rose-200 text-rose-700',
-                orange: 'bg-orange-50 border-orange-200 text-orange-700',
+                rose: 'bg-red-50 border-red-200 text-red-700',
+                orange: 'bg-amber-50 border-orange-200 text-amber-700',
                 neutral: 'bg-neutral-100 border-neutral-200 text-neutral-700',
               }
               const iconColorMap: Record<string, string> = {
                 amber: 'text-amber-500',
                 red: 'text-red-500',
-                rose: 'text-rose-500',
-                orange: 'text-orange-500',
+                rose: 'text-red-500',
+                orange: 'text-amber-500',
                 neutral: 'text-neutral-500',
               }
               return (
@@ -792,12 +792,12 @@ export default function Home() {
               <a
                 key={i}
                 href="/guide/"
-                className="group p-6 rounded-2xl bg-white border border-neutral-200 hover:border-cyan-300 hover:shadow-lg hover:shadow-cyan-50 transition-all"
+                className="group p-6 rounded-2xl bg-white border border-neutral-200 hover:border-blue-300 hover:shadow-lg hover:shadow-cyan-50 transition-all"
               >
-                <div className="w-11 h-11 rounded-xl bg-cyan-50 border border-cyan-100 flex items-center justify-center mb-4 group-hover:bg-cyan-100 transition-colors">
-                  <guide.icon className="w-5 h-5 text-cyan-600" />
+                <div className="w-11 h-11 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center mb-4 group-hover:bg-blue-100 transition-colors">
+                  <guide.icon className="w-5 h-5 text-blue-600" />
                 </div>
-                <h3 className="text-h4 text-neutral-900 mb-2 group-hover:text-cyan-700 transition-colors">{guide.title}</h3>
+                <h3 className="text-h4 text-neutral-900 mb-2 group-hover:text-blue-700 transition-colors">{guide.title}</h3>
                 <p className="text-body-sm text-neutral-500" style={{ wordBreak: 'keep-all' }}>{guide.desc}</p>
               </a>
             ))}

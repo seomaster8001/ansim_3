@@ -88,7 +88,7 @@ export default function SiteHeader() {
 
           {/* Logo */}
           <a href="/" className="flex items-center gap-2.5 flex-shrink-0">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-cyan-500 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-emerald-500 flex items-center justify-center">
               <Shield className="w-4 h-4 text-white" />
             </div>
             <span className="text-[15px] font-bold text-neutral-900 tracking-tight">안심고고</span>
@@ -212,7 +212,7 @@ export default function SiteHeader() {
             {/* Panel header */}
             <div className="flex items-center justify-between px-5 border-b border-neutral-100" style={{ height: '56px' }}>
               <div className="flex items-center gap-2">
-                <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-blue-600 to-cyan-500 flex items-center justify-center">
+                <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-blue-600 to-emerald-500 flex items-center justify-center">
                   <Shield className="w-3.5 h-3.5 text-white" />
                 </div>
                 <span className="text-[14px] font-bold text-neutral-900">안심고고</span>
