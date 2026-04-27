@@ -192,7 +192,7 @@ export default function Home() {
                     {item.n}
                   </span>
                   <div>
-                    <h3 className="text-h4 font-bold text-neutral-900 mb-3">{item.title}</h3>
+                    <h3 className="text-h4 text-neutral-900 mb-3">{item.title}</h3>
                     <p className="text-body-sm text-neutral-500">
                       {item.body}
                     </p>
@@ -244,7 +244,7 @@ export default function Home() {
                     <item.icon className={`w-5 h-5 ${item.iconColor}`} />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className={`font-bold text-base ${item.text}`}>{item.status}</p>
+                    <p className={`text-h4 ${item.text}`}>{item.status}</p>
                     <p className={`text-body-sm mt-1 ${item.text} opacity-60`}>{item.sub}</p>
                   </div>
                 </div>
@@ -448,7 +448,7 @@ export default function Home() {
           <div className="p-8 rounded-2xl bg-gradient-to-br from-neutral-900 to-neutral-800">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
               <div>
-                <p className="text-white font-semibold text-lg mb-2" style={{ wordBreak: 'keep-all' }}>
+                <p className="text-body-lg text-white font-semibold mb-2" style={{ wordBreak: 'keep-all' }}>
                   {REPORT_P3}
                 </p>
               </div>
@@ -480,12 +480,12 @@ export default function Home() {
 
           {/* Section heading */}
           <div className="text-center mb-16">
-            <p className="text-label text-blue-500 mb-4">Verification Criteria</p>
+            <p className="text-label text-blue-500 mb-4">Categories</p>
             <h2 className="text-h2 text-neutral-900 leading-tight mb-6">
-              {CRITERIA_TITLE}
+              {CATEGORY_TITLE}
             </h2>
-            <p className="text-body-lg text-neutral-500">
-              {CRITERIA_INTRO}
+            <p className="text-body-lg text-neutral-500 max-w-3xl mx-auto">
+              {CATEGORY_INTRO}
             </p>
           </div>
 
@@ -575,7 +575,7 @@ export default function Home() {
           {/* Hub CTA */}
           <div className="p-8 rounded-2xl bg-gradient-to-br from-indigo-600 to-indigo-500 text-center">
             <Layers className="w-10 h-10 text-white/80 mx-auto mb-4" />
-            <h3 className="text-xl font-bold text-white mb-3">안심고고�� 검색·조회·제보·가이드로 이동하는 허브입니다</h3>
+            <h3 className="text-h3 text-white mb-3">안심고고�� 검색·조회·제보·가이드로 이동하는 허브입니다</h3>
             <p className="text-body-sm text-white/70 mb-6 max-w-xl mx-auto" style={{ wordBreak: 'keep-all' }}>
               처음 방문한 사용자는 검색창에서 바로 확인하고, 반복 방문 사용자는 최신 리포트와 변경 이력부터 확인할 수 있습니다.
             </p>
@@ -602,13 +602,13 @@ export default function Home() {
           {/* Section heading */}
           <div className="grid lg:grid-cols-12 gap-10 mb-16">
             <div className="lg:col-span-5">
-            <p className="text-label text-blue-500 mb-4">Report Submission</p>
-            <h2 className="text-h2 text-neutral-900 leading-tight mb-6">
-              {REPORT_TITLE}
-            </h2>
-            <p className="text-body-lg text-neutral-500 mb-8">
-              {REPORT_P1}
-            </p>
+              <p className="text-label text-blue-500 mb-4">Report Submission</p>
+              <h2 className="text-h2 text-neutral-900 leading-tight mb-6">
+                {SUBMIT_TITLE}
+              </h2>
+              <p className="text-body-lg text-neutral-500 mb-8">
+                {SUBMIT_INTRO}
+              </p>
               <a
                 href="/support/contact/"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-rose-600 text-white text-body-sm font-semibold hover:bg-rose-700 transition-colors"
@@ -876,7 +876,7 @@ export default function Home() {
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
                   className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left hover:bg-neutral-50 transition-colors active:bg-neutral-100"
                 >
-                  <span className="text-base font-semibold text-neutral-900" style={{ wordBreak: 'keep-all' }}>
+                  <span className="text-h4 text-neutral-900" style={{ wordBreak: 'keep-all' }}>
                     {item.q}
                   </span>
                   <ChevronDown
