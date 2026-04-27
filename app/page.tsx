@@ -1,4 +1,4 @@
-import { Search, Check, AlertCircle, Minus, Shield, TrendingUp, Database, Users, Calendar, Globe, FileText, MessageSquare, ExternalLink, ArrowRight, Clock, AlertTriangle, BookOpen, ChevronRight, CheckCircle, BarChart3, ShieldCheck, Layers } from 'lucide-react'
+import { Search, Check, AlertCircle, Minus, Shield, TrendingUp, Database, Users, Calendar, Globe, FileText, MessageSquare, ExternalLink, ArrowRight, Clock, AlertTriangle, BookOpen, ChevronRight, CheckCircle, BarChart3, ShieldCheck, Layers, Send, ClipboardList, Filter, CheckSquare, XCircle, Lock, ScrollText } from 'lucide-react'
 
 /* ─── 원문 텍스트 ─────────────────────────── */
 const HERO_TITLE = '먹튀검증, 사이트 조회와 제보 확인까지 한 번에'
@@ -38,6 +38,16 @@ const CATEGORY_P1 =
   '스포츠 분석은 KBO·MLB·EPL 같은 주요 리그의 경기 데이터와 라이브스코어를 다루며, 사용자가 도박과 분리해 경기 흐름과 통계를 참고할 수 있도록 정리합니다. 피해예방 가이드는 환전 지연, 추가 입금 요구, 피싱 주소 구별법, 주소 변경 리스크처럼 접속 전 확인해야 할 체크포인트를 다루며, 데이터센터에서는 최근 변경 이력, 검증 현황, 카테고리별 흐름을 표와 요약 형태로 볼 수 있습니다.'
 const CATEGORY_P2 =
   '랜딩페이지는 단순 소개 페이지가 아니라 검색·조회·제보·가이드·카테고리로 이동하는 허브입니다. 처음 방문한 사용자는 검색창에서 바로 확인하고, 반복 방문 사용자는 최신 리포트와 변경 이력부터 확인할 수 있어야 합니다.'
+
+const SUBMIT_TITLE = '제보는 검토 후 반영됩니다'
+const SUBMIT_INTRO =
+  '주소 변경, 접속 불가, 환전 지연, 추가 입금 요구, 운영 정보 불일치가 의심되는 경우 제보 페이지를 통해 내용을 보낼 수 있습니다. 제보는 익명으로 접수할 수 있으며, 접수된 내용은 즉시 공개되지 않고 검토 절차를 거친 뒤 확인 가능한 항목만 반영됩니다.'
+const SUBMIT_P1 =
+  '제보 절차는 네 단계로 진행됩니다. 첫째는 접수입니다. 사용자가 사이트명, 현재 주소, 제보 유형, 상세 내용을 입력합니다. 둘째는 검토입니다. 접수된 내용에서 개인정보와 민감 정보가 포함되어 있는지 확인하고 필요한 경우 마스킹합니다. 셋째는 분류입니다. 주소 변경·환전 지연·추가 입금 요구·접속 불가·운영 정보 불일치 등 유형별로 묶습니다. 넷째는 반영입니다. 확인 가능한 항목만 사이트 상세 페이지, 검증 리포트, 변경 이력에 반영합니다.'
+const SUBMIT_P2 =
+  '제보 내용이 부족하거나 사실 확인이 어려운 경우에는 공개하지 않거나 데이터 부족 상태로 보류합니다. 동일한 사이트에 비슷한 제보가 반복되면 확인 필요 항목으로 분류할 수 있지만, 단일 제보만으로 특정 사이트를 단정하지 않습니다. 허위 제보, 경쟁 사이트 비방, 개인정보 노출, 확인되지 않은 주장성 문구는 반영 대상에서 제외됩니다.'
+const SUBMIT_P3 =
+  '개인정보가 포함된 내용은 마스킹 기준에 따라 처리되며, 데이터 처리 기준과 이용자의 권리는 이용약관과 개인정보처리방침에서 확인할 수 있습니다.'
 
 export default function Home() {
   return (
@@ -559,7 +569,7 @@ export default function Home() {
           {/* Hub CTA */}
           <div className="p-8 rounded-2xl bg-gradient-to-br from-indigo-600 to-indigo-500 text-center">
             <Layers className="w-10 h-10 text-white/80 mx-auto mb-4" />
-            <h3 className="text-xl font-bold text-white mb-3">안심고고는 검색·조회·제보·가이드로 이동하는 허브입니다</h3>
+            <h3 className="text-xl font-bold text-white mb-3">안심고고�� 검색·조회·제보·가이드로 이동하는 허브입니다</h3>
             <p className="text-sm text-white/70 mb-6 max-w-xl mx-auto" style={{ wordBreak: 'keep-all' }}>
               처음 방문한 사용자는 검색창에서 바로 확인하고, 반복 방문 사용자는 최신 리포트와 변경 이력부터 확인할 수 있습니다.
             </p>
@@ -573,6 +583,144 @@ export default function Home() {
                 최신 리포트
                 <ArrowRight className="w-4 h-4" />
               </button>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* ── SUBMIT REPORT SECTION ── */}
+      <section className="py-28 md:py-36 px-6 md:px-20 bg-white border-t border-neutral-100">
+        <div className="max-w-6xl mx-auto">
+
+          {/* Section heading */}
+          <div className="grid lg:grid-cols-12 gap-10 mb-16">
+            <div className="lg:col-span-5">
+              <p className="text-xs font-semibold tracking-widest text-rose-600 uppercase mb-4">Report Submission</p>
+              <h2
+                className="text-3xl md:text-5xl font-bold text-neutral-900 leading-tight mb-6"
+                style={{ wordBreak: 'keep-all', letterSpacing: '-0.02em' }}
+              >
+                {SUBMIT_TITLE}
+              </h2>
+              <p className="text-base md:text-lg text-neutral-500 leading-relaxed mb-8" style={{ wordBreak: 'keep-all' }}>
+                {SUBMIT_INTRO}
+              </p>
+              <a
+                href="/support/contact/"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-rose-600 text-white text-sm font-semibold hover:bg-rose-700 transition-colors"
+              >
+                <Send className="w-4 h-4" />
+                제보 페이지로 이동
+                <ArrowRight className="w-4 h-4" />
+              </a>
+            </div>
+            <div className="lg:col-span-7">
+              {/* 4 Steps Process */}
+              <div className="grid sm:grid-cols-2 gap-4">
+                {[
+                  {
+                    n: '01',
+                    icon: ClipboardList,
+                    title: '접수',
+                    desc: '사용자가 사이트명, 현재 주소, 제보 유형, 상세 내용을 입력합니다.',
+                  },
+                  {
+                    n: '02',
+                    icon: Filter,
+                    title: '검토',
+                    desc: '접수된 내용에서 개인정보와 민감 정보가 포함되어 있는지 확인하고 필요한 경우 마스킹합니다.',
+                  },
+                  {
+                    n: '03',
+                    icon: Layers,
+                    title: '분류',
+                    desc: '주소 변경·환전 지연·추가 입금 요구·접속 불가·운영 정보 불일치 등 유형별로 묶습니다.',
+                  },
+                  {
+                    n: '04',
+                    icon: CheckSquare,
+                    title: '반영',
+                    desc: '확인 가능한 항목만 사이트 상세 페이지, 검증 리포트, 변경 이력에 반영합니다.',
+                  },
+                ].map((step) => (
+                  <div
+                    key={step.n}
+                    className="group p-5 rounded-2xl bg-slate-50 border border-neutral-100 hover:border-rose-200 hover:bg-rose-50/50 transition-all"
+                  >
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="w-10 h-10 rounded-xl bg-white border border-neutral-200 flex items-center justify-center group-hover:border-rose-200 transition-colors">
+                        <step.icon className="w-5 h-5 text-rose-500" />
+                      </div>
+                      <span className="text-xs font-mono font-bold text-rose-400">{step.n}</span>
+                    </div>
+                    <h3 className="text-base font-bold text-neutral-900 mb-2">{step.title}</h3>
+                    <p className="text-sm text-neutral-500 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
+                      {step.desc}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Exclusions and info */}
+          <div className="grid lg:grid-cols-2 gap-6 mb-12">
+            <div className="p-6 rounded-xl bg-slate-50 border border-neutral-100">
+              <p className="text-sm text-neutral-600 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
+                {SUBMIT_P1}
+              </p>
+            </div>
+            <div className="p-6 rounded-xl bg-slate-50 border border-neutral-100">
+              <p className="text-sm text-neutral-600 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
+                {SUBMIT_P2}
+              </p>
+            </div>
+          </div>
+
+          {/* Exclusion list */}
+          <div className="p-6 rounded-xl bg-red-50 border border-red-100 mb-12">
+            <h4 className="font-semibold text-red-800 mb-3 flex items-center gap-2">
+              <XCircle className="w-5 h-5" />
+              반영 제외 대상
+            </h4>
+            <div className="flex flex-wrap gap-2">
+              {['허위 제보', '경쟁 사이트 비방', '개인정보 노출', '확인되지 않은 주장성 문구'].map((item) => (
+                <span
+                  key={item}
+                  className="px-3 py-1.5 rounded-lg bg-white border border-red-100 text-sm text-red-700"
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Privacy notice */}
+          <div className="p-6 rounded-xl bg-neutral-100 border border-neutral-200">
+            <div className="flex items-start gap-4">
+              <Lock className="w-5 h-5 text-neutral-500 flex-shrink-0 mt-0.5" />
+              <div>
+                <p className="text-sm text-neutral-600 leading-relaxed mb-3" style={{ wordBreak: 'keep-all' }}>
+                  {SUBMIT_P3}
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  <a
+                    href="/support/terms/"
+                    className="inline-flex items-center gap-1 text-sm text-neutral-500 hover:text-blue-600 transition-colors"
+                  >
+                    <ScrollText className="w-4 h-4" />
+                    이용약관
+                  </a>
+                  <a
+                    href="/support/privacy/"
+                    className="inline-flex items-center gap-1 text-sm text-neutral-500 hover:text-blue-600 transition-colors"
+                  >
+                    <Lock className="w-4 h-4" />
+                    개인정보처리방침
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
 
