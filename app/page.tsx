@@ -1,4 +1,4 @@
-import { Search, Check, AlertCircle, Minus, Shield, TrendingUp, Database, Users, Calendar, Globe, FileText, MessageSquare, ExternalLink } from 'lucide-react'
+import { Search, Check, AlertCircle, Minus, Shield, TrendingUp, Database, Users, Calendar, Globe, FileText, MessageSquare, ExternalLink, ArrowRight, Clock, AlertTriangle, BookOpen, ChevronRight } from 'lucide-react'
 
 /* ─── 원문 텍스트 ─────────────────────────── */
 const HERO_TITLE = '먹튀검증, 사이트 조회와 제보 확인까지 한 번에'
@@ -22,6 +22,14 @@ const CRITERIA_P2 =
   '넷째는 사용자 제보 패턴입니다. 단일 제보만으로 단정하지 않고, 환전 지연·추가 입금 요구·고객센터 응답 중단·주소 변경 안내 누락 같은 유사한 제보가 반복되는지 확인합니다. 다섯째는 공개 신고·보안 경로입니다. 피해 신고와 보안 확인이 필요한 경우 KISA, 금융감독원, 더치트 같은 공공·신뢰 출처의 공개 자료를 참고할 수 있도록 안내합니다.'
 const CRITERIA_DISCLAIMER =
   '안심고고는 공식기관이 아니며, 위 출처들과 어떠한 협력·소속 관계도 없습니다. 자체 확인 항목과 외부 신고 경로를 구분해 표시하며, 단정적인 결론 표현 대신 "확인 필요·데이터 부족·검증 기준 통과"처럼 사용자가 근거를 보고 판단할 수 있는 중립 표현을 사용합니다.'
+
+const REPORT_TITLE = '최신 리포트와 제보 이력을 확인하세요'
+const REPORT_P1 =
+  '먹튀검증 리포트는 제보가 접수된 사건을 단순 나열하지 않고, 어떤 신호가 반복되었는지 중심으로 정리합니다. 환전 지연, 주소 변경, 추가 입금 요구, 운영 정보 불일치, 유사 도메인 사용 여부를 확인해 이용자가 같은 유형의 피해를 피할 수 있도록 돕습니다.'
+const REPORT_P2 =
+  '각 리포트에는 사건 개요, 접수된 제보 유형, 확인된 위험 신호, 관련 사이트, 이용자 체크포인트가 포함됩니다. 제보 내용에 개인정보가 포함된 경우에는 공개하지 않으며, 확인되지 않은 비방성 표현도 반영하지 않습니다.'
+const REPORT_P3 =
+  '최근 갱신된 리포트와 확인 필요 사이트는 랜딩 화면에서 바로 확인할 수 있습니다. 사용자는 검색창으로 직접 조회하거나, 최신 리포트·카테고리·피해예방 가이드로 이동해 관련 정보를 이어서 확인할 수 있습니다.'
 
 export default function Home() {
   return (
@@ -302,6 +310,138 @@ export default function Home() {
             <p className="text-sm text-neutral-500 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
               {CRITERIA_DISCLAIMER}
             </p>
+          </div>
+
+        </div>
+      </section>
+
+      {/* ── REPORTS SECTION ── */}
+      <section className="py-28 md:py-36 px-6 md:px-20 bg-white border-t border-neutral-100">
+        <div className="max-w-6xl mx-auto">
+
+          {/* Section heading */}
+          <div className="grid lg:grid-cols-12 gap-10 mb-16">
+            <div className="lg:col-span-5">
+              <p className="text-xs font-semibold tracking-widest text-amber-600 uppercase mb-4">Reports & History</p>
+              <h2
+                className="text-3xl md:text-5xl font-bold text-neutral-900 leading-tight mb-6"
+                style={{ wordBreak: 'keep-all', letterSpacing: '-0.02em' }}
+              >
+                {REPORT_TITLE}
+              </h2>
+              <p className="text-base md:text-lg text-neutral-500 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
+                {REPORT_P1}
+              </p>
+            </div>
+            <div className="lg:col-span-7 flex items-end">
+              <div className="w-full p-6 rounded-2xl bg-amber-50 border border-amber-100">
+                <p className="text-sm text-amber-800 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
+                  {REPORT_P2}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Report preview cards */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mb-16">
+            {[
+              {
+                type: '환전지연',
+                title: '○○벳 환전 지연 제보 분석',
+                date: '2025.04.18',
+                signal: '환전 48시간 이상 지연',
+                status: 'warning',
+              },
+              {
+                type: '주소변경',
+                title: '△△게임 도메인 변경 이력',
+                date: '2025.04.12',
+                signal: '3개월 내 주소 3회 변경',
+                status: 'warning',
+              },
+              {
+                type: '정보불일치',
+                title: '□□카지노 운영정보 확인',
+                date: '2025.04.05',
+                signal: '고객센터 정보 불일치',
+                status: 'caution',
+              },
+            ].map((report, i) => (
+              <div
+                key={i}
+                className="group p-6 rounded-2xl bg-white border border-neutral-200 hover:border-amber-300 hover:shadow-lg hover:shadow-amber-50 transition-all cursor-pointer"
+              >
+                <div className="flex items-center justify-between mb-4">
+                  <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
+                    report.status === 'warning' 
+                      ? 'bg-red-50 text-red-600 border border-red-100' 
+                      : 'bg-amber-50 text-amber-600 border border-amber-100'
+                  }`}>
+                    {report.type}
+                  </span>
+                  <span className="text-xs text-neutral-400">{report.date}</span>
+                </div>
+                <h3 className="text-base font-bold text-neutral-900 mb-3 group-hover:text-amber-700 transition-colors">
+                  {report.title}
+                </h3>
+                <div className="flex items-center gap-2 text-sm text-neutral-500">
+                  <AlertTriangle className="w-4 h-4 text-amber-500" />
+                  <span>{report.signal}</span>
+                </div>
+                <div className="mt-4 pt-4 border-t border-neutral-100 flex items-center justify-between">
+                  <span className="text-xs text-neutral-400">리포트 보기</span>
+                  <ChevronRight className="w-4 h-4 text-neutral-400 group-hover:text-amber-500 group-hover:translate-x-1 transition-all" />
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Report structure info */}
+          <div className="grid md:grid-cols-5 gap-4 mb-16">
+            {[
+              { icon: FileText, label: '사건 개요' },
+              { icon: MessageSquare, label: '제보 유형' },
+              { icon: AlertTriangle, label: '위험 신호' },
+              { icon: Globe, label: '관련 사이트' },
+              { icon: BookOpen, label: '체크포인트' },
+            ].map((item, i) => (
+              <div
+                key={i}
+                className="flex flex-col items-center gap-3 p-5 rounded-xl bg-neutral-50 border border-neutral-100"
+              >
+                <div className="w-10 h-10 rounded-xl bg-white border border-neutral-200 flex items-center justify-center">
+                  <item.icon className="w-5 h-5 text-amber-600" />
+                </div>
+                <span className="text-sm font-medium text-neutral-700">{item.label}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* Navigation links */}
+          <div className="p-8 rounded-2xl bg-gradient-to-br from-neutral-900 to-neutral-800">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+              <div>
+                <p className="text-white font-semibold text-lg mb-2" style={{ wordBreak: 'keep-all' }}>
+                  {REPORT_P3}
+                </p>
+              </div>
+              <div className="flex flex-wrap gap-3">
+                {[
+                  { label: '최신 리포트', icon: Clock },
+                  { label: '카테고리', icon: FileText },
+                  { label: '피해예방 가이드', icon: BookOpen },
+                ].map((link, i) => (
+                  <button
+                    key={i}
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white text-sm font-medium transition-colors"
+                  >
+                    <link.icon className="w-4 h-4" />
+                    {link.label}
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
 
         </div>
