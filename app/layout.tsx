@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { Analytics } from '@vercel/analytics/next'
 import { Noto_Sans_KR } from 'next/font/google'
+import SiteHeader from '@/components/site-header'
+import SiteFooter from '@/components/site-footer'
 import './globals.css'
 
 const notoSansKr = Noto_Sans_KR({ subsets: ["latin"], weight: ["400", "500", "700"] });
@@ -36,7 +38,11 @@ export default function RootLayout({
   return (
     <html lang="ko" className="bg-white">
       <body className={`${notoSansKr.className} font-sans antialiased text-gray-900`}>
-        {children}
+        <SiteHeader />
+        <div className="pt-16">
+          {children}
+        </div>
+        <SiteFooter />
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>

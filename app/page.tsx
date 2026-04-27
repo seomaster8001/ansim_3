@@ -104,28 +104,8 @@ export default function Home() {
         {/* Left accent bar */}
         <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-blue-500 via-cyan-400 to-emerald-400" />
 
-        {/* Navigation */}
-        <nav className="relative z-10 flex items-center justify-between px-8 md:px-20 py-7 border-b border-neutral-100">
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-600 to-cyan-500 flex items-center justify-center">
-              <Shield className="w-5 h-5 text-white" />
-            </div>
-            <span className="text-lg font-bold text-neutral-900 tracking-tight">안심고고</span>
-          </div>
-          <div className="hidden md:flex items-center gap-6 text-sm text-neutral-500">
-            <span className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block" />
-              운영중
-            </span>
-            <span className="w-px h-4 bg-neutral-200" />
-            <span>Since 2022</span>
-            <span className="w-px h-4 bg-neutral-200" />
-            <span>편집부 5명 실명 공개</span>
-          </div>
-        </nav>
-
         {/* Hero Content — center aligned */}
-        <div className="relative z-10 flex flex-col items-center justify-center min-h-[calc(100vh-73px)] px-6 py-20 text-center">
+        <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-6 py-24 text-center">
           <div className="w-full max-w-4xl mx-auto">
 
             {/* Label */}
@@ -311,7 +291,7 @@ export default function Home() {
             {[
               { n: '01', icon: Calendar, title: '최근 확인일', desc: '마지막 확인일이 오래되었거나 접속 상태가 반복적으로 바뀌면 추가 확인이 필요합니다.' },
               { n: '02', icon: Globe, title: '주소 변경 이력', desc: '짧은 기간에 도메인이 여러 번 바뀌거나 유사 주소가 반복되면 피싱 또는 추적 회피 가능성을 함께 봅니다.' },
-              { n: '03', icon: FileText, title: '운영 정보 일치 여부', desc: '사이트명, 안내 문구, 고객센터 정보, 공지 내용이 서로 맞지 않으면 확인 필요 신호로 분류합니다.' },
+              { n: '03', icon: FileText, title: '운영 정보 일치 여부', desc: '사이트명, 안내 문구, 고객센터 정보, 공지 내용이 서로 맞�� 않으면 확인 필요 신호로 분류합니다.' },
               { n: '04', icon: MessageSquare, title: '사용자 제보 패턴', desc: '단일 제보만으로 단정하지 않고, 환전 지연·추가 입금 요구·고객센터 응답 중단 같은 유사 제보가 반복되는지 확인합니다.' },
               { n: '05', icon: ExternalLink, title: '공개 신고·보안 경로', desc: '피해 신고와 보안 확인이 필요한 경우 KISA, 금융감독원, 더치트 같은 공공·신뢰 출처를 안내합니다.' },
             ].map((item) => (
@@ -796,7 +776,7 @@ export default function Home() {
               { icon: Banknote, label: '환전 지연 후 추가 입금 요구', color: 'red' },
               { icon: PhoneOff, label: '고객센터 응답 갑자기 중단', color: 'rose' },
               { icon: Link2, label: '피싱 유사 주소 사용', color: 'orange' },
-              { icon: FileText, label: '운영 정보 불일치', color: 'amber' },
+              { icon: FileText, label: '운영 정보 불일��', color: 'amber' },
               { icon: Clock, label: '최근 확인일 오래됨', color: 'neutral' },
             ].map((signal, i) => {
               const colorMap: Record<string, string> = {
@@ -960,63 +940,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── FOOTER SECTION ── */}
-      <footer className="py-16 px-6 md:px-20 border-t border-neutral-100 bg-neutral-50">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-8 mb-12">
-            <div>
-              <h4 className="text-sm font-bold text-neutral-900 mb-4">카테고리</h4>
-              <div className="space-y-2 text-sm text-neutral-600">
-                <a href="/safety/" className="hover:text-neutral-900 transition-colors block">보증업체</a>
-                <a href="/review/" className="hover:text-neutral-900 transition-colors block">먹튀검증 리포트</a>
-                <a href="/picks/" className="hover:text-neutral-900 transition-colors block">스포츠 분석</a>
-              </div>
-            </div>
-            <div>
-              <h4 className="text-sm font-bold text-neutral-900 mb-4">정보</h4>
-              <div className="space-y-2 text-sm text-neutral-600">
-                <a href="/guide/" className="hover:text-neutral-900 transition-colors block">피해예방 가이드</a>
-                <a href="/data/" className="hover:text-neutral-900 transition-colors block">데이터센터</a>
-                <a href="/support/contact/" className="hover:text-neutral-900 transition-colors block">제보하기</a>
-              </div>
-            </div>
-            <div>
-              <h4 className="text-sm font-bold text-neutral-900 mb-4">법률</h4>
-              <div className="space-y-2 text-sm text-neutral-600">
-                <a href="/support/terms/" className="hover:text-neutral-900 transition-colors block">이용약관</a>
-                <a href="/support/privacy/" className="hover:text-neutral-900 transition-colors block">개인정보처리방침</a>
-              </div>
-            </div>
-            <div>
-              <h4 className="text-sm font-bold text-neutral-900 mb-4">신고</h4>
-              <div className="space-y-2 text-sm text-neutral-600">
-                <a href="https://www.kisa.or.kr/" target="_blank" rel="noopener noreferrer" className="hover:text-neutral-900 transition-colors block flex items-center gap-1">
-                  KISA
-                  <ExternalLink className="w-3 h-3" />
-                </a>
-                <a href="https://www.fss.or.kr/" target="_blank" rel="noopener noreferrer" className="hover:text-neutral-900 transition-colors block flex items-center gap-1">
-                  금융감독원
-                  <ExternalLink className="w-3 h-3" />
-                </a>
-              </div>
-            </div>
-          </div>
-          <div className="border-t border-neutral-200 pt-8">
-            <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-cyan-500 flex items-center justify-center">
-                  <Shield className="w-4 h-4 text-white" />
-                </div>
-                <span className="font-bold text-neutral-900">안심고고</span>
-              </div>
-              <span className="text-xs text-neutral-500">Since 2022</span>
-            </div>
-            <p className="text-xs text-neutral-500 leading-relaxed">
-              안심고고는 공식기관이 아니며, 사이트 검증 정보와 피해예방 가이드를 제공합니다. 실제 피해 신고는 관련 공공기관을 통해 진행하세요.
-            </p>
-          </div>
-        </div>
-      </footer>
+
 
     </main>
   )
