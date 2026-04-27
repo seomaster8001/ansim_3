@@ -357,7 +357,7 @@ export default function Home() {
                 {REPORT_TITLE}
               </h2>
               <p className="text-body-lg text-neutral-500 mb-8">
-                {REPORT_INTRO}
+                {REPORT_P1}
               </p>
             </div>
             <div className="lg:col-span-7 flex items-end">
@@ -607,7 +607,7 @@ export default function Home() {
               {REPORT_TITLE}
             </h2>
             <p className="text-body-lg text-neutral-500 mb-8">
-              {REPORT_INTRO}
+              {REPORT_P1}
             </p>
               <a
                 href="/support/contact/"
