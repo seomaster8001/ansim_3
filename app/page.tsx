@@ -1,4 +1,7 @@
-import { Search, Check, AlertCircle, Minus, Shield, TrendingUp, Database, Users, Calendar, Globe, FileText, MessageSquare, ExternalLink, ArrowRight, Clock, AlertTriangle, BookOpen, ChevronRight, CheckCircle, BarChart3, ShieldCheck, Layers, Send, ClipboardList, Filter, CheckSquare, XCircle, Lock, ScrollText, Link2, Banknote, PhoneOff, Eye, Archive, Siren } from 'lucide-react'
+'use client'
+
+import { useState } from 'react'
+import { Search, Check, AlertCircle, Minus, Shield, TrendingUp, Database, Users, Calendar, Globe, FileText, MessageSquare, ExternalLink, ArrowRight, Clock, AlertTriangle, BookOpen, ChevronRight, CheckCircle, BarChart3, ShieldCheck, Layers, Send, ClipboardList, Filter, CheckSquare, XCircle, Lock, ScrollText, Link2, Banknote, PhoneOff, Eye, Archive, Siren, ChevronDown } from 'lucide-react'
 
 /* ─── 원문 텍스트 ─────────────────────────── */
 const HERO_TITLE = '먹튀검증, 사이트 조회와 제보 확인까지 한 번에'
@@ -57,7 +60,40 @@ const GUIDE_P2 =
 const GUIDE_P3 =
   '처음 확인하는 사이트라면 사이트 상세 정보만 보지 말고, 관련 리포트와 가이드까지 함께 확인하는 것이 좋습니다. 특히 금전 피해가 의심되는 경우에는 추가 입금을 중단하고, 대화 기록·입금 내역·주소 변경 내역을 보관한 뒤 공공 신고 경로를 확인해야 합니다.'
 
+const FAQ_TITLE = '자주 묻는 질문'
+const FAQ_ITEMS = [
+  {
+    q: '먹튀 의심 사이트는 어떻게 확인하나요?',
+    a: '사이트명이나 주소를 검색한 뒤 최근 확인일, 주소 변경 이력, 제보 접수 여부, 관련 리포트 연결 여부를 함께 확인하세요. 하나의 신호만으로 단정하지 말고 여러 항목이 반복되는지 살펴야 하며, 검증 기준 다섯 가지(최근 확인일·주소 변경·운영 정보 일치·제보 패턴·공개 신고 경로)를 단계별로 점검하면 더 안전한 판단이 가능합니다.',
+  },
+  {
+    q: '제보가 들어오면 바로 공개되나요?',
+    a: '아니요. 안심고고는 접수된 제보를 즉시 공개하지 않습니다. 접수 → 검토 → 분류 → 반영 4단계를 거치며, 개인정보 마스킹과 사실 확인이 가능한 항목만 중립 표현으로 반영합니다. 부족하거나 확인이 어려운 제보는 데이터 부족 상태로 보류되며, 동일 사이트에 비슷한 제보가 반복되는 경우에만 확인 필요로 분류합니다.',
+  },
+  {
+    q: '어떤 제보가 반영될 가능성이 높나요?',
+    a: '사이트명, 접속 주소, 발생 날짜, 변경 전후 주소, 고객센터 응답 여부, 환전 지연 또는 추가 입금 요구 내용처럼 확인 가능한 정보가 포함된 제보가 우선 검토됩니다. 입금 내역이나 대화 캡처 같은 보조 자료가 함께 첨부되면 검토가 빨라지며, 개인정보 노출이나 감정적 비방만 있는 제보는 반영하기 어렵습니다.',
+  },
+  {
+    q: '주소가 자주 바뀌는 사이트는 왜 확인이 필요한가요?',
+    a: '주소 변경이 반복되면 운영 정보 추적이 어려워지고, 피싱 주소나 유사 도메인으로 연결될 가능성이 생깁니다. 짧은 기간에 도메인이 여러 번 바뀌거나 안내 없이 주소가 교체되는 경우 추적 회피 신호로 분류됩니다. 최근 변경 이력, 공식 안내 여부, 제보 패턴을 함께 확인하는 것이 중요합니다.',
+  },
+  {
+    q: '보증업체 정보는 어떤 기준으로 분류하나요?',
+    a: '운영 정보 일치 여부, 최근 확인일, 제보 이력, 검증 절차 통과 여부를 기준으로 분류합니다. 검증 통과 항목은 홍보 문구가 아니라 운영 기간·정보 일치성·제보 누적 같은 확인 가능한 데이터로 표시되며, GOLD·SILVER·BRONZE 3개 등급으로 세분화해 사용자가 검증 깊이를 한눈에 알 수 있도록 합니다.',
+  },
+  {
+    q: '피해를 입었다면 어디에 신고해야 하나요?',
+    a: '피해 정황이 있다면 추가 입금을 즉시 중단하고 대화 기록, 입금 내역, 사이트 주소, 고객센터 응답 내용을 보관하세요. 이후 경찰청 ECRM, 금융감독원, KISA 같은 공공 신고·상담 경로의 공개 안내를 참고할 수 있습니다. 안심고고 제보는 사이트 정보 반영용이며, 법적 신고를 대체하지 않습니다.',
+  },
+  {
+    q: '안심고고 제보가 법적 신고를 대체하나요?',
+    a: '아니요. 안심고고 제보는 사이트 정보 반영과 이용자 참고를 위한 자료이며, 법적 효력이 있는 신고가 아닙니다. 실제 피해 신고나 법적 조치는 경찰청 ECRM, 금융감독원 같은 관련 기관의 공식 절차를 따라야 하며, 안심고고는 공개된 신고 경로를 안내할 뿐 사용자의 신고를 대신 처리하거나 법적 결론을 내리지 않습니다.',
+  },
+]
+
 export default function Home() {
+  const [openFaq, setOpenFaq] = useState<number | null>(null)
   return (
     <main className="min-h-screen bg-white font-sans">
 
@@ -860,6 +896,127 @@ export default function Home() {
 
         </div>
       </section>
+
+      {/* ── FAQ SECTION ── */}
+      <section className="py-28 md:py-36 px-6 md:px-20 bg-white border-t border-neutral-100">
+        <div className="max-w-4xl mx-auto">
+
+          {/* Section heading */}
+          <div className="text-center mb-16">
+            <p className="text-xs font-semibold tracking-widest text-purple-600 uppercase mb-4">FAQ</p>
+            <h2
+              className="text-3xl md:text-5xl font-bold text-neutral-900 leading-tight"
+              style={{ wordBreak: 'keep-all', letterSpacing: '-0.02em' }}
+            >
+              {FAQ_TITLE}
+            </h2>
+          </div>
+
+          {/* FAQ Accordion */}
+          <div className="space-y-3">
+            {FAQ_ITEMS.map((item, i) => (
+              <div
+                key={i}
+                className="border border-neutral-200 rounded-xl overflow-hidden hover:border-purple-200 transition-colors"
+              >
+                <button
+                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                  className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left hover:bg-neutral-50 transition-colors active:bg-neutral-100"
+                >
+                  <span className="text-base font-semibold text-neutral-900" style={{ wordBreak: 'keep-all' }}>
+                    {item.q}
+                  </span>
+                  <ChevronDown
+                    className={`w-5 h-5 text-neutral-400 flex-shrink-0 transition-transform ${
+                      openFaq === i ? 'rotate-180' : ''
+                    }`}
+                  />
+                </button>
+                {openFaq === i && (
+                  <div className="px-6 py-5 border-t border-neutral-100 bg-neutral-50">
+                    <p className="text-sm text-neutral-600 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
+                      {item.a}
+                    </p>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+
+          {/* Bottom CTA */}
+          <div className="mt-16 p-8 rounded-2xl bg-purple-50 border border-purple-100 text-center">
+            <p className="text-sm text-neutral-600 mb-4" style={{ wordBreak: 'keep-all' }}>
+              더 궁금한 점이 있으신가요?
+            </p>
+            <a
+              href="/support/contact/"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-purple-600 text-white text-sm font-semibold hover:bg-purple-700 transition-colors"
+            >
+              <Send className="w-4 h-4" />
+              제보 또는 문의하기
+            </a>
+          </div>
+
+        </div>
+      </section>
+
+      {/* ── FOOTER SECTION ── */}
+      <footer className="py-16 px-6 md:px-20 border-t border-neutral-100 bg-neutral-50">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+            <div>
+              <h4 className="text-sm font-bold text-neutral-900 mb-4">카테고리</h4>
+              <div className="space-y-2 text-sm text-neutral-600">
+                <a href="/safety/" className="hover:text-neutral-900 transition-colors block">보증업체</a>
+                <a href="/review/" className="hover:text-neutral-900 transition-colors block">먹튀검증 리포트</a>
+                <a href="/picks/" className="hover:text-neutral-900 transition-colors block">스포츠 분석</a>
+              </div>
+            </div>
+            <div>
+              <h4 className="text-sm font-bold text-neutral-900 mb-4">정보</h4>
+              <div className="space-y-2 text-sm text-neutral-600">
+                <a href="/guide/" className="hover:text-neutral-900 transition-colors block">피해예방 가이드</a>
+                <a href="/data/" className="hover:text-neutral-900 transition-colors block">데이터센터</a>
+                <a href="/support/contact/" className="hover:text-neutral-900 transition-colors block">제보하기</a>
+              </div>
+            </div>
+            <div>
+              <h4 className="text-sm font-bold text-neutral-900 mb-4">법률</h4>
+              <div className="space-y-2 text-sm text-neutral-600">
+                <a href="/support/terms/" className="hover:text-neutral-900 transition-colors block">이용약관</a>
+                <a href="/support/privacy/" className="hover:text-neutral-900 transition-colors block">개인정보처리방침</a>
+              </div>
+            </div>
+            <div>
+              <h4 className="text-sm font-bold text-neutral-900 mb-4">신고</h4>
+              <div className="space-y-2 text-sm text-neutral-600">
+                <a href="https://www.kisa.or.kr/" target="_blank" rel="noopener noreferrer" className="hover:text-neutral-900 transition-colors block flex items-center gap-1">
+                  KISA
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+                <a href="https://www.fss.or.kr/" target="_blank" rel="noopener noreferrer" className="hover:text-neutral-900 transition-colors block flex items-center gap-1">
+                  금융감독원
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className="border-t border-neutral-200 pt-8">
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-cyan-500 flex items-center justify-center">
+                  <Shield className="w-4 h-4 text-white" />
+                </div>
+                <span className="font-bold text-neutral-900">안심고고</span>
+              </div>
+              <span className="text-xs text-neutral-500">Since 2022</span>
+            </div>
+            <p className="text-xs text-neutral-500 leading-relaxed">
+              안심고고는 공식기관이 아니며, 사이트 검증 정보와 피해예방 가이드를 제공합니다. 실제 피해 신고는 관련 공공기관을 통해 진행하세요.
+            </p>
+          </div>
+        </div>
+      </footer>
 
     </main>
   )
