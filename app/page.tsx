@@ -46,7 +46,7 @@ const SUBMIT_TITLE = '제보는 검토 후 반영됩니다'
 const SUBMIT_INTRO =
   '주소 변경, 접속 불가, 환전 지연, 추가 입금 요구, 운영 정보 불일치가 의심되는 경우 제보 페이지를 통해 내용을 보낼 수 있습니다. 제보는 익명으로 접수할 수 있으며, 접수된 내용은 즉시 공개되지 않고 검토 절차를 거친 뒤 확인 가능한 항목만 반영됩니다.'
 const SUBMIT_P1 =
-  '제보 절차는 네 단계로 진행됩니다. 첫째는 접수입니다. 사용자가 사이트명, 현재 주소, 제보 유형, 상세 내용을 입력합니다. 둘째는 검토입니다. 접수된 내용에서 개인정보와 민감 정보가 포함되어 있는지 확인하고 필요한 경우 마스킹합니다. 셋째는 분류입니다. 주소 변경·환전 지연·추가 입금 요구·접속 불가·운영 정보 불일치 등 유형별로 묶습니다. 넷째는 반영입니다. 확인 가능한 항목만 사이트 상세 페이지, 검증 리포�������, 변경 이력에 반영합니다.'
+  '제보 절차는 네 단계로 진행됩니다. 첫째는 접수입니다. 사용자가 사이트명, 현재 주소, 제보 유형, 상세 내용을 입력합니다. 둘째는 검토입니다. 접수된 내용에서 개인정보와 민감 정보가 포함되어 있는지 확인하고 필요한 경우 마스킹합니다. 셋째는 분류입니다. 주소 변경·환전 지연·추가 입금 요구·접속 불가·운영 정보 불일치 등 유형별로 묶습니다. 넷째는 반영입니다. 확인 가능한 항목만 사이트 상세 페이지, 검증 리포���������, 변경 이력에 반영합니다.'
 const SUBMIT_P2 =
   '제보 내용이 부족하거나 사실 확인이 어려운 경우에는 공개하지 않거나 데이터 부족 상태로 보류합니다. 동일한 사이트에 비슷한 제보가 반복되면 확인 필요 항목으로 분류할 수 있지만, 단일 제보만으로 특정 사이트를 단정하지 않습니다. 허위 제보, 경쟁 사이트 비방, 개인정보 노출, 확인되지 않은 주장성 문구는 반영 대상에서 제외됩니다.'
 const SUBMIT_P3 =
@@ -655,66 +655,77 @@ export default function Home() {
       </section>
 
       {/* ��─ FAQ SECTION ── */}
-      <section className="py-28 md:py-36 px-6 md:px-20 bg-white border-t border-neutral-100">
-        <div className="max-w-4xl mx-auto">
+      <section className="py-24 md:py-32 px-6 md:px-20 bg-slate-50 border-t border-neutral-100">
+        <div className="max-w-5xl mx-auto">
 
-          {/* Section heading */}
-          <div className="text-center mb-16">
-            <p className="text-label text-blue-500 mb-4">FAQ</p>
-            <h2 className="text-h2 text-neutral-900 leading-tight">
-              {FAQ_TITLE}
-            </h2>
-          </div>
-
-          {/* FAQ Accordion */}
-          <div className="space-y-3">
-            {FAQ_ITEMS.map((item, i) => (
-              <div
-                key={i}
-                className="border border-neutral-200 rounded-xl overflow-hidden hover:border-blue-200 transition-colors"
-              >
-                <button
-                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                  className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left hover:bg-neutral-50 transition-colors active:bg-neutral-100"
+          <div className="grid lg:grid-cols-12 gap-12">
+            {/* Left: Heading + CTA */}
+            <div className="lg:col-span-4">
+              <div className="lg:sticky lg:top-24">
+                <p className="text-label text-blue-500 mb-4">FAQ</p>
+                <h2 className="text-h2 text-neutral-900 leading-tight mb-6">
+                  {FAQ_TITLE}
+                </h2>
+                <p className="text-body-sm text-neutral-500 mb-8" style={{ wordBreak: 'keep-all' }}>
+                  자주 묻는 질문을 정리했습니다. 추가 문의는 제보 페이지를 이용하세요.
+                </p>
+                <a
+                  href="/support/contact/"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-blue-600 text-white text-body-sm font-medium hover:bg-blue-700 transition-colors"
                 >
-                  <span className="text-h4 text-neutral-900" style={{ wordBreak: 'keep-all' }}>
-                    {item.q}
-                  </span>
-                  <ChevronDown
-                    className={`w-5 h-5 text-neutral-400 flex-shrink-0 transition-transform ${
-                      openFaq === i ? 'rotate-180' : ''
-                    }`}
-                  />
-                </button>
-                {openFaq === i && (
-                  <div className="px-6 py-5 border-t border-neutral-100 bg-neutral-50">
-                    <p className="text-body-sm text-neutral-600 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
-                      {item.a}
-                    </p>
-                  </div>
-                )}
+                  <Send className="w-4 h-4" />
+                  문의하기
+                </a>
               </div>
-            ))}
-          </div>
+            </div>
 
-          {/* Bottom CTA */}
-          <div className="mt-16 p-8 rounded-2xl bg-blue-50 border border-blue-100 text-center">
-            <p className="text-body-sm text-neutral-600 mb-4" style={{ wordBreak: 'keep-all' }}>
-              더 궁금한 점이 있으신가요?
-            </p>
-            <a
-              href="/support/contact/"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-blue-600 text-white text-body-sm font-semibold hover:bg-blue-700 transition-colors"
-            >
-              <Send className="w-4 h-4" />
-              제보 또는 문의하기
-            </a>
+            {/* Right: FAQ List */}
+            <div className="lg:col-span-8">
+              <div className="space-y-3">
+                {FAQ_ITEMS.map((item, i) => (
+                  <div
+                    key={i}
+                    className={`rounded-xl transition-all ${
+                      openFaq === i 
+                        ? 'bg-white ring-1 ring-blue-200 shadow-sm' 
+                        : 'bg-white hover:ring-1 hover:ring-neutral-200'
+                    }`}
+                  >
+                    <button
+                      onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                      className="w-full flex items-start gap-4 p-5 text-left"
+                    >
+                      <span className={`w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-bold ${
+                        openFaq === i 
+                          ? 'bg-blue-600 text-white' 
+                          : 'bg-slate-100 text-neutral-500'
+                      }`}>
+                        {i + 1}
+                      </span>
+                      <span className="flex-1 text-body-sm font-medium text-neutral-900 pt-0.5" style={{ wordBreak: 'keep-all' }}>
+                        {item.q}
+                      </span>
+                      <ChevronDown
+                        className={`w-5 h-5 flex-shrink-0 transition-transform mt-0.5 ${
+                          openFaq === i ? 'rotate-180 text-blue-500' : 'text-neutral-400'
+                        }`}
+                      />
+                    </button>
+                    {openFaq === i && (
+                      <div className="px-5 pb-5 pl-16">
+                        <p className="text-body-sm text-neutral-600 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
+                          {item.a}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
 
         </div>
       </section>
-
-
 
     </main>
   )
