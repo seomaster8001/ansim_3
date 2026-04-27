@@ -64,7 +64,7 @@ const FAQ_TITLE = '자주 묻는 질문'
 const FAQ_ITEMS = [
   {
     q: '먹튀 의심 사이트는 어떻게 확인하나요?',
-    a: '사이트명이나 주소를 검색한 뒤 최근 확인일, 주소 변경 이력, 제보 접수 여부, 관련 리포트 연결 여부를 함께 확인하세요. 하나의 신호만으로 단정하지 말고 여러 항목이 반복되는지 살펴야 하며, 검증 기준 다섯 가지(최근 확인일·주소 변경·운영 정보 일치·제보 패턴·공개 신고 경로)를 단계별로 점검하면 더 안전한 판단이 가능합니다.',
+    a: '사이트명이나 주소를 검색한 뒤 최근 확인일, 주소 변경 이력, 제보 접수 여부, 관련 리포트 연결 여부를 함께 확인하세요. 하나의 신호만으로 단정하지 말고 여러 항목이 반복되는지 살펴야 하며, 검증 기준 다섯 가지(최근 확인일·주소 변경·운영 정보 일치·제보 패턴·공개 신고 경로)를 단계별로 ��검하면 더 안전한 판단이 가능합니다.',
   },
   {
     q: '제보가 들어오면 ���로 공개되나요?',
@@ -106,7 +106,7 @@ export default function Home() {
 
         {/* Hero Content — center aligned */}
         <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-6 py-24 text-center">
-          <div className="w-full max-w-4xl mx-auto">
+          <div className="max-w-5xl mx-auto">
 
             {/* Label */}
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-100 mb-10">
@@ -161,7 +161,7 @@ export default function Home() {
 
       {/* ── SEARCH INFO SECTION ── */}
       <section className="py-28 md:py-36 px-6 md:px-20 bg-white border-t border-neutral-100">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-5xl mx-auto">
 
           {/* Section heading */}
           <div className="grid lg:grid-cols-12 gap-10 mb-20">
@@ -333,7 +333,7 @@ export default function Home() {
 
       {/* ── REPORTS SECTION ── */}
       <section className="py-28 md:py-36 px-6 md:px-20 bg-white border-t border-neutral-100">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-5xl mx-auto">
 
           {/* Section heading */}
           <div className="grid lg:grid-cols-12 gap-10 mb-16">
