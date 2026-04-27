@@ -46,7 +46,7 @@ const SUBMIT_TITLE = '제보는 검토 후 반영됩니다'
 const SUBMIT_INTRO =
   '주소 변경, 접속 불가, 환전 지연, 추가 입금 요구, 운영 정보 불일치가 의심되는 경우 제보 페이지를 통해 내용을 보낼 수 있습니다. 제보는 익명으로 접수할 수 있으며, 접수된 내용은 즉시 공개되지 않고 검토 절차를 거친 뒤 확인 가능한 항목만 반영됩니다.'
 const SUBMIT_P1 =
-  '제보 절차는 네 단계로 진행됩니다. 첫째는 접수입니다. 사용자가 사이트명, 현재 주소, 제보 유형, 상세 내용을 입력합니다. 둘째는 검토입니다. 접수된 내용에서 개인정보와 민감 정보가 포함되어 있는지 확인하고 필요한 경우 마스킹합니다. 셋째는 분류입니다. 주소 변경·환전 지연·추가 입금 요구·접속 불가·운영 정보 불일치 등 유형별로 묶습니다. 넷째는 반영입니다. 확인 가능한 항목만 사이트 상세 페이지, 검증 리포���, 변경 이력에 반영합니다.'
+  '제보 절차는 네 단계로 진행됩니다. 첫째는 접수입니다. 사용자가 사이트명, 현재 주소, 제보 유형, 상세 내용을 입력합니다. 둘째는 검토입니다. 접수된 내용에서 개인정보와 민감 정보가 포함되어 있는지 확인하고 필요한 경우 마스킹합니다. 셋째는 분류입니다. 주소 변경·환전 지연·추가 입금 요구·접속 불가·운영 정보 불일치 등 유형별로 묶습니다. 넷째는 반영입니다. 확인 가능한 항목만 사이트 상세 페이지, 검증 리포�����, 변경 이력에 반영합니다.'
 const SUBMIT_P2 =
   '제보 내용이 부족하거나 사실 확인이 어려운 경우에는 공개하지 않거나 데이터 부족 상태로 보류합니다. 동일한 사이트에 비슷한 제보가 반복되면 확인 필요 항목으로 분류할 수 있지만, 단일 제보만으로 특정 사이트를 단정하지 않습니다. 허위 제보, 경쟁 사이트 비방, 개인정보 노출, 확인되지 않은 주장성 문구는 반영 대상에서 제외됩니다.'
 const SUBMIT_P3 =
@@ -260,87 +260,73 @@ export default function Home() {
       </section>
 
       {/* ── VERIFICATION CRITERIA SECTION ── */}
-      <section className="py-28 md:py-36 px-6 md:px-20 bg-slate-50 border-t border-neutral-100">
-        <div className="max-w-6xl mx-auto">
+      <section className="py-24 md:py-32 px-6 md:px-20 bg-white border-t border-neutral-100">
+        <div className="max-w-5xl mx-auto">
 
-          {/* Section heading */}
-          <div className="max-w-3xl mb-16">
+          {/* Section heading - centered */}
+          <div className="text-center mb-16">
             <p className="text-label text-blue-500 mb-4">Verification Criteria</p>
-            <h2 className="text-h2 text-neutral-900 leading-tight mb-8">
+            <h2 className="text-h2 text-neutral-900 leading-tight mb-6">
               {CRITERIA_TITLE}
             </h2>
-            <p className="text-body-lg text-neutral-500">
-              {CRITERIA_P1}
+            <p className="text-body-lg text-neutral-500 max-w-2xl mx-auto">
+              {CRITERIA_INTRO}
             </p>
           </div>
 
-          {/* 5 Criteria Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mb-16">
+          {/* 5 Criteria - Numbered list style */}
+          <div className="space-y-4 mb-16">
             {[
-              { n: '01', icon: Calendar, title: '최근 확인일', desc: '마지막 확인일이 오래되었거나 접속 상태가 반복적으로 바뀌면 추가 확인이 필요합니다.' },
-              { n: '02', icon: Globe, title: '주소 변경 이력', desc: '짧은 기간에 도메인이 여러 번 바뀌거나 유사 주소가 반복되면 피싱 또는 추적 회피 가능성을 함께 봅니다.' },
-              { n: '03', icon: FileText, title: '운영 정보 일치 여부', desc: '사이트명, 안내 문구, 고객센터 정보, 공지 내용이 서로 맞�� 않으면 확인 필요 신호로 분류합니다.' },
-              { n: '04', icon: MessageSquare, title: '사용자 제보 패턴', desc: '단일 제보만으로 단정하지 않고, 환전 지연·추가 입금 요구·고객센터 응답 중단 같은 유사 제보가 반복되는지 확인합니다.' },
-              { n: '05', icon: ExternalLink, title: '공개 신고·보안 경로', desc: '피해 신고와 보안 확인이 필요한 경우 KISA, 금융감독원, 더치트 같은 공공·신뢰 출처를 안내합니다.' },
+              { n: '1', title: '최근 확인일', desc: '마지막 확인일이 오래되었거나 접속 상태가 반복적으로 바뀌면 추가 확인이 필요합니다.' },
+              { n: '2', title: '주소 변경 이력', desc: '짧은 기간에 도메인이 여러 번 바뀌거나 유사 주소가 반복되면 피싱 또는 추적 회피 가능성을 함께 봅니다.' },
+              { n: '3', title: '운영 정보 일치 여부', desc: '사이트명, 안내 문구, 고객센터 정보, 공지 내용이 서로 맞지 않으면 확인 필요 신호로 분류합니다.' },
+              { n: '4', title: '사용자 제보 패턴', desc: '단일 제보만으로 단정하지 않고, 환전 지연·추가 입금 요구·고객센터 응답 중단·주소 변경 안내 누락 같은 유사한 제보가 반복되는지 확인합니다.' },
+              { n: '5', title: '공개 신고·보안 경로', desc: '피해 신고와 보안 확인이 필요한 경우 KISA, 금융감독원, 더치트 같은 공공·신뢰 출처의 공개 자료를 참고할 수 있도록 안내합니다.' },
             ].map((item) => (
               <div
                 key={item.n}
-                className="group p-6 rounded-2xl bg-white border border-neutral-200 hover:border-blue-300 hover:shadow-lg hover:shadow-blue-50 transition-all"
+                className="flex gap-5 p-5 rounded-xl bg-slate-50 border border-neutral-100"
               >
-                <div className="flex items-start gap-4 mb-4">
-                  <div className="w-11 h-11 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center flex-shrink-0 group-hover:bg-blue-100 transition-colors">
-                    <item.icon className="w-5 h-5 text-blue-600" />
-                  </div>
-                  <span className="text-xs font-mono font-bold text-blue-400 mt-1">{item.n}</span>
+                <div className="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center flex-shrink-0 text-body-sm font-bold">
+                  {item.n}
                 </div>
-                <h3 className="text-h4 text-neutral-900 mb-2">{item.title}</h3>
-                <p className="text-body-sm text-neutral-500 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
-                  {item.desc}
-                </p>
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-h4 text-neutral-900 mb-1">{item.title}</h3>
+                  <p className="text-body-sm text-neutral-500" style={{ wordBreak: 'keep-all' }}>
+                    {item.desc}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
 
-          {/* Detailed paragraphs */}
-          <div className="grid lg:grid-cols-2 gap-8 mb-12">
-            <div className="p-6 rounded-xl bg-white border border-neutral-200">
-              <p className="text-body-sm text-neutral-600 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
-                {CRITERIA_P1}
-              </p>
+          {/* External links - inline with text */}
+          <div className="p-6 rounded-xl bg-slate-50 border border-neutral-100 mb-6">
+            <div className="flex flex-wrap items-center gap-3">
+              <span className="text-body-sm text-neutral-600">공개 신고 경로:</span>
+              {[
+                { name: 'KISA', url: 'https://www.kisa.or.kr/' },
+                { name: '금융감독원', url: 'https://www.fss.or.kr/' },
+                { name: '더치트', url: 'https://thecheat.co.kr/' },
+              ].map((link) => (
+                <a
+                  key={link.name}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-white border border-neutral-200 text-body-sm text-neutral-700 hover:border-blue-300 hover:text-blue-600 transition-colors"
+                >
+                  {link.name}
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              ))}
             </div>
-            <div className="p-6 rounded-xl bg-white border border-neutral-200">
-              <p className="text-body-sm text-neutral-600 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
-                {CRITERIA_P2}
-              </p>
-            </div>
-          </div>
-
-          {/* External links */}
-          <div className="flex flex-wrap gap-3 mb-12">
-            {[
-              { name: 'KISA', url: 'https://www.kisa.or.kr/' },
-              { name: '금융감독원', url: 'https://www.fss.or.kr/' },
-              { name: '더치트', url: 'https://thecheat.co.kr/' },
-            ].map((link) => (
-              <a
-                key={link.name}
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white border border-neutral-200 text-body-sm text-neutral-600 hover:border-blue-300 hover:text-blue-600 transition-colors"
-              >
-                <ExternalLink className="w-4 h-4" />
-                {link.name}
-              </a>
-            ))}
           </div>
 
           {/* Disclaimer */}
-          <div className="p-6 rounded-xl bg-neutral-100 border border-neutral-200">
-            <p className="text-body-sm text-neutral-500 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
-              {CRITERIA_DISCLAIMER}
-            </p>
-          </div>
+          <p className="text-body-sm text-neutral-400 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
+            {CRITERIA_DISCLAIMER}
+          </p>
 
         </div>
       </section>
@@ -811,7 +797,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── FAQ SECTION ── */}
+      {/* ��─ FAQ SECTION ── */}
       <section className="py-28 md:py-36 px-6 md:px-20 bg-white border-t border-neutral-100">
         <div className="max-w-4xl mx-auto">
 
