@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Search, ArrowRight, Check, AlertCircle, Minus } from 'lucide-react'
+import { Search, ArrowRight, Check, AlertCircle, Minus, Shield, TrendingUp, Database, Users } from 'lucide-react'
 
 /* ─── 원문 텍스트 ─────────────────────────── */
 const HERO_TITLE = '먹튀검증, 사이트 조회와 제보 확인까지 한 번에'
@@ -17,17 +17,17 @@ const SEARCH_P3 =
   '검색 결과에는 사이트명, 현재 상태, 마지막 확인일, 주소 변경 이력, 관련 제보, 연결된 가이드가 함께 표시됩니다. 확인 가능한 정보가 충분하지 않은 경우에는 단정하지 않고 데이터 부족 또는 확인 필요 상태로 표시합니다.'
 
 export default function Home() {
-  const [variant, setVariant] = useState<'v1' | 'v2' | 'v3'>('v1')
+  const [variant, setVariant] = useState<'v1' | 'v2' | 'v3' | 'v4' | 'v5'>('v4')
 
   return (
     <div className="min-h-screen font-sans">
       {/* Variant Switcher */}
       <div className="fixed top-4 right-4 z-50 flex items-center gap-1 bg-white/90 backdrop-blur-md border border-neutral-200 rounded-lg p-1.5 shadow-lg">
-        {(['v1', 'v2', 'v3'] as const).map((v) => (
+        {(['v1', 'v2', 'v3', 'v4', 'v5'] as const).map((v) => (
           <button
             key={v}
             onClick={() => setVariant(v)}
-            className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${
+            className={`px-3 py-2 rounded-md text-xs font-medium transition-all ${
               variant === v
                 ? 'bg-neutral-900 text-white'
                 : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100'
@@ -41,6 +41,8 @@ export default function Home() {
       {variant === 'v1' && <V1 />}
       {variant === 'v2' && <V2 />}
       {variant === 'v3' && <V3 />}
+      {variant === 'v4' && <V4 />}
+      {variant === 'v5' && <V5 />}
     </div>
   )
 }
@@ -437,6 +439,111 @@ function V3() {
               </h2>
             </div>
             <div className="lg:col-span-7">
+              <p className="text-lg text-neutral-600 leading-relaxed mb-8" style={{ wordBreak: 'keep-all' }}>
+                {SEARCH_P1}
+              </p>
+              <p className="text-lg text-neutral-600 leading-relaxed mb-8" style={{ wordBreak: 'keep-all' }}>
+                {SEARCH_P2}
+              </p>
+              <p className="text-lg text-neutral-600 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
+                {SEARCH_P3}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  )
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   V4 — "Premium Minimalist" 스타일
+   우아한 다크-라이트 콘트라스트, 대형 아이콘, 프리미엄한 느낌
+═══════════════════════════════════════════════════════════════ */
+function V4() {
+  return (
+    <div className="w-full">
+      {/* ── HERO ── */}
+      <section className="relative min-h-screen bg-gradient-to-br from-neutral-950 via-neutral-900 to-neutral-800 overflow-hidden">
+        {/* Decorative elements */}
+        <div className="absolute top-20 right-10 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-1/4 w-80 h-80 bg-cyan-400/10 rounded-full blur-3xl" />
+
+        {/* Navigation */}
+        <nav className="relative z-10 flex items-center justify-between px-8 md:px-16 py-8">
+          <div className="flex items-center gap-3">
+            <Shield className="w-7 h-7 text-blue-400" />
+            <span className="text-xl font-bold text-white tracking-tight">안심고고</span>
+          </div>
+          <div className="hidden md:flex items-center gap-6 text-sm text-neutral-300">
+            <span className="flex items-center gap-2"><div className="w-2 h-2 bg-emerald-400 rounded-full" />{' '}2022년 운영</span>
+            <span>5명 실명 공개</span>
+          </div>
+        </nav>
+
+        {/* Hero Content */}
+        <div className="relative z-10 px-8 md:px-16 py-20 md:py-32 min-h-[calc(100vh-88px)] flex flex-col justify-center">
+          <div className="max-w-5xl mx-auto w-full">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/30 mb-8">
+              <Database className="w-4 h-4 text-blue-400" />
+              <span className="text-blue-200 text-sm font-medium">검증 정보 플랫폼</span>
+            </div>
+
+            {/* Title */}
+            <h1 className="text-6xl md:text-7xl font-bold text-white leading-[1.1] tracking-tight mb-8" style={{ wordBreak: 'keep-all' }}>
+              {HERO_TITLE}
+            </h1>
+
+            {/* Description */}
+            <p className="text-lg md:text-xl text-neutral-300 leading-relaxed max-w-2xl mb-12" style={{ wordBreak: 'keep-all' }}>
+              {HERO_BODY}
+            </p>
+
+            {/* Search Box */}
+            <div className="flex flex-col sm:flex-row gap-3 max-w-2xl mb-16">
+              <div className="flex-1 flex items-center gap-3 px-6 py-4 bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-blue-500/50 transition-all group">
+                <Search className="w-5 h-5 text-neutral-400 group-hover:text-blue-400 transition-colors" />
+                <input
+                  type="text"
+                  placeholder="사이트명 또는 주소"
+                  className="flex-1 bg-transparent outline-none text-white placeholder:text-neutral-500"
+                />
+              </div>
+              <button className="px-8 py-4 rounded-2xl bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-semibold hover:shadow-lg hover:shadow-blue-500/30 transition-all">
+                검색
+              </button>
+            </div>
+
+            {/* Stats Grid */}
+            <div className="grid grid-cols-3 gap-6">
+              {[
+                { icon: TrendingUp, value: '4년', label: '자체 데이터 축적' },
+                { icon: Users, value: '5명', label: '실명 편집부' },
+                { icon: Shield, value: '∞', label: '신뢰성 우선' },
+              ].map((stat, i) => (
+                <div key={i} className="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/10 transition-all">
+                  <stat.icon className="w-6 h-6 text-blue-400 mb-4" />
+                  <p className="text-2xl font-bold text-white mb-1">{stat.value}</p>
+                  <p className="text-sm text-neutral-400">{stat.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── SEARCH SECTION ── */}
+      <section className="py-32 px-8 md:px-16 bg-white">
+        <div className="max-w-6xl mx-auto">
+          {/* Header */}
+          <div className="grid lg:grid-cols-2 gap-12 mb-24">
+            <div>
+              <h2 className="text-5xl md:text-6xl font-bold text-neutral-900 leading-tight tracking-tight" style={{ wordBreak: 'keep-all' }}>
+                {SEARCH_TITLE}
+              </h2>
+            </div>
+            <div className="flex flex-col justify-end space-y-6">
               <p className="text-lg text-neutral-600 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
                 {SEARCH_P1}
               </p>
@@ -444,38 +551,195 @@ function V3() {
           </div>
 
           {/* Content Grid */}
-          <div className="grid lg:grid-cols-12 gap-8">
-            {/* Left Column */}
-            <div className="lg:col-span-7 space-y-8">
-              <div className="p-8 bg-white rounded-xl border border-neutral-200">
-                <span className="text-sm font-semibold text-neutral-400 mb-4 block">01</span>
-                <h3 className="text-2xl font-semibold text-neutral-900 mb-4">다중 신호 분석</h3>
-                <p className="text-neutral-600 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
-                  {SEARCH_P2}
-                </p>
+          <div className="grid lg:grid-cols-3 gap-8">
+            {/* Card 1 */}
+            <div className="p-8 rounded-2xl bg-gradient-to-br from-blue-50 to-cyan-50 border border-blue-100">
+              <div className="w-14 h-14 rounded-full bg-blue-500 flex items-center justify-center mb-6">
+                <span className="text-2xl font-bold text-white">①</span>
               </div>
-              <div className="p-8 bg-white rounded-xl border border-neutral-200">
-                <span className="text-sm font-semibold text-neutral-400 mb-4 block">02</span>
-                <h3 className="text-2xl font-semibold text-neutral-900 mb-4">투명한 결과 표시</h3>
-                <p className="text-neutral-600 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
-                  {SEARCH_P3}
-                </p>
+              <h3 className="text-xl font-bold text-neutral-900 mb-4">다중 신호 분석</h3>
+              <p className="text-neutral-600 leading-relaxed text-sm" style={{ wordBreak: 'keep-all' }}>
+                {SEARCH_P2}
+              </p>
+            </div>
+
+            {/* Card 2 */}
+            <div className="p-8 rounded-2xl bg-gradient-to-br from-emerald-50 to-teal-50 border border-emerald-100">
+              <div className="w-14 h-14 rounded-full bg-emerald-500 flex items-center justify-center mb-6">
+                <span className="text-2xl font-bold text-white">②</span>
               </div>
+              <h3 className="text-xl font-bold text-neutral-900 mb-4">투명한 결과 표시</h3>
+              <p className="text-neutral-600 leading-relaxed text-sm" style={{ wordBreak: 'keep-all' }}>
+                {SEARCH_P3}
+              </p>
+            </div>
+
+            {/* Card 3 - Results */}
+            <div className="p-8 rounded-2xl bg-neutral-50 border border-neutral-200">
+              <div className="w-14 h-14 rounded-full bg-neutral-800 flex items-center justify-center mb-6">
+                <span className="text-2xl font-bold text-white">③</span>
+              </div>
+              <h3 className="text-xl font-bold text-neutral-900 mb-6">검색 결과 상태</h3>
+              <div className="space-y-3">
+                {[
+                  { label: '확인완료', color: 'bg-emerald-500' },
+                  { label: '확인필요', color: 'bg-amber-500' },
+                  { label: '데이터부족', color: 'bg-neutral-400' },
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center gap-3 p-3 rounded-lg bg-white">
+                    <div className={`w-3 h-3 rounded-full ${item.color}`} />
+                    <span className="text-sm font-medium text-neutral-700">{item.label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  )
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   V5 — "Modern Institutional" 스타일
+   클린한 화이트, 좌측 컬러 보더 악센트, 세로 타임라인
+═══════════════════════════════════════════════════════════════ */
+function V5() {
+  return (
+    <div className="w-full bg-white">
+      {/* ── HERO ── */}
+      <section className="relative min-h-screen overflow-hidden">
+        {/* Background accent */}
+        <div className="absolute inset-0 bg-gradient-to-br from-white via-neutral-50 to-white" />
+        <div className="absolute top-0 left-0 w-1 h-screen bg-gradient-to-b from-blue-500 via-cyan-400 to-emerald-500" />
+
+        {/* Navigation */}
+        <nav className="relative z-10 flex items-center justify-between px-8 md:px-16 py-8">
+          <div className="flex items-center gap-4">
+            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-600 to-cyan-500 flex items-center justify-center">
+              <Shield className="w-5 h-5 text-white" />
+            </div>
+            <span className="text-xl font-bold text-neutral-900">안심고고</span>
+          </div>
+          <div className="hidden md:flex items-center gap-8 text-sm text-neutral-600">
+            <span>Since 2022</span>
+            <span className="w-px h-5 bg-neutral-300" />
+            <span>5명 투명한 운영</span>
+          </div>
+        </nav>
+
+        {/* Hero Content */}
+        <div className="relative z-10 px-8 md:px-16 py-20 md:py-32 min-h-[calc(100vh-88px)] flex flex-col justify-center">
+          <div className="max-w-5xl">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-50 border border-blue-200 mb-8">
+              <div className="w-2 h-2 rounded-full bg-blue-500" />
+              <span className="text-blue-700 text-sm font-semibold">검증 정보 플랫폼</span>
+            </div>
+
+            {/* Title */}
+            <h1 className="text-6xl md:text-7xl font-bold text-neutral-900 leading-[1.15] tracking-tight mb-8" style={{ wordBreak: 'keep-all' }}>
+              {HERO_TITLE}
+            </h1>
+
+            {/* Description */}
+            <p className="text-lg md:text-xl text-neutral-600 leading-relaxed max-w-3xl mb-12" style={{ wordBreak: 'keep-all' }}>
+              {HERO_BODY}
+            </p>
+
+            {/* Search + Stats Container */}
+            <div className="space-y-12">
+              {/* Search */}
+              <div className="flex gap-3 max-w-2xl">
+                <div className="flex-1 flex items-center gap-3 px-6 py-4 bg-white rounded-xl border-2 border-neutral-200 focus-within:border-blue-500 focus-within:shadow-md transition-all">
+                  <Search className="w-5 h-5 text-neutral-400" />
+                  <input
+                    type="text"
+                    placeholder="사이트명 또는 주소"
+                    className="flex-1 bg-transparent outline-none text-neutral-900 placeholder:text-neutral-400"
+                  />
+                </div>
+                <button className="px-8 py-4 rounded-xl bg-neutral-900 text-white font-semibold hover:bg-neutral-800 transition-colors">
+                  검색
+                </button>
+              </div>
+
+              {/* Trust Indicators Timeline */}
+              <div className="flex gap-4 md:gap-8 pt-8 border-t-2 border-neutral-200">
+                {[
+                  { icon: TrendingUp, label: '4년', desc: '운영 경력' },
+                  { icon: Users, label: '5명', desc: '실명 팀' },
+                  { icon: Database, label: '자체', desc: '데이터 축적' },
+                  { icon: Shield, label: '무료', desc: '이용료 없음' },
+                ].map((item, i) => (
+                  <div key={i} className="flex flex-col items-center text-center min-w-0">
+                    <item.icon className="w-6 h-6 text-blue-500 mb-3" />
+                    <p className="font-bold text-neutral-900 text-lg">{item.label}</p>
+                    <p className="text-sm text-neutral-500">{item.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── SEARCH SECTION ── */}
+      <section className="py-32 px-8 md:px-16 border-t-2 border-neutral-200">
+        <div className="max-w-6xl mx-auto">
+          {/* Header */}
+          <div className="max-w-3xl mb-20">
+            <h2 className="text-5xl md:text-6xl font-bold text-neutral-900 leading-tight tracking-tight mb-8" style={{ wordBreak: 'keep-all' }}>
+              {SEARCH_TITLE}
+            </h2>
+            <p className="text-lg text-neutral-600 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
+              {SEARCH_P1}
+            </p>
+          </div>
+
+          {/* Content Columns */}
+          <div className="grid lg:grid-cols-12 gap-12">
+            {/* Left Column - Text */}
+            <div className="lg:col-span-5 space-y-10">
+              {[
+                { num: '①', title: '다중 신호 분석', text: SEARCH_P2 },
+                { num: '②', title: '투명한 결과 표시', text: SEARCH_P3 },
+              ].map((item, i) => (
+                <div key={i} className="pb-10 border-b border-neutral-200 last:border-b-0 last:pb-0">
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center text-white font-bold text-lg flex-shrink-0">
+                      {item.num}
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-neutral-900 mb-3">{item.title}</h3>
+                      <p className="text-neutral-600 leading-relaxed text-sm" style={{ wordBreak: 'keep-all' }}>
+                        {item.text}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
 
             {/* Right Column - Status Cards */}
-            <div className="lg:col-span-5 space-y-4">
-              <p className="text-sm font-semibold text-neutral-400 mb-4">검색 결과 상태</p>
-              {[
-                { status: '확인완료', desc: '최근 확인 완료, 특이사항 없음', color: 'border-l-emerald-500 bg-emerald-50' },
-                { status: '확인필요', desc: '주소 변경 또는 제보 접수', color: 'border-l-amber-500 bg-amber-50' },
-                { status: '데이터부족', desc: '정보 부족으로 판단 보류', color: 'border-l-neutral-400 bg-neutral-100' },
-              ].map((item, i) => (
-                <div key={i} className={`p-6 rounded-r-xl border-l-4 ${item.color}`}>
-                  <p className="font-semibold text-neutral-900 mb-1">{item.status}</p>
-                  <p className="text-sm text-neutral-600">{item.desc}</p>
-                </div>
-              ))}
+            <div className="lg:col-span-7">
+              <div className="space-y-4">
+                {[
+                  { status: '확인완료', icon: Check, color: 'border-l-4 border-l-emerald-500 bg-emerald-50', textColor: 'text-emerald-900', date: '최근 확인: 2025.03.15' },
+                  { status: '확인필요', icon: AlertCircle, color: 'border-l-4 border-l-amber-500 bg-amber-50', textColor: 'text-amber-900', date: '제보 현황: 2건' },
+                  { status: '데이터부족', icon: Minus, color: 'border-l-4 border-l-neutral-400 bg-neutral-100', textColor: 'text-neutral-700', date: '추가 정보 확인 필요' },
+                ].map((item, i) => (
+                  <div key={i} className={`p-6 rounded-lg ${item.color}`}>
+                    <div className="flex items-start gap-4">
+                      <item.icon className={`w-6 h-6 flex-shrink-0 ${item.textColor} mt-1`} />
+                      <div className="flex-1">
+                        <p className={`font-bold text-lg ${item.textColor}`}>{item.status}</p>
+                        <p className={`text-sm ${item.textColor} opacity-75 mt-1`}>{item.date}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
