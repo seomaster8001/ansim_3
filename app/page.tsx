@@ -611,120 +611,59 @@ export default function Home() {
       </section>
 
       {/* ── PREVENTION GUIDE SECTION ── */}
-      <section className="py-28 md:py-36 px-6 md:px-20 bg-slate-50 border-t border-neutral-100">
-        <div className="max-w-6xl mx-auto">
+      <section className="py-24 md:py-32 px-6 md:px-20 bg-slate-50 border-t border-neutral-100">
+        <div className="max-w-5xl mx-auto">
 
           {/* Section heading */}
-          <div className="text-center mb-16">
+          <div className="text-center mb-14">
             <p className="text-label text-blue-500 mb-4">Prevention Guide</p>
-            <h2 className="text-h2 text-neutral-900 leading-tight mb-6 max-w-3xl mx-auto">
+            <h2 className="text-h2 text-neutral-900 leading-tight mb-6">
               {GUIDE_TITLE}
             </h2>
-            <p className="text-body-lg text-neutral-500 max-w-3xl mx-auto">
+            <p className="text-body-lg text-neutral-500 max-w-2xl mx-auto">
               {GUIDE_P1}
             </p>
           </div>
 
-          {/* Warning signals grid */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-16">
+          {/* Guide links - compact horizontal */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-14">
             {[
-              { icon: Globe, label: '주소가 반복적으로 변경', color: 'amber' },
-              { icon: Banknote, label: '환전 지연 후 추가 입금 요구', color: 'red' },
-              { icon: PhoneOff, label: '고객센터 응답 갑자기 중단', color: 'red' },
-              { icon: Link2, label: '피싱 유사 주소 사용', color: 'amber' },
-              { icon: FileText, label: '운영 정보 불일��', color: 'amber' },
-              { icon: Clock, label: '최근 확인일 오래됨', color: 'neutral' },
-            ].map((signal, i) => {
-              const colorMap: Record<string, string> = {
-                amber: 'bg-amber-50 border-amber-200 text-amber-700',
-                red: 'bg-red-50 border-red-200 text-red-700',
-
-                neutral: 'bg-neutral-100 border-neutral-200 text-neutral-700',
-              }
-              const iconColorMap: Record<string, string> = {
-                amber: 'text-amber-500',
-                red: 'text-red-500',
-
-                neutral: 'text-neutral-500',
-              }
-              return (
-                <div
-                  key={i}
-                  className={`flex items-center gap-4 p-5 rounded-xl border ${colorMap[signal.color]}`}
-                >
-                  <signal.icon className={`w-5 h-5 flex-shrink-0 ${iconColorMap[signal.color]}`} />
-                  <span className="text-body-sm font-medium" style={{ wordBreak: 'keep-all' }}>{signal.label}</span>
-                </div>
-              )
-            })}
-          </div>
-
-          {/* Guide cards */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
-            {[
-              { icon: Globe, title: '주소 변경 체크포인트', desc: '주소 변경 시 확인해야 할 항목' },
-              { icon: Eye, title: '피싱 사이트 구별법', desc: '유사 도메인과 원본 구분 방법' },
-              { icon: Clock, title: '환전 지연 대응법', desc: '환전 지연 시 확인할 절차' },
-              { icon: Banknote, title: '추가 입금 요구 대처', desc: '추가 입금 요구 시 대응 방법' },
+              { title: '주소 변경 체크포인트' },
+              { title: '피싱 사이트 구별법' },
+              { title: '환전 지연 대응법' },
+              { title: '추가 입금 요구 대처' },
             ].map((guide, i) => (
               <a
                 key={i}
                 href="/guide/"
-                className="group p-6 rounded-2xl bg-white border border-neutral-200 hover:border-blue-300 hover:shadow-lg hover:shadow-blue-50 transition-all"
+                className="flex items-center justify-center gap-2 p-4 rounded-xl bg-white border border-neutral-200 hover:border-blue-300 hover:shadow-md transition-all text-body-sm font-medium text-neutral-700 hover:text-blue-600"
               >
-                <div className="w-11 h-11 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center mb-4 group-hover:bg-blue-100 transition-colors">
-                  <guide.icon className="w-5 h-5 text-blue-600" />
-                </div>
-                <h3 className="text-h4 text-neutral-900 mb-2 group-hover:text-blue-700 transition-colors">{guide.title}</h3>
-                <p className="text-body-sm text-neutral-500" style={{ wordBreak: 'keep-all' }}>{guide.desc}</p>
+                {guide.title}
+                <ChevronRight className="w-4 h-4" />
               </a>
             ))}
           </div>
 
-          {/* Content paragraphs */}
-          <div className="grid lg:grid-cols-2 gap-6 mb-16">
-            <div className="p-6 rounded-xl bg-white border border-neutral-200">
-              <p className="text-body-sm text-neutral-600 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
-                {GUIDE_P2}
-              </p>
-            </div>
-            <div className="p-6 rounded-xl bg-white border border-neutral-200">
-              <p className="text-body-sm text-neutral-600 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
-                {GUIDE_P3}
-              </p>
-            </div>
+          {/* Key message */}
+          <div className="p-5 rounded-xl bg-white border border-neutral-200 mb-10">
+            <p className="text-body-sm text-neutral-600" style={{ wordBreak: 'keep-all' }}>
+              {GUIDE_P2}
+            </p>
           </div>
 
-          {/* Emergency action box */}
-          <div className="p-8 rounded-2xl bg-gradient-to-br from-red-600 to-red-500">
-            <div className="flex flex-col md:flex-row md:items-center gap-6">
-              <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-2xl bg-white/20 flex items-center justify-center flex-shrink-0">
-                  <Siren className="w-7 h-7 text-white" />
-                </div>
+          {/* Emergency action - simplified */}
+          <div className="p-6 rounded-xl bg-red-600">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="flex items-center gap-3">
+                <Siren className="w-6 h-6 text-white flex-shrink-0" />
                 <div>
-                  <h3 className="text-h4 text-white mb-1">금전 피해가 의심되는 경우</h3>
-                  <p className="text-body-sm text-white/80" style={{ wordBreak: 'keep-all' }}>
-                    추가 입금을 즉시 중단하세요
-                  </p>
+                  <p className="text-body-sm font-medium text-white">금전 피해가 의심되면 추가 입금을 즉시 중단하세요</p>
+                  <p className="text-body-sm text-white/70">대화 기록·입금 내역·주소 변경 내역을 보관 후 공공 신고 경로 확인</p>
                 </div>
               </div>
-              <div className="flex-1 flex flex-wrap gap-2 md:justify-end">
-                {[
-                  { icon: MessageSquare, label: '대화 기록 보관' },
-                  { icon: Banknote, label: '입금 내역 보관' },
-                  { icon: Archive, label: '주소 변경 내역 보관' },
-                  { icon: ExternalLink, label: '공공 신고 경로 확인' },
-                ].map((action, i) => (
-                  <span
-                    key={i}
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-body-sm text-white"
-                  >
-                    <action.icon className="w-4 h-4" />
-                    {action.label}
-                  </span>
-                ))}
-              </div>
+              <a href="/guide/" className="px-4 py-2 rounded-lg bg-white text-red-600 text-body-sm font-medium hover:bg-red-50 transition-colors flex-shrink-0">
+                가이드 보기
+              </a>
             </div>
           </div>
 
