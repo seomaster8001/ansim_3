@@ -32,7 +32,7 @@ const REPORT_P1 =
 const REPORT_P2 =
   '각 리포트에는 사건 개요, 접수된 제보 유형, 확인된 위험 신호, 관련 사이트, 이용자 체크포인트가 포함됩니다. 제보 내용에 개인정보가 포함된 경우에는 공개하지 않으며, 확인되지 않은 비방성 표현도 반영하지 않습니다.'
 const REPORT_P3 =
-  '최근 갱신된 리포트와 확인 필요 사이트는 랜딩 화면에서 바로 확인할 수 있습니다. 사용자는 검색창으로 직접 조회하거나, 최신 리포트·카테고리·피해예방 가이드로 이동해 관련 정보를 이어서 확인할 수 있습니다.'
+  '최근 갱신된 리포트와 확인 필요 사이트는 랜딩 화면에서 바로 확인할 수 있습니다. 사용자는 검색창으로 직접 조회하거나, 최신 리포트·카테��리·피해예방 가이드로 이동해 관련 정보를 이어서 확인할 수 있습니다.'
 
 const CATEGORY_TITLE = '카테고리별로 필요한 정보만 빠르게 찾습니다'
 const CATEGORY_INTRO =
@@ -285,13 +285,13 @@ export default function Home() {
             ].map((item) => (
               <div
                 key={item.n}
-                className="group p-6 rounded-2xl bg-white border border-neutral-200 hover:border-emerald-300 hover:shadow-lg hover:shadow-emerald-50 transition-all"
+                className="group p-6 rounded-2xl bg-white border border-neutral-200 hover:border-blue-300 hover:shadow-lg hover:shadow-blue-50 transition-all"
               >
                 <div className="flex items-start gap-4 mb-4">
-                  <div className="w-11 h-11 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center flex-shrink-0 group-hover:bg-emerald-100 transition-colors">
-                    <item.icon className="w-5 h-5 text-emerald-600" />
+                  <div className="w-11 h-11 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center flex-shrink-0 group-hover:bg-blue-100 transition-colors">
+                    <item.icon className="w-5 h-5 text-blue-600" />
                   </div>
-                  <span className="text-xs font-mono font-bold text-emerald-400 mt-1">{item.n}</span>
+                  <span className="text-xs font-mono font-bold text-blue-400 mt-1">{item.n}</span>
                 </div>
                 <h3 className="text-h4 text-neutral-900 mb-2">{item.title}</h3>
                 <p className="text-body-sm text-neutral-500 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
@@ -361,8 +361,8 @@ export default function Home() {
               </p>
             </div>
             <div className="lg:col-span-7 flex items-end">
-              <div className="w-full p-6 rounded-2xl bg-amber-50 border border-amber-100">
-                <p className="text-body-sm text-amber-800 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
+            <div className="w-full p-6 rounded-2xl bg-slate-50 border border-neutral-200">
+              <p className="text-body-sm text-neutral-700 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
                   {REPORT_P2}
                 </p>
               </div>
@@ -396,7 +396,7 @@ export default function Home() {
             ].map((report, i) => (
               <div
                 key={i}
-                className="group p-6 rounded-2xl bg-white border border-neutral-200 hover:border-amber-300 hover:shadow-lg hover:shadow-amber-50 transition-all cursor-pointer"
+                className="group p-6 rounded-2xl bg-white border border-neutral-200 hover:border-blue-300 hover:shadow-lg hover:shadow-blue-50 transition-all cursor-pointer"
               >
                 <div className="flex items-center justify-between mb-4">
                   <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
@@ -408,16 +408,16 @@ export default function Home() {
                   </span>
                   <span className="text-xs text-neutral-400">{report.date}</span>
                 </div>
-                <h3 className="text-h4 text-neutral-900 mb-3 group-hover:text-amber-700 transition-colors">
+                <h3 className="text-h4 text-neutral-900 mb-3 group-hover:text-blue-600 transition-colors">
                   {report.title}
                 </h3>
                 <div className="flex items-center gap-2 text-body-sm text-neutral-500">
-                  <AlertTriangle className="w-4 h-4 text-amber-500" />
+                  <AlertTriangle className="w-4 h-4 text-neutral-400" />
                   <span>{report.signal}</span>
                 </div>
                 <div className="mt-4 pt-4 border-t border-neutral-100 flex items-center justify-between">
                   <span className="text-xs text-neutral-400">리포트 보기</span>
-                  <ChevronRight className="w-4 h-4 text-neutral-400 group-hover:text-amber-500 group-hover:translate-x-1 transition-all" />
+                  <ChevronRight className="w-4 h-4 text-neutral-400 group-hover:text-blue-500 group-hover:translate-x-1 transition-all" />
                 </div>
               </div>
             ))}
@@ -437,7 +437,7 @@ export default function Home() {
                 className="flex flex-col items-center gap-3 p-5 rounded-xl bg-neutral-50 border border-neutral-100"
               >
                 <div className="w-10 h-10 rounded-xl bg-white border border-neutral-200 flex items-center justify-center">
-                  <item.icon className="w-5 h-5 text-amber-600" />
+                  <item.icon className="w-5 h-5 text-blue-500" />
                 </div>
                 <span className="text-body-sm font-medium text-neutral-700">{item.label}</span>
               </div>
@@ -492,70 +492,30 @@ export default function Home() {
           {/* Category cards - 5 columns */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-16">
             {[
-              {
-                icon: ShieldCheck,
-                title: '보증업체',
-                desc: '검증 기준을 통과한 사이트 정보',
-                href: '/safety/',
-                color: 'emerald',
-              },
-              {
-                icon: FileText,
-                title: '먹튀검증 리포트',
-                desc: '제보 이력과 주소 변경 사건별 기록',
-                href: '/review/',
-                color: 'red',
-              },
-              {
-                icon: BarChart3,
-                title: '스포츠 분석',
-                desc: 'KBO·MLB·EPL 경기 데이터와 라이브스코어',
-                href: '/picks/',
-                color: 'blue',
-              },
-              {
-                icon: BookOpen,
-                title: '피해예방 가이드',
-                desc: '환전 지연, 피싱 주소, 주소 변경 리스크 체크',
-                href: '/guide/',
-                color: 'amber',
-              },
-              {
-                icon: Database,
-                title: '데이터센터',
-                desc: '변경 이력, 검증 현황, 카테고리별 흐름 요약',
-                href: '/data/',
-                color: 'indigo',
-              },
-            ].map((cat, i) => {
-              const colorMap: Record<string, { bg: string; border: string; iconBg: string; iconBorder: string; iconColor: string; hoverBorder: string }> = {
-                emerald: { bg: 'bg-emerald-50', border: 'border-emerald-100', iconBg: 'bg-emerald-100', iconBorder: 'border-emerald-200', iconColor: 'text-emerald-600', hoverBorder: 'hover:border-emerald-300' },
-                red: { bg: 'bg-red-50', border: 'border-red-100', iconBg: 'bg-red-100', iconBorder: 'border-red-200', iconColor: 'text-red-600', hoverBorder: 'hover:border-red-300' },
-                blue: { bg: 'bg-blue-50', border: 'border-blue-100', iconBg: 'bg-blue-100', iconBorder: 'border-blue-200', iconColor: 'text-blue-600', hoverBorder: 'hover:border-blue-300' },
-                amber: { bg: 'bg-amber-50', border: 'border-amber-100', iconBg: 'bg-amber-100', iconBorder: 'border-amber-200', iconColor: 'text-amber-600', hoverBorder: 'hover:border-amber-300' },
-                indigo: { bg: 'bg-indigo-50', border: 'border-indigo-100', iconBg: 'bg-indigo-100', iconBorder: 'border-indigo-200', iconColor: 'text-indigo-600', hoverBorder: 'hover:border-indigo-300' },
-              }
-              const c = colorMap[cat.color]
-              return (
-                <a
-                  key={i}
-                  href={cat.href}
-                  className={`group flex flex-col p-5 rounded-2xl bg-white border border-neutral-200 ${c.hoverBorder} hover:shadow-lg transition-all`}
-                >
-                  <div className={`w-12 h-12 rounded-xl ${c.iconBg} border ${c.iconBorder} flex items-center justify-center mb-4`}>
-                    <cat.icon className={`w-6 h-6 ${c.iconColor}`} />
-                  </div>
-                  <h3 className="text-h4 text-neutral-900 mb-2">{cat.title}</h3>
-                  <p className="text-body-sm text-neutral-500 leading-relaxed flex-1" style={{ wordBreak: 'keep-all' }}>
-                    {cat.desc}
-                  </p>
-                  <div className="mt-4 pt-4 border-t border-neutral-100 flex items-center justify-between">
-                    <span className="text-xs text-neutral-400">바로가기</span>
-                    <ChevronRight className="w-4 h-4 text-neutral-400 group-hover:translate-x-1 transition-transform" />
-                  </div>
-                </a>
-              )
-            })}
+              { icon: ShieldCheck, title: '보증업체', desc: '검증 기준을 통과한 사이트 정보', href: '/safety/' },
+              { icon: FileText, title: '먹튀검증 리포트', desc: '제보 이력과 주소 변경 사건별 기록', href: '/review/' },
+              { icon: BarChart3, title: '스포츠 분석', desc: 'KBO·MLB·EPL 경기 데이터와 라이브스코어', href: '/picks/' },
+              { icon: BookOpen, title: '피해예방 가이드', desc: '환전 지연, 피싱 주소, 주소 변경 리스크 체크', href: '/guide/' },
+              { icon: Database, title: '데이터센터', desc: '변경 이력, 검증 현황, 카테고리별 흐름 요약', href: '/data/' },
+            ].map((cat, i) => (
+              <a
+                key={i}
+                href={cat.href}
+                className="group flex flex-col p-5 rounded-2xl bg-white border border-neutral-200 hover:border-blue-300 hover:shadow-lg hover:shadow-blue-50 transition-all"
+              >
+                <div className="w-12 h-12 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center mb-4 group-hover:bg-blue-100 transition-colors">
+                  <cat.icon className="w-6 h-6 text-blue-600" />
+                </div>
+                <h3 className="text-h4 text-neutral-900 mb-2">{cat.title}</h3>
+                <p className="text-body-sm text-neutral-500 leading-relaxed flex-1" style={{ wordBreak: 'keep-all' }}>
+                  {cat.desc}
+                </p>
+                <div className="mt-4 pt-4 border-t border-neutral-100 flex items-center justify-between">
+                  <span className="text-xs text-neutral-400">바로가기</span>
+                  <ChevronRight className="w-4 h-4 text-neutral-400 group-hover:text-blue-500 group-hover:translate-x-1 transition-all" />
+                </div>
+              </a>
+            ))}
           </div>
 
           {/* Detailed paragraphs */}
@@ -573,14 +533,14 @@ export default function Home() {
           </div>
 
           {/* Hub CTA */}
-          <div className="p-8 rounded-2xl bg-gradient-to-br from-indigo-600 to-indigo-500 text-center">
+          <div className="p-8 rounded-2xl bg-gradient-to-br from-blue-600 to-blue-500 text-center">
             <Layers className="w-10 h-10 text-white/80 mx-auto mb-4" />
-            <h3 className="text-h3 text-white mb-3">안심고고�� 검색·조회·제보·가이드로 이동하는 허브입니다</h3>
+            <h3 className="text-h3 text-white mb-3">안심고고는 검색·조회·제보·가이드로 이동하는 허브입니다</h3>
             <p className="text-body-sm text-white/70 mb-6 max-w-xl mx-auto" style={{ wordBreak: 'keep-all' }}>
               처음 방문한 사용자는 검색창에서 바로 확인하고, 반복 방문 사용자는 최신 리포트와 변경 이력부터 확인할 수 있습니다.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-3">
-              <button className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-indigo-700 text-body-sm font-semibold hover:bg-indigo-50 transition-colors">
+              <button className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-blue-700 text-body-sm font-semibold hover:bg-blue-50 transition-colors">
                 <Search className="w-4 h-4" />
                 사이트 조회
               </button>
@@ -590,6 +550,7 @@ export default function Home() {
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>
+          </div>
           </div>
 
         </div>
@@ -611,7 +572,7 @@ export default function Home() {
               </p>
               <a
                 href="/support/contact/"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-rose-600 text-white text-body-sm font-semibold hover:bg-rose-700 transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-blue-600 text-white text-body-sm font-semibold hover:bg-blue-700 transition-colors"
               >
                 <Send className="w-4 h-4" />
                 제보 페이지로 이동
@@ -638,7 +599,7 @@ export default function Home() {
                     n: '03',
                     icon: Layers,
                     title: '분류',
-                    desc: '주소 변경·환전 지연·추가 입금 요구·접속 불가·운영 정보 불일�� 등 유형별로 묶습니다.',
+                    desc: '주소 변경·환전 지연·추가 입금 요구·접속 불가·운영 정보 불일�� 등 유���별로 묶습니다.',
                   },
                   {
                     n: '04',
@@ -649,14 +610,14 @@ export default function Home() {
                 ].map((step) => (
                   <div
                     key={step.n}
-                    className="group p-5 rounded-2xl bg-slate-50 border border-neutral-100 hover:border-red-200 hover:bg-red-50/50 transition-all"
-                  >
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="w-10 h-10 rounded-xl bg-white border border-neutral-200 flex items-center justify-center group-hover:border-red-200 transition-colors">
-                        <step.icon className="w-5 h-5 text-red-500" />
-                      </div>
-                      <span className="text-xs font-mono font-bold text-red-400">{step.n}</span>
-                    </div>
+                className="group p-5 rounded-2xl bg-slate-50 border border-neutral-100 hover:border-blue-200 hover:bg-blue-50/50 transition-all"
+              >
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 rounded-xl bg-white border border-neutral-200 flex items-center justify-center group-hover:border-blue-200 transition-colors">
+                    <step.icon className="w-5 h-5 text-blue-500" />
+                  </div>
+                  <span className="text-xs font-mono font-bold text-blue-400">{step.n}</span>
+                </div>
                     <h3 className="text-h4 text-neutral-900 mb-2">{step.title}</h3>
                     <p className="text-body-sm text-neutral-500 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
                       {step.desc}
@@ -750,23 +711,21 @@ export default function Home() {
             {[
               { icon: Globe, label: '주소가 반복적으로 변경', color: 'amber' },
               { icon: Banknote, label: '환전 지연 후 추가 입금 요구', color: 'red' },
-              { icon: PhoneOff, label: '고객센터 응답 갑자기 중단', color: 'rose' },
-              { icon: Link2, label: '피싱 유사 주소 사용', color: 'orange' },
+              { icon: PhoneOff, label: '고객센터 응답 갑자기 중단', color: 'red' },
+              { icon: Link2, label: '피싱 유사 주소 사용', color: 'amber' },
               { icon: FileText, label: '운영 정보 불일��', color: 'amber' },
               { icon: Clock, label: '최근 확인일 오래됨', color: 'neutral' },
             ].map((signal, i) => {
               const colorMap: Record<string, string> = {
                 amber: 'bg-amber-50 border-amber-200 text-amber-700',
                 red: 'bg-red-50 border-red-200 text-red-700',
-                rose: 'bg-red-50 border-red-200 text-red-700',
-                orange: 'bg-amber-50 border-orange-200 text-amber-700',
+
                 neutral: 'bg-neutral-100 border-neutral-200 text-neutral-700',
               }
               const iconColorMap: Record<string, string> = {
                 amber: 'text-amber-500',
                 red: 'text-red-500',
-                rose: 'text-red-500',
-                orange: 'text-amber-500',
+
                 neutral: 'text-neutral-500',
               }
               return (
@@ -792,7 +751,7 @@ export default function Home() {
               <a
                 key={i}
                 href="/guide/"
-                className="group p-6 rounded-2xl bg-white border border-neutral-200 hover:border-blue-300 hover:shadow-lg hover:shadow-cyan-50 transition-all"
+                className="group p-6 rounded-2xl bg-white border border-neutral-200 hover:border-blue-300 hover:shadow-lg hover:shadow-blue-50 transition-all"
               >
                 <div className="w-11 h-11 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center mb-4 group-hover:bg-blue-100 transition-colors">
                   <guide.icon className="w-5 h-5 text-blue-600" />
@@ -818,7 +777,7 @@ export default function Home() {
           </div>
 
           {/* Emergency action box */}
-          <div className="p-8 rounded-2xl bg-gradient-to-br from-red-600 to-rose-600">
+          <div className="p-8 rounded-2xl bg-gradient-to-br from-red-600 to-red-500">
             <div className="flex flex-col md:flex-row md:items-center gap-6">
               <div className="flex items-center gap-4">
                 <div className="w-14 h-14 rounded-2xl bg-white/20 flex items-center justify-center flex-shrink-0">
@@ -870,7 +829,7 @@ export default function Home() {
             {FAQ_ITEMS.map((item, i) => (
               <div
                 key={i}
-                className="border border-neutral-200 rounded-xl overflow-hidden hover:border-purple-200 transition-colors"
+                className="border border-neutral-200 rounded-xl overflow-hidden hover:border-blue-200 transition-colors"
               >
                 <button
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
@@ -897,13 +856,13 @@ export default function Home() {
           </div>
 
           {/* Bottom CTA */}
-          <div className="mt-16 p-8 rounded-2xl bg-purple-50 border border-purple-100 text-center">
+          <div className="mt-16 p-8 rounded-2xl bg-blue-50 border border-blue-100 text-center">
             <p className="text-body-sm text-neutral-600 mb-4" style={{ wordBreak: 'keep-all' }}>
               더 궁금한 점이 있으신가요?
             </p>
             <a
               href="/support/contact/"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-purple-600 text-white text-body-sm font-semibold hover:bg-purple-700 transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-blue-600 text-white text-body-sm font-semibold hover:bg-blue-700 transition-colors"
             >
               <Send className="w-4 h-4" />
               제보 또는 문의하기
