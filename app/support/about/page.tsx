@@ -47,58 +47,82 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ── 5-STEP VERIFICATION PROCESS SECTION ── */}
+      {/* ── STATS SECTION ── */}
       <section className="py-24 md:py-32 px-6 md:px-20 bg-secondary border-b border-border/50">
         <div className="max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-4 gap-4">
+            {[
+              { num: '4년', label: '운영 기간', sub: 'Since 2022' },
+              { num: '5명', label: '편집부', sub: '실명·경력 공개' },
+              { num: '무료', label: '이용료', sub: '완전 무료' },
+              { num: '분기', label: '재점검', sub: '정기 갱신' },
+            ].map((stat, i) => (
+              <div key={i} className="p-6 rounded-xl bg-background border border-border/50 text-center hover:border-primary/50 hover:shadow-md transition-all">
+                <div className="text-h1 text-primary font-bold mb-3">{stat.num}</div>
+                <p className="text-h4 text-heading mb-1">{stat.label}</p>
+                <p className="text-body-sm text-body">{stat.sub}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section className="py-24 md:py-32 px-6 md:px-20 bg-background border-b border-border/50">
+        <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
-            <h2 className="text-h2 text-heading mb-6">안심고고 5단계 검증 프로세스</h2>
+            <h2 className="text-h2 text-heading mb-6">5단계 검증 프로세스</h2>
             <p className="text-body-lg text-body max-w-2xl mx-auto" style={{ wordBreak: 'keep-all' }}>
-              안심고고가 사이트 정보를 디렉토리에 등록·갱신할 때 사용하는 다섯 단계 점검 프로세스이며, 각 단계는 외부 권위 출처가 아니라 자체 수집 데이터와 사용자 제보 누적치를 근거로 분기마다 동일 기준으로 재점검합니다.
+              모든 보증업체는 다음 5단계 검증을 거쳐 Tier 등급을 부여받으며, 분기마다 전 항목을 재점검합니다.
             </p>
           </div>
 
-          <div className="space-y-3">
-            {[
-              {
-                n: '1',
-                title: '운영 정보 일치',
-                desc: '사이트명·도메인·운영 시작일·사업자 정보 외부 표기 일치',
-              },
-              {
-                n: '2',
-                title: '보증금 확인',
-                desc: '사이트 측 공시 보증금과 입점 확인 수치 일치 (보증업체만)',
-              },
-              {
-                n: '3',
-                title: '사용자 제보 패턴',
-                desc: '누적 제보 건수, 환전 지연 비율, 추가 송금 요구 사례',
-              },
-              {
-                n: '4',
-                title: '변경 이력 추적',
-                desc: '주소 변경 빈도, 운영 정보 변동 타임라인',
-              },
-              {
-                n: '5',
-                title: '재점검 주기 준수',
-                desc: '분기 시점 모든 항목 재확인 + 분기 리포트 공개',
-              },
-            ].map((step, i) => (
-              <div key={i} className="p-5 rounded-xl bg-background border border-border/50 hover:border-primary/50 hover:shadow-md transition-all">
-                <div className="flex items-start gap-4">
-                  <div className="w-8 h-8 rounded-lg bg-primary text-primary-foreground flex items-center justify-center font-bold flex-shrink-0 text-h4">
-                    {step.n}
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-body font-medium text-heading mb-1">{step.title}</h3>
-                    <p className="text-body-sm text-body" style={{ wordBreak: 'keep-all' }}>
-                      {step.desc}
-                    </p>
+          <div className="relative">
+            {/* Timeline line */}
+            <div className="absolute left-4 md:left-1/2 top-10 bottom-0 w-1 bg-gradient-to-b from-primary to-primary/30 md:transform md:-translate-x-1/2" />
+
+            <div className="space-y-6 md:space-y-12">
+              {[
+                {
+                  n: '1',
+                  title: '운영 정보 일치',
+                  desc: '사이트명·도메인·운영 시작일·사업자 정보 외부 표기 일치',
+                },
+                {
+                  n: '2',
+                  title: '보증금 확인',
+                  desc: '사이트 측 공시 보증금과 입점 확인 수치 일치 (보증업체만)',
+                },
+                {
+                  n: '3',
+                  title: '사용자 제보 패턴',
+                  desc: '누적 제보 건수, 환전 지연 비율, 추가 송금 요구 사례',
+                },
+                {
+                  n: '4',
+                  title: '변경 이력 추적',
+                  desc: '주소 변경 빈도, 운영 정보 변동 타임라인',
+                },
+                {
+                  n: '5',
+                  title: '재점검 주기 준수',
+                  desc: '분기 시점 모든 항목 재확인 + 분기 리포트 공개',
+                },
+              ].map((step, i) => (
+                <div key={i} className="relative md:grid md:grid-cols-2 md:gap-8 md:items-center">
+                  {/* Number badge */}
+                  <div className={`flex items-start gap-4 mb-4 md:mb-0 ${i % 2 === 1 ? 'md:col-start-2' : ''}`}>
+                    <div className="w-10 h-10 rounded-lg bg-primary text-primary-foreground flex items-center justify-center font-bold flex-shrink-0 text-h4 relative z-10 shadow-md">
+                      {step.n}
+                    </div>
+                    <div className="flex-1 p-4 rounded-xl bg-accent border border-border/50">
+                      <h3 className="text-h4 text-heading mb-2">{step.title}</h3>
+                      <p className="text-body-sm text-body" style={{ wordBreak: 'keep-all' }}>
+                        {step.desc}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -136,14 +160,14 @@ export default function AboutPage() {
                 desc: '사용자 정보 조회·제보에 별도 이용료 청구 X',
               },
             ].map((signal, i) => (
-              <div key={i} className="p-6 rounded-xl bg-accent border border-border/50 hover:shadow-md transition-all">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <signal.icon className="w-5 h-5 text-primary" />
+              <div key={i} className="p-8 rounded-xl bg-accent border border-border/50 hover:shadow-md transition-all">
+                <div className="flex items-start gap-4 mb-4">
+                  <div className="w-14 h-14 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0">
+                    <signal.icon className="w-7 h-7 text-primary" />
                   </div>
-                  <h3 className="text-h4 text-heading">{signal.title}</h3>
+                  <h3 className="text-h3 text-heading pt-1">{signal.title}</h3>
                 </div>
-                <p className="text-body-sm text-body" style={{ wordBreak: 'keep-all' }}>
+                <p className="text-body text-body" style={{ wordBreak: 'keep-all' }}>
                   {signal.desc}
                 </p>
               </div>
@@ -165,31 +189,41 @@ export default function AboutPage() {
           <div className="grid md:grid-cols-2 gap-4">
             {[
               {
-                icon: Check,
-                title: '조회',
+                badge: 'K',
+                title: '조회 (Know)',
                 desc: '사이트 정보를 빠르게 확인할 수 있도록 검색·필터 제공',
               },
               {
-                icon: Check,
-                title: '이력',
-                desc: '시간 흐름과 변경 추적, 타임라인 형태 노출',
+                badge: 'G',
+                title: '가이드 (Guide)',
+                desc: '피해 없이 안전하게 이용하는 방법을 단계별 안내',
               },
               {
-                icon: Check,
-                title: '안내',
-                desc: '사용자 보호 정보를 강요 없이 안내',
+                badge: 'A',
+                title: '추적 (Alert)',
+                desc: '주소 변경, 문제 발생 시 변경 이력과 알림 기록 공개',
               },
               {
-                icon: Check,
-                title: '객관',
-                desc: '감정 단언 X, 시간 표시 O, 자체 데이터 O',
+                badge: 'B',
+                title: '보호 (Protect)',
+                desc: '제보 익명 보호, 누적 데이터 기반 위험 신호 분류',
               },
             ].map((principle, i) => (
-              <div key={i} className="p-6 rounded-xl bg-background border border-border/50 hover:border-primary/50 hover:shadow-md transition-all">
-                <div className="flex items-start gap-3 mb-3">
-                  <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                  <h3 className="text-h4 text-heading">{principle.title}</h3>
+              <div key={i} className="p-8 rounded-xl bg-background border border-border/50 hover:border-primary/50 transition-all">
+                <div className="flex items-start gap-4 mb-4">
+                  <div className="w-14 h-14 rounded-xl bg-primary text-primary-foreground flex items-center justify-center flex-shrink-0 text-h1 font-bold shadow-md">
+                    {principle.badge}
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-h3 text-heading">{principle.title}</h3>
+                  </div>
                 </div>
+                <p className="text-body text-body" style={{ wordBreak: 'keep-all' }}>
+                  {principle.desc}
+                </p>
+              </div>
+            ))}
+          </div>
                 <p className="text-body-sm text-body" style={{ wordBreak: 'keep-all' }}>
                   {principle.desc}
                 </p>
