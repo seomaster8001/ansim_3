@@ -1,6 +1,6 @@
 'use client'
 
-import { ChevronRight, AlertTriangle, Shield, CheckCircle, Clock, FileText, TrendingUp, HelpCircle } from 'lucide-react'
+import { ChevronRight, AlertTriangle, Shield, CheckCircle, Clock, FileText, TrendingUp, HelpCircle, BookOpen, Database } from 'lucide-react'
 
 export default function ReviewPage() {
   return (
