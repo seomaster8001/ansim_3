@@ -96,7 +96,7 @@ export default function SafetyPage() {
       a: '메이저사이트는 검색 사용자가 "검증 통과 사이트"를 가리킬 때 흔히 사용하는 표현이고, 보증업체는 안심고고가 5단계 점검을 통과해 디렉토리에 등록한 사이트를 의미합니다. 두 표현은 사용자 의도 측면에서 겹치지만, 안심고고 페이지에서는 점검 기준이 명시된 보증업체라는 표기를 일관 사용합니다.',
     },
     {
-      q: 'Tier 강등이나 디렉토리 제외는 어떻게 알 수 있나요',
+      q: 'Tier 강등��나 디렉토리 제외는 어떻게 알 수 있나요',
       a: '분기 점검에서 5단계 항목 중 하나라도 미충족이면 디렉토리 카드의 마지막 검증일과 변경 사유가 즉시 갱신되며, 동일 사례는 분기 리포트에 사유 카테고리별로 함께 기록됩니다. 변경 이력 전체는 데이터센터 카테고리에서 분기별 누적 통계와 강등·제외 사유 분포 형태로 함께 공개됩니다.',
     },
   ]
@@ -164,28 +164,28 @@ export default function SafetyPage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-5 mb-10">
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
             {tiers.map((tier, i) => (
-              <div key={i} className={`p-6 rounded-xl ${tier.bg} border ${tier.border} hover:shadow-md transition-all`}>
+              <div key={i} className={`p-8 rounded-xl ${tier.bg} border-2 ${tier.border} hover:shadow-lg hover:border-primary/50 transition-all`}>
                 {/* Icon */}
-                <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl ${tier.iconBg} mb-5 shadow-sm`}>
+                <div className={`inline-flex items-center justify-center w-18 h-18 rounded-2xl ${tier.iconBg} mb-6 shadow-md`}>
                   {tier.icon}
                 </div>
                 {/* Label */}
-                <p className={`text-label ${tier.textColor} mb-2`}>{tier.label}</p>
+                <p className={`text-label ${tier.textColor} mb-2 font-semibold`}>{tier.label}</p>
                 {/* Name */}
-                <h3 className="text-h3 text-heading mb-3">{tier.name}</h3>
+                <h3 className="text-h2 text-heading mb-4">{tier.name}</h3>
                 {/* Description */}
-                <p className="text-body-sm text-body leading-relaxed" style={{ wordBreak: 'keep-all' }}>
+                <p className="text-body text-body leading-relaxed" style={{ wordBreak: 'keep-all' }}>
                   {tier.description}
                 </p>
               </div>
             ))}
           </div>
 
-          <div className="p-5 rounded-xl bg-accent border border-accent-foreground/30">
-            <p className="text-body-sm text-accent-foreground" style={{ wordBreak: 'keep-all' }}>
-              등급 간 안전을 단정하는 표현은 일절 사용하지 않고 점검 시점 데이터와 마지막 검증일을 함께 노출합니다. <a href="/safety/gold/" className="text-primary hover:underline font-medium">Gold/Silver/Bronze 보증업체 필터</a>로 등급별 리스트를 확인할 수 있습니다.
+          <div className="p-7 rounded-xl bg-accent border-2 border-border/50 shadow-sm">
+            <p className="text-body text-accent-foreground leading-relaxed" style={{ wordBreak: 'keep-all' }}>
+              등급 간 안전을 단정하는 표현은 일절 사용하지 않고 점검 시점 데이터와 마지막 검증일을 함께 노출합니다. <a href="/safety/gold/" className="text-primary hover:underline font-semibold">Gold/Silver/Bronze 보증업체 필터</a>로 등급별 리스트를 확인할 수 있습니다.
             </p>
           </div>
         </div>
@@ -201,16 +201,16 @@ export default function SafetyPage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {verificationSteps.map((step, i) => (
-              <div key={i} className="p-5 rounded-xl bg-secondary border border-border">
-                <div className="flex items-start gap-3 mb-3">
-                  <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center flex-shrink-0 text-label font-bold">
+              <div key={i} className="p-6 rounded-xl bg-secondary border-2 border-transparent hover:border-primary/50 hover:shadow-md transition-all">
+                <div className="flex items-start gap-3 mb-4">
+                  <div className="w-9 h-9 rounded-full bg-primary text-primary-foreground flex items-center justify-center flex-shrink-0 text-body-sm font-bold shadow-sm">
                     {step.n}
                   </div>
                 </div>
-                <h3 className="text-h4 text-heading mb-2">{step.title}</h3>
-                <p className="text-body-sm text-body" style={{ wordBreak: 'keep-all' }}>
+                <h3 className="text-h4 text-heading mb-3 font-semibold">{step.title}</h3>
+                <p className="text-body-sm text-body leading-relaxed" style={{ wordBreak: 'keep-all' }}>
                   {step.desc}
                 </p>
               </div>

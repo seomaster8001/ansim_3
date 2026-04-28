@@ -22,22 +22,22 @@ export function SectionFAQ({
   const [openFaq, setOpenFaq] = useState<number | null>(null)
 
   return (
-    <section className="py-24 md:py-32 px-6 md:px-20 bg-secondary border-t border-border/50">
+    <section className="py-32 md:py-40 px-6 md:px-20 bg-secondary border-t-2 border-border/50">
       <div className="max-w-5xl mx-auto">
-        <div className="grid lg:grid-cols-12 gap-12">
+        <div className="grid lg:grid-cols-12 gap-16">
           {/* Left: Heading + CTA */}
           <div className="lg:col-span-4">
-            <div className="lg:sticky lg:top-24">
-              <p className="text-label text-primary mb-4">FAQ</p>
-              <h2 className="text-h2 text-heading leading-tight mb-6">
+            <div className="lg:sticky lg:top-32">
+              <p className="text-label text-primary font-semibold mb-4">FAQ</p>
+              <h2 className="text-h2 text-heading leading-tight mb-8">
                 {title}
               </h2>
-              <p className="text-body-sm text-body mb-8" style={{ wordBreak: 'keep-all' }}>
+              <p className="text-body text-body mb-10 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
                 {description}
               </p>
               <a
                 href="/support/contact/"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-white text-body-sm font-medium hover:bg-primary/90 transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-white text-body-sm font-semibold hover:bg-primary/90 hover:shadow-md transition-all"
               >
                 <Send className="w-4 h-4" />
                 문의하기
@@ -51,24 +51,24 @@ export function SectionFAQ({
               {items.map((item, i) => (
                 <div
                   key={i}
-                  className={`rounded-xl transition-all ${
+                  className={`rounded-xl border-2 transition-all ${
                     openFaq === i 
-                      ? 'bg-background ring-1 ring-primary/30 shadow-sm' 
-                      : 'bg-background hover:ring-1 hover:ring-border'
+                      ? 'bg-background border-primary shadow-md' 
+                      : 'bg-background border-transparent hover:border-primary/30 hover:shadow-sm'
                   }`}
                 >
                   <button
                     onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                    className="w-full flex items-start gap-4 p-5 text-left"
+                    className="w-full flex items-start gap-4 p-6 text-left"
                   >
-                    <span className={`w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-bold ${
+                    <span className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-bold transition-all ${
                       openFaq === i 
-                        ? 'bg-primary text-white' 
-                        : 'bg-muted text-body'
+                        ? 'bg-primary text-white shadow-md' 
+                        : 'bg-primary/10 text-primary'
                     }`}>
                       {i + 1}
                     </span>
-                    <span className="flex-1 text-body-sm font-medium text-heading pt-0.5" style={{ wordBreak: 'keep-all' }}>
+                    <span className="flex-1 text-body font-semibold text-heading pt-0.5" style={{ wordBreak: 'keep-all' }}>
                       {item.q}
                     </span>
                     <ChevronDown
@@ -78,8 +78,8 @@ export function SectionFAQ({
                     />
                   </button>
                   {openFaq === i && (
-                    <div className="px-5 pb-5 pl-16">
-                      <p className="text-body-sm text-body leading-relaxed" style={{ wordBreak: 'keep-all' }}>
+                    <div className="px-6 pb-6 pl-16 border-t border-border/30">
+                      <p className="text-body text-body leading-relaxed pt-6" style={{ wordBreak: 'keep-all' }}>
                         {item.a}
                       </p>
                     </div>

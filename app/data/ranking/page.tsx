@@ -114,9 +114,9 @@ export default function RankingPage() {
                 desc: '입점 신청 통과 후 등록 [N]건',
               },
             ].map((item, i) => (
-              <div key={i} className="p-5 rounded-xl bg-secondary border border-border/50">
-                <h3 className="text-h4 text-heading mb-2"><strong>{item.title}</strong></h3>
-                <p className="text-body-sm text-body" style={{ wordBreak: 'keep-all' }}>{item.desc}</p>
+              <div key={i} className="p-6 rounded-xl bg-background border-2 border-transparent hover:border-primary/50 hover:shadow-md transition-all">
+                <h3 className="text-h4 text-heading mb-2 font-semibold"><strong>{item.title}</strong></h3>
+                <p className="text-body-sm text-body leading-relaxed" style={{ wordBreak: 'keep-all' }}>{item.desc}</p>
               </div>
             ))}
           </div>
@@ -137,7 +137,7 @@ export default function RankingPage() {
             </p>
           </div>
 
-          <div className="max-w-3xl mx-auto space-y-3">
+          <div className="max-w-3xl mx-auto space-y-4">
             {[
               {
                 title: 'PDF 리포트',
@@ -156,9 +156,9 @@ export default function RankingPage() {
                 desc: '분기마다 갱신 일시 함께 표기',
               },
             ].map((item, i) => (
-              <div key={i} className="p-5 rounded-xl bg-background border border-border/50">
-                <h3 className="text-h4 text-heading mb-2"><strong>{item.title}</strong></h3>
-                <p className="text-body-sm text-body" style={{ wordBreak: 'keep-all' }}>{item.desc}</p>
+              <div key={i} className="p-6 rounded-xl bg-background border-2 border-transparent hover:border-primary/50 hover:shadow-md transition-all">
+                <h3 className="text-h4 text-heading mb-2 font-semibold"><strong>{item.title}</strong></h3>
+                <p className="text-body-sm text-body leading-relaxed" style={{ wordBreak: 'keep-all' }}>{item.desc}</p>
               </div>
             ))}
           </div>

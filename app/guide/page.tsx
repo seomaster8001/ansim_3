@@ -60,7 +60,7 @@ export default function GuidePage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-5">
+          <div className="grid md:grid-cols-2 gap-6">
             {[
               {
                 n: '01',
@@ -85,15 +85,15 @@ export default function GuidePage() {
             ].map((step, i) => (
               <div
                 key={i}
-                className="p-6 rounded-xl bg-background border border-border/50 hover:border-primary/50 hover:shadow-md transition-all"
+                className="p-7 rounded-xl bg-background border-2 border-transparent hover:border-primary/50 hover:shadow-md transition-all"
               >
-                <div className="flex items-start gap-4 mb-4">
-                  <span className="w-10 h-10 rounded-lg bg-primary text-primary-foreground flex items-center justify-center text-h4 font-bold flex-shrink-0">
+                <div className="flex items-start gap-4 mb-5">
+                  <span className="w-11 h-11 rounded-lg bg-primary text-primary-foreground flex items-center justify-center text-h4 font-bold flex-shrink-0 shadow-sm">
                     {step.n}
                   </span>
-                  <h3 className="text-h4 text-heading pt-0.5">{step.title}</h3>
+                  <h3 className="text-h4 text-heading font-semibold pt-0.5">{step.title}</h3>
                 </div>
-                <p className="text-body-sm text-body" style={{ wordBreak: 'keep-all' }}>
+                <p className="text-body-sm text-body leading-relaxed" style={{ wordBreak: 'keep-all' }}>
                   {step.desc}
                 </p>
               </div>
@@ -112,7 +112,7 @@ export default function GuidePage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-4">
+          <div className="grid md:grid-cols-2 gap-5">
             {[
               {
                 icon: Eye,
@@ -135,12 +135,12 @@ export default function GuidePage() {
                 items: ['안심고고 제보 폼', '정책 페이지 신고 경로 확인'],
               },
             ].map((section, i) => (
-              <div key={i} className="p-5 rounded-xl bg-secondary border border-border/50">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <section.icon className="w-4 h-4 text-primary" />
+              <div key={i} className="p-6 rounded-xl bg-secondary border-2 border-transparent hover:border-primary/50 hover:shadow-md transition-all">
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-10 h-10 rounded-lg bg-primary/15 flex items-center justify-center flex-shrink-0 shadow-sm">
+                    <section.icon className="w-5 h-5 text-primary" />
                   </div>
-                  <h3 className="text-h4 text-heading">{section.title}</h3>
+                  <h3 className="text-h4 text-heading font-semibold">{section.title}</h3>
                 </div>
                 <ul className="space-y-2">
                   {section.items.map((item, j) => (

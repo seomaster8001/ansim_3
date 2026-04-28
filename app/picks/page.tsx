@@ -108,27 +108,27 @@ export default function PicksPage() {
           </div>
 
           {/* Sports cards */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {sports.map((sport, i) => (
               <a
                 key={i}
                 href={sport.href}
-                className="group flex flex-col p-6 rounded-xl bg-background border border-border hover:border-primary/50 hover:shadow-md transition-all"
+                className="group flex flex-col p-7 rounded-xl bg-secondary border-2 border-transparent hover:border-primary/50 hover:shadow-lg hover:bg-background transition-all"
               >
-                <div className="w-12 h-12 rounded-lg bg-accent flex items-center justify-center mb-4 group-hover:bg-primary/10 transition-colors">
-                  <sport.icon className="w-6 h-6 text-primary" />
+                <div className="w-14 h-14 rounded-lg bg-primary/15 flex items-center justify-center mb-5 group-hover:bg-primary/25 transition-colors shadow-sm">
+                  <sport.icon className="w-7 h-7 text-primary" />
                 </div>
-                <p className="text-label text-primary mb-2">{sport.subtitle}</p>
-                <h3 className="text-h3 text-heading mb-3 group-hover:text-primary transition-colors">{sport.title}</h3>
-                <p className="text-body-sm text-body flex-1" style={{ wordBreak: 'keep-all' }}>{sport.desc}</p>
+                <p className="text-label text-primary font-semibold mb-3">{sport.subtitle}</p>
+                <h3 className="text-h3 text-heading mb-4 group-hover:text-primary transition-colors">{sport.title}</h3>
+                <p className="text-body-sm text-body flex-1 leading-relaxed" style={{ wordBreak: 'keep-all' }}>{sport.desc}</p>
               </a>
             ))}
           </div>
 
           {/* Note */}
-          <div className="p-5 rounded-xl bg-background border border-border/50">
-            <p className="text-body-sm text-body flex items-start gap-3">
-              <span className="text-primary mt-0.5">•</span>
+          <div className="p-7 rounded-xl bg-background border-2 border-border/50 shadow-sm">
+            <p className="text-body text-body flex items-start gap-3 leading-relaxed">
+              <span className="text-primary font-semibold mt-0.5 flex-shrink-0">•</span>
               <span style={{ wordBreak: 'keep-all' }}>종목 추가는 분기 단위로 검토합니다. 사용자 제보와 분기 트래픽을 기준으로 확장 여부를 결정하고, 추가 종목은 분기 리포트를 통해 공개됩니다.</span>
             </p>
           </div>

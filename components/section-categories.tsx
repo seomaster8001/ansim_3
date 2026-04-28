@@ -24,12 +24,12 @@ export function SectionCategories({
     : ALL_CATEGORIES
 
   return (
-    <section className="py-24 md:py-32 px-6 md:px-20 bg-background border-t border-border/50">
+    <section className="py-32 md:py-40 px-6 md:px-20 bg-background border-t-2 border-border/50">
       <div className="max-w-5xl mx-auto">
         {/* Section heading */}
-        <div className="text-center mb-14">
-          <p className="text-label text-primary mb-4">Categories</p>
-          <h2 className="text-h2 text-heading leading-tight mb-6">
+        <div className="text-center mb-16">
+          <p className="text-label text-primary font-semibold mb-4">Categories</p>
+          <h2 className="text-h2 text-heading leading-tight mb-8">
             {title}
           </h2>
           <p className="text-body-lg text-body max-w-2xl mx-auto">
@@ -38,19 +38,19 @@ export function SectionCategories({
         </div>
 
         {/* Category cards */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {categories.map((cat, i) => (
             <a
               key={i}
               href={cat.href}
-              className="group flex flex-col p-5 rounded-xl bg-background border border-border hover:border-primary/50 hover:shadow-md transition-all"
+              className="group flex flex-col p-6 rounded-xl bg-secondary border-2 border-transparent hover:border-primary/50 hover:shadow-lg hover:bg-background transition-all"
             >
-              <div className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center mb-4 group-hover:bg-primary/10 transition-colors">
-                <cat.icon className="w-5 h-5 text-primary" />
+              <div className="w-12 h-12 rounded-lg bg-primary/15 flex items-center justify-center mb-5 group-hover:bg-primary/25 transition-colors shadow-sm">
+                <cat.icon className="w-6 h-6 text-primary" />
               </div>
-              <h3 className="text-h4 text-heading mb-2 group-hover:text-primary transition-colors">{cat.title}</h3>
-              <p className="text-body-sm text-body flex-1" style={{ wordBreak: 'keep-all' }}>{cat.desc}</p>
-              <div className="flex items-center gap-1 mt-4 text-body-sm text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+              <h3 className="text-h4 text-heading mb-3 group-hover:text-primary transition-colors">{cat.title}</h3>
+              <p className="text-body-sm text-body flex-1 leading-relaxed" style={{ wordBreak: 'keep-all' }}>{cat.desc}</p>
+              <div className="flex items-center gap-1 mt-5 text-body-sm text-primary font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
                 바로가기
                 <ChevronRight className="w-4 h-4" />
               </div>
