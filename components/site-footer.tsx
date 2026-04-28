@@ -91,7 +91,7 @@ export default function SiteFooter() {
           {/* Col 4 — 채널 */}
           <div>
             <h4 className="text-[11px] font-semibold tracking-widest text-neutral-500 uppercase mb-5">채널</h4>
-            <div className="space-y-3 mb-8">
+            <div className="space-y-3">
               <a
                 href="https://t.me/ansimgogo"
                 target="_blank"
@@ -120,31 +120,13 @@ export default function SiteFooter() {
                 </div>
               </a>
             </div>
-
-            {/* Public channels and policies */}
-            <h4 className="text-[11px] font-semibold tracking-widest text-neutral-500 uppercase mb-3">이용약관</h4>
-            <div className="space-y-1">
-              {[
-                { label: '이용약관', href: '/support/terms/' },
-                { label: '개인정보처리방침', href: '/support/privacy/' },
-                { label: '청소년보호정책', href: '/support/youth/' },
-              ].map((link, i) => (
-                <a
-                  key={i}
-                  href={link.href}
-                  className="flex items-center gap-1.5 py-1 text-[12px] text-neutral-500 hover:text-neutral-300 transition-colors"
-                >
-                  {link.label}
-                </a>
-              ))}
-            </div>
           </div>
 
         </div>
 
         {/* Divider */}
         <div className="border-t border-white/[0.07] pt-7">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-6">
             <p className="text-[12px] text-neutral-600">
               &copy; {YEAR} 안심고고. All rights reserved.
             </p>
@@ -152,7 +134,25 @@ export default function SiteFooter() {
               마지막 갱신: <span className="text-neutral-500">{LAST_MOD}</span>
             </p>
           </div>
-          <p className="mt-3 text-[11px] text-neutral-700 leading-relaxed max-w-2xl" style={{ wordBreak: 'keep-all' }}>
+          
+          {/* Policies */}
+          <div className="flex flex-wrap gap-4 mb-6 pb-6 border-b border-white/[0.07]">
+            {[
+              { label: '이용약관', href: '/support/terms/' },
+              { label: '개인정보처리방침', href: '/support/privacy/' },
+              { label: '청소년보호정책', href: '/support/youth/' },
+            ].map((link, i) => (
+              <a
+                key={i}
+                href={link.href}
+                className="text-[12px] text-neutral-500 hover:text-neutral-300 transition-colors"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+
+          <p className="text-[11px] text-neutral-700 leading-relaxed max-w-2xl" style={{ wordBreak: 'keep-all' }}>
             안심고고는 공식기관이 아니며 사이트 검증 정보·피해예방 가이드를 제공합니다. 제공 정보는 법적 효력이 없으며, 실제 피해 신고는 관련 공공기관을 통해 진행하세요.
           </p>
         </div>
