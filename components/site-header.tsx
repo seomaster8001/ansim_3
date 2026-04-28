@@ -148,7 +148,7 @@ export default function SiteHeader() {
               href="https://t.me/ansimgogo"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden sm:flex items-center gap-1.5 px-3 py-2 rounded-lg bg-[#229ED9]/10 hover:bg-[#229ED9]/20 transition-colors text-[#229ED9] text-[13px] font-medium"
+              className="hidden sm:flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-[#229ED9] hover:bg-[#1a8bc7] transition-colors text-white text-[13px] font-medium"
             >
               <Send className="w-3.5 h-3.5" />
               텔레그램
