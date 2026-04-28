@@ -118,54 +118,56 @@ export default function PartnershipPage() {
             </p>
           </div>
 
-          <div className="space-y-4 max-w-3xl mx-auto">
-            {[
-              {
-                n: '1',
-                title: '운영 정보 일치 점검',
-                desc: '제출 자료와 외부 표기 일치 여부 (영업일 7일)',
-              },
-              {
-                n: '2',
-                title: '보증금 확인',
-                desc: '보증금 수치와 증빙 자료 교차 검증',
-              },
-              {
-                n: '3',
-                title: '사용자 제보 패턴 분석',
-                desc: '누적 제보 데이터에서 사이트별 패턴 확인',
-              },
-              {
-                n: '4',
-                title: '변경 이력 추적',
-                desc: '주소 변경 빈도·운영 정보 변동 분석',
-              },
-              {
-                n: '5',
-                title: '분기 점검 합류',
-                desc: '통과 시 디렉토리 등록 + 다음 분기부터 재점검 사이클',
-              },
-            ].map((step, i) => (
-              <div key={i} className="p-5 rounded-xl bg-background border border-border/50">
-                <div className="flex items-start gap-4">
-                  <div className="w-8 h-8 rounded-lg bg-primary text-primary-foreground flex items-center justify-center font-bold flex-shrink-0 text-h4">
-                    {step.n}
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-h4 text-heading mb-1">{step.title}</h3>
-                    <p className="text-body-sm text-body" style={{ wordBreak: 'keep-all' }}>
-                      {step.desc}
-                    </p>
+          <div className="max-w-3xl mx-auto">
+            <div className="space-y-4">
+              {[
+                {
+                  n: '1',
+                  title: '운영 정보 일치 점검',
+                  desc: '제출 자료와 외부 표기 일치 여부 (영업일 7일)',
+                },
+                {
+                  n: '2',
+                  title: '보증금 확인',
+                  desc: '보증금 수치와 증빙 자료 교차 검증',
+                },
+                {
+                  n: '3',
+                  title: '사용자 제보 패턴 분석',
+                  desc: '누적 제보 데이터에서 사이트별 패턴 확인',
+                },
+                {
+                  n: '4',
+                  title: '변경 이력 추적',
+                  desc: '주소 변경 빈도·운영 정보 변동 분석',
+                },
+                {
+                  n: '5',
+                  title: '분기 점검 합류',
+                  desc: '통과 시 디렉토리 등록 + 다음 분기부터 재점검 사이클',
+                },
+              ].map((step, i) => (
+                <div key={i} className="p-5 rounded-xl bg-background border border-border/50">
+                  <div className="flex items-start gap-4">
+                    <div className="w-8 h-8 rounded-lg bg-primary text-primary-foreground flex items-center justify-center font-bold flex-shrink-0 text-h4">
+                      {step.n}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-h4 text-heading mb-1">{step.title}</h3>
+                      <p className="text-body-sm text-body" style={{ wordBreak: 'keep-all' }}>
+                        {step.desc}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
 
-          <div className="mt-8 p-6 rounded-xl bg-accent border border-border/50">
-            <p className="text-body text-body" style={{ wordBreak: 'keep-all' }}>
-              전체 절차 완료까지 평균 <strong>분기 단위</strong>가 소요됩니다.
-            </p>
+            <div className="mt-8 p-6 rounded-xl bg-accent border border-border/50">
+              <p className="text-body text-body" style={{ wordBreak: 'keep-all' }}>
+                전체 절차 완료까지 평균 <strong>분기 단위</strong>가 소요됩니다.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -180,33 +182,48 @@ export default function PartnershipPage() {
             </p>
           </div>
 
-          <div className="space-y-3 max-w-3xl mx-auto">
-            {[
-              {
-                icon: Clock,
-                title: '분기마다 재점검',
-                desc: '분기 시점 모든 항목 재확인',
-              },
-              {
-                icon: AlertCircle,
-                title: '누적 제보 5건 이상',
-                desc: '분기 리포트에 사례 공개',
-              },
-              {
-                icon: FileText,
-                title: '변경 이력 누적',
-                desc: '데이터센터 분기 리포트에 통계 노출',
-              },
-              {
-                icon: CheckCircle,
-                title: 'Tier 변동',
-                desc: '변경 사유 함께 기록',
-              },
-            ].map((policy, i) => (
-              <div key={i} className="p-5 rounded-xl bg-secondary border border-border/50 flex items-start gap-4">
-                <div className="w-6 h-6 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <policy.icon className="w-4 h-4 text-primary" />
+          <div className="max-w-3xl mx-auto">
+            <div className="space-y-3">
+              {[
+                {
+                  icon: Clock,
+                  title: '분기 재점검',
+                  desc: '5단계 검증 항목 전체 재확인',
+                },
+                {
+                  icon: AlertTriangle,
+                  title: '미달 시 조치',
+                  desc: 'Tier 강등 또는 디렉토리 제외',
+                },
+                {
+                  icon: FileText,
+                  title: '변경 이력 누적',
+                  desc: '데이터센터 분기 리포트에 통계 노출',
+                },
+                {
+                  icon: CheckCircle,
+                  title: 'Tier 변동',
+                  desc: '변경 사유 함께 기록',
+                },
+              ].map((policy, i) => (
+                <div key={i} className="p-5 rounded-xl bg-secondary border border-border/50 flex items-start gap-4">
+                  <div className="w-6 h-6 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <policy.icon className="w-4 h-4 text-primary" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-body font-medium text-heading mb-0.5">{policy.title}</h3>
+                    <p className="text-body-sm text-body">{policy.desc}</p>
+                  </div>
                 </div>
+              ))}
+            </div>
+
+            <div className="mt-8 p-6 rounded-xl bg-accent border border-border/50">
+              <p className="text-body text-body" style={{ wordBreak: 'keep-all' }}>
+                입점료 납부 여부는 점검 결과와 Tier 산정에 영향을 일절 주지 않도록 분리 운영됩니다.
+              </p>
+            </div>
+          </div>
                 <div className="flex-1 min-w-0">
                   <h3 className="text-body font-medium text-heading mb-0.5">{policy.title}</h3>
                   <p className="text-body-sm text-body">{policy.desc}</p>
