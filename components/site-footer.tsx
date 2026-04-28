@@ -138,11 +138,11 @@ export default function SiteFooter() {
             </div>
 
             {/* Right Column */}
-            <div>
+            <div className="text-right">
               <p className="text-[12px] text-neutral-600 mb-4">
                 마지막 갱신: <span className="text-neutral-500">{LAST_MOD}</span>
               </p>
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-wrap gap-4 justify-end">
                 {[
                   { label: '이용약관', href: '/support/terms/' },
                   { label: '개인정보처리방침', href: '/support/privacy/' },
