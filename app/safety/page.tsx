@@ -6,21 +6,67 @@ export default function SafetyPage() {
   const tiers = [
     {
       name: 'Gold',
+      label: '최상위 등급',
       description: '보증금 상위 + 운영 3년 이상 + 환전 지연 제보 누적 0건',
-      color: 'from-amber-400 to-yellow-500',
-      badge: 'bg-amber-50 text-amber-700 border-amber-200',
+      bg: 'bg-amber-50',
+      border: 'border-amber-200',
+      iconBg: 'bg-gradient-to-br from-amber-400 to-yellow-500',
+      textColor: 'text-amber-800',
+      icon: (
+        <svg viewBox="0 0 40 40" fill="none" className="w-8 h-8">
+          {/* Trophy body */}
+          <rect x="14" y="26" width="12" height="4" rx="1" fill="white" opacity="0.9"/>
+          <rect x="11" y="30" width="18" height="3" rx="1.5" fill="white" opacity="0.9"/>
+          {/* Trophy cup */}
+          <path d="M10 8h20v10c0 5.523-4.477 10-10 10S10 23.523 10 18V8z" fill="white" opacity="0.9"/>
+          {/* Trophy handles */}
+          <path d="M10 10H7a3 3 0 000 6h3" stroke="white" strokeWidth="2" strokeLinecap="round" opacity="0.8"/>
+          <path d="M30 10h3a3 3 0 010 6h-3" stroke="white" strokeWidth="2" strokeLinecap="round" opacity="0.8"/>
+          {/* Star on top */}
+          <path d="M20 5l1.5 3 3.5.5-2.5 2.5.5 3.5L20 13l-3 1.5.5-3.5L15 8.5l3.5-.5L20 5z" fill="white" opacity="0.95"/>
+        </svg>
+      ),
     },
     {
       name: 'Silver',
+      label: '중간 등급',
       description: '보증금 중위 + 운영 1~3년 + 환전 처리 정상',
-      color: 'from-gray-300 to-gray-400',
-      badge: 'bg-gray-50 text-gray-700 border-gray-200',
+      bg: 'bg-slate-50',
+      border: 'border-slate-200',
+      iconBg: 'bg-gradient-to-br from-slate-400 to-slate-500',
+      textColor: 'text-slate-700',
+      icon: (
+        <svg viewBox="0 0 40 40" fill="none" className="w-8 h-8">
+          {/* Shield shape */}
+          <path d="M20 4L8 9v10c0 7 5.5 12.5 12 14.5C27.5 31.5 33 26 33 19V9L20 4z" fill="white" opacity="0.9"/>
+          {/* Shield inner */}
+          <path d="M20 8L11 12v8c0 5 3.8 9 9 10.5C25.2 29 29 25 29 20v-8L20 8z" fill="white" opacity="0.3"/>
+          {/* Check mark */}
+          <path d="M14 20l4 4 8-8" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.95"/>
+        </svg>
+      ),
     },
     {
       name: 'Bronze',
+      label: '입점 초기',
       description: '입점 1년 미만 + 분기 점검 통과 (관찰 단계)',
-      color: 'from-orange-600 to-amber-600',
-      badge: 'bg-orange-50 text-orange-700 border-orange-200',
+      bg: 'bg-orange-50',
+      border: 'border-orange-200',
+      iconBg: 'bg-gradient-to-br from-orange-500 to-amber-600',
+      textColor: 'text-orange-800',
+      icon: (
+        <svg viewBox="0 0 40 40" fill="none" className="w-8 h-8">
+          {/* Medal ribbon */}
+          <path d="M15 4h10l-2 10H17L15 4z" fill="white" opacity="0.7"/>
+          <path d="M17 4l-2 10" stroke="white" strokeWidth="1.5" opacity="0.5"/>
+          <path d="M23 4l2 10" stroke="white" strokeWidth="1.5" opacity="0.5"/>
+          {/* Medal circle */}
+          <circle cx="20" cy="26" r="10" fill="white" opacity="0.9"/>
+          <circle cx="20" cy="26" r="7" fill="white" opacity="0.3"/>
+          {/* Medal star */}
+          <path d="M20 19l1.8 3.6 4 .6-2.9 2.8.7 4-3.6-1.9-3.6 1.9.7-4-2.9-2.8 4-.6L20 19z" fill="white" opacity="0.95"/>
+        </svg>
+      ),
     },
   ]
 
@@ -138,12 +184,17 @@ export default function SafetyPage() {
 
           <div className="grid md:grid-cols-3 gap-5 mb-10">
             {tiers.map((tier, i) => (
-              <div key={i} className="p-6 rounded-xl bg-background border border-border hover:border-primary/50 transition-all">
-                <div className={`inline-flex items-center justify-center w-12 h-12 rounded-lg bg-gradient-to-br ${tier.color} mb-4`}>
-                  <span className="text-white font-bold text-h4">{tier.name[0]}</span>
+              <div key={i} className={`p-6 rounded-xl ${tier.bg} border ${tier.border} hover:shadow-md transition-all`}>
+                {/* Icon */}
+                <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl ${tier.iconBg} mb-5 shadow-sm`}>
+                  {tier.icon}
                 </div>
-                <h3 className="text-h4 text-heading mb-3">{tier.name}</h3>
-                <p className="text-body-sm text-body" style={{ wordBreak: 'keep-all' }}>
+                {/* Label */}
+                <p className={`text-label ${tier.textColor} mb-2`}>{tier.label}</p>
+                {/* Name */}
+                <h3 className="text-h3 text-heading mb-3">{tier.name}</h3>
+                {/* Description */}
+                <p className="text-body-sm text-body leading-relaxed" style={{ wordBreak: 'keep-all' }}>
                   {tier.description}
                 </p>
               </div>
