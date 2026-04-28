@@ -1,7 +1,7 @@
 import { SectionHero } from '@/components/section-hero'
 import { SectionFAQ } from '@/components/section-faq'
 import { SectionCategories } from '@/components/section-categories'
-import { Check, CheckCircle, BookOpen, Users, Database, Shield } from 'lucide-react'
+import { Database, Users, BookOpen, Shield, Eye, Zap, AlertCircle, Lock } from 'lucide-react'
 
 const FAQ_ITEMS = [
   {
@@ -47,26 +47,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ── STATS SECTION ── */}
+      {/* ── 5-STEP VERIFICATION PROCESS ── */}
       <section className="py-24 md:py-32 px-6 md:px-20 bg-secondary border-b border-border/50">
-        <div className="max-w-5xl mx-auto">
-          <div className="grid md:grid-cols-4 gap-4">
-            {[
-              { num: '4년', label: '운영 기간', sub: 'Since 2022' },
-              { num: '5명', label: '편집부', sub: '실명·경력 공개' },
-              { num: '무료', label: '이용료', sub: '완전 무료' },
-              { num: '분기', label: '재점검', sub: '정기 갱신' },
-            ].map((stat, i) => (
-              <div key={i} className="p-6 rounded-xl bg-background border border-border/50 text-center hover:border-primary/50 hover:shadow-md transition-all">
-                <div className="text-h1 text-primary font-bold mb-3">{stat.num}</div>
-                <p className="text-h4 text-heading mb-1">{stat.label}</p>
-                <p className="text-body-sm text-body">{stat.sub}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-      <section className="py-24 md:py-32 px-6 md:px-20 bg-background border-b border-border/50">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
             <h2 className="text-h2 text-heading mb-6">5단계 검증 프로세스</h2>
@@ -108,7 +90,6 @@ export default function AboutPage() {
                 },
               ].map((step, i) => (
                 <div key={i} className="relative md:grid md:grid-cols-2 md:gap-8 md:items-center">
-                  {/* Number badge */}
                   <div className={`flex items-start gap-4 mb-4 md:mb-0 ${i % 2 === 1 ? 'md:col-start-2' : ''}`}>
                     <div className="w-10 h-10 rounded-lg bg-primary text-primary-foreground flex items-center justify-center font-bold flex-shrink-0 text-h4 relative z-10 shadow-md">
                       {step.n}
@@ -127,17 +108,17 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ── OPERATING SIGNALS SECTION ─��� */}
+      {/* ── OPERATING SIGNALS SECTION ── */}
       <section className="py-24 md:py-32 px-6 md:px-20 bg-background border-b border-border/50">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
-            <h2 className="text-h2 text-heading mb-6">운영 시그널 (자체 권위 4종)</h2>
+            <h2 className="text-h2 text-heading mb-6">운영 시그널</h2>
             <p className="text-body-lg text-body max-w-2xl mx-auto" style={{ wordBreak: 'keep-all' }}>
-              안심고고는 외부 공공기관 인용에 기대지 않고 다음 4종 자체 운영 시그널을 모든 페이지에서 일관 노출하며, 각 시그널은 사용자가 직접 비교 확인할 수 있도록 표기됩니다.
+              안심고고는 외부 공공기관 인용에 기대지 않고 다음 4종 자체 운영 시그널로 신뢰성을 나타내며, 모든 페이지에서 일관되게 노출됩니다.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-4">
+          <div className="grid md:grid-cols-2 gap-5">
             {[
               {
                 icon: Database,
@@ -160,14 +141,14 @@ export default function AboutPage() {
                 desc: '사용자 정보 조회·제보에 별도 이용료 청구 X',
               },
             ].map((signal, i) => (
-              <div key={i} className="p-8 rounded-xl bg-accent border border-border/50 hover:shadow-md transition-all">
-                <div className="flex items-start gap-4 mb-4">
-                  <div className="w-14 h-14 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0">
-                    <signal.icon className="w-7 h-7 text-primary" />
+              <div key={i} className="p-6 rounded-xl bg-accent border border-border/50 hover:shadow-md transition-all">
+                <div className="flex items-start gap-4 mb-3">
+                  <div className="w-12 h-12 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0">
+                    <signal.icon className="w-6 h-6 text-primary" />
                   </div>
-                  <h3 className="text-h3 text-heading pt-1">{signal.title}</h3>
+                  <h3 className="text-h4 text-heading pt-0.5">{signal.title}</h3>
                 </div>
-                <p className="text-body text-body" style={{ wordBreak: 'keep-all' }}>
+                <p className="text-body-sm text-body" style={{ wordBreak: 'keep-all' }}>
                   {signal.desc}
                 </p>
               </div>
@@ -180,45 +161,43 @@ export default function AboutPage() {
       <section className="py-24 md:py-32 px-6 md:px-20 bg-secondary border-b border-border/50">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
-            <h2 className="text-h2 text-heading mb-6">운영 원칙 (KGAB 톤)</h2>
+            <h2 className="text-h2 text-heading mb-6">운영 원칙</h2>
             <p className="text-body-lg text-body max-w-2xl mx-auto" style={{ wordBreak: 'keep-all' }}>
               안심고고는 사용자 행동을 강요하지 않고 정보를 안내하는 톤만 일관 유지합니다. 다음 4가지 원칙은 모든 페이지의 본문 표현 기준입니다.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-4">
+          <div className="grid md:grid-cols-2 gap-5">
             {[
               {
-                badge: 'K',
-                title: '조회 (Know)',
+                icon: Eye,
+                title: '조회',
                 desc: '사이트 정보를 빠르게 확인할 수 있도록 검색·필터 제공',
               },
               {
-                badge: 'G',
-                title: '가이드 (Guide)',
+                icon: BookOpen,
+                title: '가이드',
                 desc: '피해 없이 안전하게 이용하는 방법을 단계별 안내',
               },
               {
-                badge: 'A',
-                title: '추적 (Alert)',
+                icon: Zap,
+                title: '추적',
                 desc: '주소 변경, 문제 발생 시 변경 이력과 알림 기록 공개',
               },
               {
-                badge: 'B',
-                title: '보호 (Protect)',
+                icon: Lock,
+                title: '보호',
                 desc: '제보 익명 보호, 누적 데이터 기반 위험 신호 분류',
               },
             ].map((principle, i) => (
-              <div key={i} className="p-8 rounded-xl bg-background border border-border/50 hover:border-primary/50 transition-all">
-                <div className="flex items-start gap-4 mb-4">
-                  <div className="w-14 h-14 rounded-xl bg-primary text-primary-foreground flex items-center justify-center flex-shrink-0 text-h1 font-bold shadow-md">
-                    {principle.badge}
+              <div key={i} className="p-6 rounded-xl bg-background border border-border/50 hover:border-primary/50 transition-all">
+                <div className="flex items-start gap-4 mb-3">
+                  <div className="w-12 h-12 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0">
+                    <principle.icon className="w-6 h-6 text-primary" />
                   </div>
-                  <div className="flex-1">
-                    <h3 className="text-h3 text-heading">{principle.title}</h3>
-                  </div>
+                  <h3 className="text-h4 text-heading pt-0.5">{principle.title}</h3>
                 </div>
-                <p className="text-body text-body" style={{ wordBreak: 'keep-all' }}>
+                <p className="text-body-sm text-body" style={{ wordBreak: 'keep-all' }}>
                   {principle.desc}
                 </p>
               </div>
