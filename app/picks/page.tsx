@@ -1,6 +1,7 @@
 import { ChevronRight, BarChart3, TrendingUp, Clock, Users, BookOpen, AlertCircle, CheckCircle } from 'lucide-react'
 import { SectionFAQ } from '@/components/section-faq'
 import { SectionCategories } from '@/components/section-categories'
+import { SectionHero } from '@/components/section-hero'
 
 export default function PicksPage() {
 
@@ -53,20 +54,12 @@ export default function PicksPage() {
   return (
     <main className="min-h-screen bg-background font-sans">
       {/* ── HERO SECTION ── */}
-      <section className="py-24 md:py-32 px-6 md:px-20 bg-background border-b border-border/50">
-        <div className="max-w-5xl mx-auto">
-          <div className="flex items-center gap-3 mb-6">
-            <BarChart3 className="w-6 h-6 text-primary" />
-            <span className="text-label text-primary">스포츠 분석</span>
-          </div>
-          <h1 className="text-h1 text-heading mb-6 max-w-3xl">
-            KBO · MLB · EPL 라이브 + 일정 + 통계 hub
-          </h1>
-          <p className="text-body-lg text-body max-w-2xl">
-            스포츠 분석 종합 hub — 종목별 경기 데이터 / 라이브스코어 / 일정 / 통계 자료 디렉토리
-          </p>
-        </div>
-      </section>
+      <SectionHero
+        label="스포츠 분석"
+        title="KBO · MLB · EPL 라이브 + 일정 + 통계 hub"
+        description="스포츠 분석 종합 hub — 종목별 경기 데이터 / 라이브스코어 / 일정 / 통계 자료 디렉토리"
+        icon={BarChart3}
+      />
 
       {/* ── INTRODUCTION SECTION ── */}
       <section className="py-24 md:py-32 px-6 md:px-20 bg-background border-b border-border/50">

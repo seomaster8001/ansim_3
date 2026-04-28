@@ -1,6 +1,7 @@
-import { ChevronRight, AlertTriangle, Shield, CheckCircle, Clock, FileText, TrendingUp, HelpCircle, BookOpen, Database } from 'lucide-react'
+import { ChevronRight, AlertTriangle, Shield, CheckCircle, Clock, FileText, TrendingUp, HelpCircle, BookOpen, Database, AlertCircle as AlertIcon } from 'lucide-react'
 import { SectionFAQ } from '@/components/section-faq'
 import { SectionCategories } from '@/components/section-categories'
+import { SectionHero } from '@/components/section-hero'
 
 const FAQ_ITEMS = [
   {
@@ -21,21 +22,13 @@ export default function ReviewPage() {
   return (
     <main className="min-h-screen bg-background font-sans">
       {/* ── HERO SECTION ── */}
-      <section className="py-16 md:py-24 px-6 md:px-20 bg-accent">
-        <div className="max-w-5xl mx-auto">
-          <div className="space-y-6">
-            <div>
-              <p className="text-label text-primary mb-4">Verification Report</p>
-              <h1 className="text-h1 text-heading leading-tight mb-6">
-                먹튀검증 — 신고·조회 절차와 제보 시스템
-              </h1>
-            </div>
-            <p className="text-body-lg text-body max-w-2xl" style={{ wordBreak: 'keep-all' }}>
-              사이트 조회 / 사용자 제보 / 위험 신호 패턴 / 신고 절차
-            </p>
-          </div>
-        </div>
-      </section>
+      <SectionHero
+        label="Verification Report"
+        title="먹튀검증 — 신고·조회 절차와 제보 시스템"
+        description="사이트 조회 / 사용자 제보 / 위험 신호 패턴 / 신고 절차"
+        icon={AlertIcon}
+        variant="accent"
+      />
 
       {/* ── DEFINITION SECTION ── */}
       <section className="py-24 md:py-32 px-6 md:px-20 bg-background border-t border-border">

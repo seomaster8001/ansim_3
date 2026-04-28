@@ -1,6 +1,7 @@
-import { ChevronRight, Check, AlertCircle, Eye, Clock, Banknote } from 'lucide-react'
+import { ChevronRight, Check, AlertCircle, Eye, Clock, Banknote, Shield } from 'lucide-react'
 import { SectionFAQ } from '@/components/section-faq'
 import { SectionCategories } from '@/components/section-categories'
+import { SectionHero } from '@/components/section-hero'
 
 export default function SafetyPage() {
   const tiers = [
@@ -103,30 +104,13 @@ export default function SafetyPage() {
   return (
     <main className="min-h-screen bg-background font-sans">
       {/* ── HERO SECTION ── */}
-      <section className="py-24 md:py-32 px-6 md:px-20 bg-accent border-b border-border/50">
-        <div className="max-w-5xl mx-auto">
-          <div className="flex flex-col gap-8">
-            <div>
-              <p className="text-label text-primary mb-4">Verified Directory</p>
-              <h1 className="text-h1 text-heading mb-6">
-                보증업체 — Tier 등급별 검증 통과 사이트 디렉토리
-              </h1>
-              <p className="text-body-lg text-body max-w-2xl">
-                검증 통과 사이트만 모아둔 카테고리. 5단계 검증을 통과한 사이트를 Gold·Silver·Bronze Tier로 분류하고 분기마다 재점검합니다.
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-3">
-              <a href="/safety/gold/" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground text-body font-medium hover:bg-primary/90 transition-colors">
-                Gold 보증업체 보기
-                <ChevronRight className="w-4 h-4" />
-              </a>
-              <a href="/safety/silver/" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-muted text-body font-medium border border-border hover:bg-muted/80 transition-colors">
-                전체 디렉토리
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+      <SectionHero
+        label="Verified Directory"
+        title="보증업체 — Tier 등급별 검증 통과 사이트 디렉토리"
+        description="검증 통과 사이트만 모아둔 카테고리. 5단계 검증을 통과한 사이트를 Gold·Silver·Bronze Tier로 분류하고 분기마다 재점검합니다."
+        icon={Shield}
+        variant="accent"
+      />
 
       {/* ── WHAT IS CERTIFIED ── */}
       <section className="py-24 md:py-32 px-6 md:px-20 bg-background border-b border-border/50">
