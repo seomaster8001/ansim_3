@@ -1,6 +1,6 @@
 'use client'
 
-import { ChevronRight, FileText, CheckCircle, Clock, AlertCircle, Shield } from 'lucide-react'
+import { ChevronRight, FileText, CheckCircle, Clock, AlertCircle, Shield, AlertTriangle } from 'lucide-react'
 import { SectionHero } from '@/components/section-hero'
 import { SectionFAQ } from '@/components/section-faq'
 import { SectionCategories } from '@/components/section-categories'
@@ -139,7 +139,7 @@ export default function PartnershipPage() {
                 {
                   n: '4',
                   title: '변경 이력 추적',
-                  desc: '주소 변경 빈도·운영 정보 ��동 분석',
+                  desc: '주소 변경 빈도·운영 정보 ���동 분석',
                 },
                 {
                   n: '5',
