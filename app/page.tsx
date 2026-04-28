@@ -46,7 +46,7 @@ const SUBMIT_TITLE = '제보는 검토 후 반영됩니다'
 const SUBMIT_INTRO =
   '주소 변경, 접속 불가, 환전 지연, 추가 입금 요구, 운영 정보 불일치가 의심되는 경우 제보 페이지를 통해 내용을 보낼 수 있습니다. 제보는 익명으로 접수할 수 있으며, 접수된 내용은 즉시 공개되지 않고 검토 절차를 거친 뒤 확인 가능한 항목만 반영됩니다.'
 const SUBMIT_P1 =
-  '제보 절차는 네 단계로 진행됩니다. 첫째는 접수입니다. 사용자가 사이트명, 현재 주소, 제보 유형, 상세 내용을 입력합니다. 둘째는 검토입니다. 접수된 내용에서 개인정보와 민감 정보가 포함되어 있는지 확인하고 필요한 경우 마스킹합니다. 셋째는 분류입니다. 주소 변경·환전 지연·추가 입금 요구·접속 불가·운영 정보 불일치 등 유형별로 묶습니다. 넷째는 반영입니다. 확인 가능한 항목만 사이트 상세 페이지, 검증 리포���������������, 변경 이력에 반영합니다.'
+  '제보 절차는 네 단계로 진행됩니다. 첫째는 접수입니다. 사용자가 사이트명, 현재 주소, 제보 유형, 상세 내용을 입력합니다. 둘째는 검토입니다. 접수된 내용에서 개인정보와 민감 정보가 포함되어 있는지 확인하고 필요한 경우 마스킹합니다. 셋째는 분류입니다. 주소 변경·환전 지연·추가 입금 요구·접속 불가·운영 정보 불일치 등 유형별로 묶습니다. 넷째는 반영입니다. 확인 가능한 항목만 사이트 상세 페이지, 검증 리포�����������������, 변경 이력에 반영합니다.'
 const SUBMIT_P2 =
   '제보 내용이 부족하거나 사실 확인이 어려운 경우에는 공개하지 않거나 데이터 부족 상태로 보류합니다. 동일한 사이트에 비슷한 제보가 반복되면 확인 필요 항목으로 분류할 수 있지만, 단일 제보만으로 특정 사이트를 단정하지 않습니다. 허위 제보, 경쟁 사이트 비방, 개인정보 노출, 확인되지 않은 주장성 문구는 반영 대상에서 제외됩니다.'
 const SUBMIT_P3 =
@@ -95,7 +95,7 @@ const FAQ_ITEMS = [
 export default function Home() {
   const [openFaq, setOpenFaq] = useState<number | null>(null)
   return (
-    <main className="min-h-screen bg-white font-sans">
+    <main className="min-h-screen bg-background font-sans">
 
       {/* ── HERO ── */}
       <section className="relative min-h-screen overflow-hidden">
@@ -109,29 +109,29 @@ export default function Home() {
           <div className="max-w-5xl mx-auto">
 
             {/* Label */}
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-100 mb-10">
-              <span className="w-2 h-2 rounded-full bg-blue-500" />
-              <span className="text-blue-700 text-body-sm font-medium tracking-wide">검증 정보 플랫폼</span>
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent border border-accent mb-10">
+              <span className="w-2 h-2 rounded-full bg-accent0" />
+              <span className="text-accent-foreground text-body-sm font-medium tracking-wide">검증 정보 플랫폼</span>
             </div>
 
             {/* Headline */}
-            <h1 className="text-h1 text-neutral-900 mb-8">
+            <h1 className="text-h1 text-heading mb-8">
               {HERO_TITLE}
             </h1>
 
             {/* Body */}
-            <p className="text-body-lg text-neutral-700 max-w-2xl mx-auto mb-12">
+            <p className="text-body-lg text-body max-w-2xl mx-auto mb-12">
               {HERO_BODY}
             </p>
 
             {/* Search bar */}
-            <div className="flex items-center gap-2 max-w-xl mx-auto mb-16 p-1.5 bg-white rounded-2xl border border-neutral-200 shadow-md shadow-neutral-100">
+            <div className="flex items-center gap-2 max-w-xl mx-auto mb-16 p-1.5 bg-white rounded-2xl border border-border shadow-md shadow-neutral-100">
               <div className="flex flex-1 items-center gap-3 px-4">
-                <Search className="w-5 h-5 text-neutral-700 flex-shrink-0" />
+                <Search className="w-5 h-5 text-body flex-shrink-0" />
                 <input
                   type="text"
                   placeholder="사이트명 또는 주소를 입력하세요"
-                  className="flex-1 bg-transparent py-3 outline-none text-body-sm text-neutral-900 placeholder:text-neutral-700"
+                  className="flex-1 bg-transparent py-3 outline-none text-body-sm text-heading placeholder:text-body"
                 />
               </div>
               <button className="px-6 py-3 rounded-xl bg-neutral-900 text-white text-body-sm font-semibold hover:bg-neutral-800 active:scale-95 transition-all whitespace-nowrap">
@@ -140,7 +140,7 @@ export default function Home() {
             </div>
 
             {/* Trust stats */}
-            <div className="inline-flex items-center gap-10 md:gap-16 px-8 py-5 rounded-2xl bg-white border border-neutral-100 shadow-sm">
+            <div className="inline-flex items-center gap-10 md:gap-16 px-8 py-5 rounded-2xl bg-white border border-border/50 shadow-sm">
               {[
                 { icon: TrendingUp, value: '4년', label: '운영 경력' },
                 { icon: Users,      value: '5명', label: '실명 편집부' },
@@ -148,9 +148,9 @@ export default function Home() {
                 { icon: Shield,     value: '무료', label: '이용료 없음' },
               ].map((item, i) => (
                 <div key={i} className="flex flex-col items-center gap-1.5">
-                  <item.icon className="w-5 h-5 text-blue-500" />
-                  <span className="text-h4 text-neutral-900 leading-none">{item.value}</span>
-                  <span className="text-xs text-neutral-700">{item.label}</span>
+                  <item.icon className="w-5 h-5 text-primary" />
+                  <span className="text-h4 text-heading leading-none">{item.value}</span>
+                  <span className="text-xs text-body">{item.label}</span>
                 </div>
               ))}
             </div>
@@ -160,19 +160,19 @@ export default function Home() {
       </section>
 
       {/* ── SEARCH INFO SECTION ── */}
-      <section className="py-28 md:py-36 px-6 md:px-20 bg-white border-t border-neutral-100">
+      <section className="py-28 md:py-36 px-6 md:px-20 bg-white border-t border-border/50">
         <div className="max-w-5xl mx-auto">
 
           {/* Section heading */}
           <div className="grid lg:grid-cols-12 gap-10 mb-20">
             <div className="lg:col-span-4">
-              <p className="text-label text-blue-500 mb-4">Site Lookup</p>
-              <h2 className="text-h2 text-neutral-900 mb-6">
+              <p className="text-label text-primary mb-4">Site Lookup</p>
+              <h2 className="text-h2 text-heading mb-6">
                 {SEARCH_TITLE}
               </h2>
             </div>
             <div className="lg:col-span-8 flex items-end">
-              <p className="text-body-lg text-neutral-700">
+              <p className="text-body-lg text-body">
                 {SEARCH_P1}
               </p>
             </div>
@@ -188,12 +188,12 @@ export default function Home() {
                 { n: '02', title: '투명한 결과 표시', body: SEARCH_P3 },
               ].map((item) => (
                 <div key={item.n} className="flex gap-5">
-                  <span className="text-xs font-mono font-semibold text-blue-400 mt-1 leading-none w-6 flex-shrink-0">
+                  <span className="text-xs font-mono font-semibold text-primary/70 mt-1 leading-none w-6 flex-shrink-0">
                     {item.n}
                   </span>
                   <div>
-                    <h3 className="text-h4 text-neutral-900 mb-3">{item.title}</h3>
-                    <p className="text-body-sm text-neutral-700">
+                    <h3 className="text-h4 text-heading mb-3">{item.title}</h3>
+                    <p className="text-body-sm text-body">
                       {item.body}
                     </p>
                   </div>
@@ -217,21 +217,21 @@ export default function Home() {
                 {
                   status: '확인필요',
                   icon: AlertCircle,
-                  bg: 'bg-amber-50',
-                  border: 'border-amber-200',
-                  bar: 'bg-amber-500',
-                  iconColor: 'text-amber-600',
-                  text: 'text-amber-900',
+              bg: 'bg-warning',
+              border: 'border-warning-foreground/30',
+              bar: 'bg-warning-foreground',
+              iconColor: 'text-warning-foreground',
+              text: 'text-warning-foreground',
                   sub: '반복 제보 2건 · 주소 변경 이력 있음',
                 },
                 {
                   status: '데이터부족',
                   icon: Minus,
-                  bg: 'bg-neutral-50',
-                  border: 'border-neutral-200',
-                  bar: 'bg-neutral-400',
-                  iconColor: 'text-neutral-700',
-                  text: 'text-neutral-700',
+                  bg: 'bg-muted',
+                  border: 'border-border',
+                  bar: 'bg-subtle',
+                  iconColor: 'text-body',
+                  text: 'text-body',
                   sub: '등록 정보 부족 · 추가 확인 권장',
                 },
               ].map((item) => (
@@ -250,7 +250,7 @@ export default function Home() {
                 </div>
               ))}
 
-              <p className="text-xs text-neutral-700 pt-2 pl-1">
+              <p className="text-xs text-body pt-2 pl-1">
                 * 결과 표시 예시입니다. 실제 결과는 검색 후 확인됩니다.
               </p>
             </div>
@@ -260,16 +260,16 @@ export default function Home() {
       </section>
 
       {/* ── VERIFICATION CRITERIA SECTION ── */}
-      <section className="py-24 md:py-32 px-6 md:px-20 bg-white border-t border-neutral-100">
+      <section className="py-24 md:py-32 px-6 md:px-20 bg-white border-t border-border/50">
         <div className="max-w-5xl mx-auto">
 
           {/* Section heading - centered */}
           <div className="text-center mb-16">
-            <p className="text-label text-blue-500 mb-4">Verification Criteria</p>
-            <h2 className="text-h2 text-neutral-900 leading-tight mb-6">
+            <p className="text-label text-primary mb-4">Verification Criteria</p>
+            <h2 className="text-h2 text-heading leading-tight mb-6">
               {CRITERIA_TITLE}
             </h2>
-            <p className="text-body-lg text-neutral-700 max-w-2xl mx-auto">
+            <p className="text-body-lg text-body max-w-2xl mx-auto">
               {CRITERIA_INTRO}
             </p>
           </div>
@@ -285,14 +285,14 @@ export default function Home() {
             ].map((item) => (
               <div
                 key={item.n}
-                className="flex gap-5 p-5 rounded-xl bg-slate-50 border border-neutral-100"
+                className="flex gap-5 p-5 rounded-xl bg-secondary border border-border/50"
               >
-                <div className="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center flex-shrink-0 text-body-sm font-bold">
+                <div className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center flex-shrink-0 text-body-sm font-bold">
                   {item.n}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-h4 text-neutral-900 mb-1">{item.title}</h3>
-                  <p className="text-body-sm text-neutral-700" style={{ wordBreak: 'keep-all' }}>
+                  <h3 className="text-h4 text-heading mb-1">{item.title}</h3>
+                  <p className="text-body-sm text-body" style={{ wordBreak: 'keep-all' }}>
                     {item.desc}
                   </p>
                 </div>
@@ -301,9 +301,9 @@ export default function Home() {
           </div>
 
           {/* External links - inline with text */}
-          <div className="p-6 rounded-xl bg-slate-50 border border-neutral-100 mb-6">
+          <div className="p-6 rounded-xl bg-secondary border border-border/50 mb-6">
             <div className="flex flex-wrap items-center gap-3">
-              <span className="text-body-sm text-neutral-700">공개 신고 경로:</span>
+              <span className="text-body-sm text-body">공개 신고 경로:</span>
               {[
                 { name: 'KISA', url: 'https://www.kisa.or.kr/' },
                 { name: '금융감독원', url: 'https://www.fss.or.kr/' },
@@ -314,7 +314,7 @@ export default function Home() {
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-white border border-neutral-200 text-body-sm text-neutral-700 hover:border-blue-300 hover:text-blue-600 transition-colors"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-white border border-border text-body-sm text-body hover:border-primary/50 hover:text-primary transition-colors"
                 >
                   {link.name}
                   <ExternalLink className="w-3.5 h-3.5" />
@@ -324,7 +324,7 @@ export default function Home() {
           </div>
 
           {/* Disclaimer */}
-          <p className="text-body-sm text-neutral-700 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
+          <p className="text-body-sm text-body leading-relaxed" style={{ wordBreak: 'keep-all' }}>
             {CRITERIA_DISCLAIMER}
           </p>
 
@@ -332,16 +332,16 @@ export default function Home() {
       </section>
 
       {/* ── LATEST REPORTS SECTION ── */}
-      <section className="py-24 md:py-32 px-6 md:px-20 bg-white border-t border-neutral-100">
+      <section className="py-24 md:py-32 px-6 md:px-20 bg-white border-t border-border/50">
         <div className="max-w-5xl mx-auto">
 
           {/* Section heading */}
           <div className="text-center mb-14">
-            <p className="text-label text-blue-500 mb-4">Latest Reports</p>
-            <h2 className="text-h2 text-neutral-900 leading-tight mb-6">
+            <p className="text-label text-primary mb-4">Latest Reports</p>
+            <h2 className="text-h2 text-heading leading-tight mb-6">
               {REPORT_TITLE}
             </h2>
-            <p className="text-body-lg text-neutral-700 max-w-2xl mx-auto">
+            <p className="text-body-lg text-body max-w-2xl mx-auto">
               {REPORT_P1}
             </p>
           </div>
@@ -374,23 +374,23 @@ export default function Home() {
               <a
                 key={i}
                 href="/review/"
-                className="group flex flex-col p-6 rounded-xl bg-white border border-neutral-200 hover:border-blue-300 hover:shadow-md transition-all cursor-pointer"
+                className="group flex flex-col p-6 rounded-xl bg-white border border-border hover:border-primary/50 hover:shadow-md transition-all cursor-pointer"
               >
                 <div className="flex items-center justify-between mb-4">
                   <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
                     report.status === 'warning' 
-                      ? 'bg-red-50 text-red-600 border border-red-100' 
-                      : 'bg-amber-50 text-amber-600 border border-amber-100'
+                      ? 'bg-destructive/10 text-destructive border border-destructive/20' 
+                      : 'bg-warning text-warning-foreground border border-warning-foreground/30'
                   }`}>
                     {report.type}
                   </span>
-                  <span className="text-xs text-neutral-700">{report.date}</span>
+                  <span className="text-xs text-body">{report.date}</span>
                 </div>
-                <h3 className="text-h4 text-neutral-900 mb-3 group-hover:text-blue-600 transition-colors flex-1">
+                <h3 className="text-h4 text-heading mb-3 group-hover:text-primary transition-colors flex-1">
                   {report.title}
                 </h3>
-                <div className="flex items-center gap-2 text-body-sm text-neutral-700">
-                  <AlertTriangle className="w-4 h-4 text-neutral-700 flex-shrink-0" />
+                <div className="flex items-center gap-2 text-body-sm text-body">
+                  <AlertTriangle className="w-4 h-4 text-body flex-shrink-0" />
                   <span style={{ wordBreak: 'keep-all' }}>{report.signal}</span>
                 </div>
               </a>
@@ -398,9 +398,9 @@ export default function Home() {
           </div>
 
           {/* CTA */}
-          <div className="flex items-center justify-between p-5 rounded-xl bg-slate-50 border border-neutral-100">
-            <p className="text-body-sm text-neutral-700">최신 리포트를 모두 확인하세요</p>
-            <a href="/review/" className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-600 text-white text-body-sm font-medium hover:bg-blue-700 transition-colors">
+          <div className="flex items-center justify-between p-5 rounded-xl bg-secondary border border-border/50">
+            <p className="text-body-sm text-body">최신 리포트를 모두 확인하세요</p>
+            <a href="/review/" className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-white text-body-sm font-medium hover:bg-primary/90 transition-colors">
               모든 리포트 보기
               <ChevronRight className="w-4 h-4" />
             </a>
@@ -410,16 +410,16 @@ export default function Home() {
       </section>
 
       {/* ── CATEGORIES SECTION ── */}
-      <section className="py-24 md:py-32 px-6 md:px-20 bg-slate-50 border-t border-neutral-100">
+      <section className="py-24 md:py-32 px-6 md:px-20 bg-secondary border-t border-border/50">
         <div className="max-w-5xl mx-auto">
 
           {/* Section heading */}
           <div className="text-center mb-14">
-            <p className="text-label text-blue-500 mb-4">Categories</p>
-            <h2 className="text-h2 text-neutral-900 leading-tight mb-6">
+            <p className="text-label text-primary mb-4">Categories</p>
+            <h2 className="text-h2 text-heading leading-tight mb-6">
               {CATEGORY_TITLE}
             </h2>
-            <p className="text-body-lg text-neutral-700 max-w-2xl mx-auto">
+            <p className="text-body-lg text-body max-w-2xl mx-auto">
               {CATEGORY_INTRO}
             </p>
           </div>
@@ -436,14 +436,14 @@ export default function Home() {
               <a
                 key={i}
                 href={cat.href}
-                className="group flex items-start gap-4 p-5 rounded-xl bg-white border border-neutral-200 hover:border-blue-300 hover:shadow-md transition-all"
+                className="group flex items-start gap-4 p-5 rounded-xl bg-white border border-border hover:border-primary/50 hover:shadow-md transition-all"
               >
-                <div className="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center flex-shrink-0 group-hover:bg-blue-100 transition-colors">
-                  <cat.icon className="w-5 h-5 text-blue-600" />
+                <div className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center flex-shrink-0 group-hover:bg-accent transition-colors">
+                  <cat.icon className="w-5 h-5 text-primary" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-h4 text-neutral-900 mb-1 group-hover:text-blue-600 transition-colors">{cat.title}</h3>
-                  <p className="text-body-sm text-neutral-700" style={{ wordBreak: 'keep-all' }}>{cat.desc}</p>
+                  <h3 className="text-h4 text-heading mb-1 group-hover:text-primary transition-colors">{cat.title}</h3>
+                  <p className="text-body-sm text-body" style={{ wordBreak: 'keep-all' }}>{cat.desc}</p>
                 </div>
               </a>
             ))}
@@ -455,7 +455,7 @@ export default function Home() {
               처음 방문자는 검색창에서, 반복 방문자는 최신 리포트부터 확인하세요.
             </p>
             <div className="flex gap-2 flex-shrink-0">
-              <a href="/" className="px-4 py-2 rounded-lg bg-white text-neutral-900 text-body-sm font-medium hover:bg-neutral-100 transition-colors">
+              <a href="/" className="px-4 py-2 rounded-lg bg-white text-heading text-body-sm font-medium hover:bg-muted transition-colors">
                 사이트 조회
               </a>
               <a href="/review/" className="px-4 py-2 rounded-lg bg-white/10 text-white text-body-sm font-medium hover:bg-white/20 transition-colors">
@@ -468,16 +468,16 @@ export default function Home() {
       </section>
 
       {/* ── SUBMIT REPORT SECTION ── */}
-      <section className="py-24 md:py-32 px-6 md:px-20 bg-white border-t border-neutral-100">
+      <section className="py-24 md:py-32 px-6 md:px-20 bg-white border-t border-border/50">
         <div className="max-w-5xl mx-auto">
 
           {/* Section heading */}
           <div className="text-center mb-14">
-            <p className="text-label text-blue-500 mb-4">Report Submission</p>
-            <h2 className="text-h2 text-neutral-900 leading-tight mb-6">
+            <p className="text-label text-primary mb-4">Report Submission</p>
+            <h2 className="text-h2 text-heading leading-tight mb-6">
               {SUBMIT_TITLE}
             </h2>
-            <p className="text-body-lg text-neutral-700 max-w-2xl mx-auto">
+            <p className="text-body-lg text-body max-w-2xl mx-auto">
               {SUBMIT_INTRO}
             </p>
           </div>
@@ -485,37 +485,37 @@ export default function Home() {
           {/* 4 Steps - horizontal flow */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-14">
             {[
-              { n: '1', title: '접수', desc: '사이트명, 주소, 제�� 유���, ��세 내용 입력' },
+              { n: '1', title: '접수', desc: '사이트명, ���소, 제�� 유���, ��세 내용 입력' },
               { n: '2', title: '검토', desc: '개인정보·민감정보 확인 및 마스킹' },
               { n: '3', title: '분류', desc: '주소 변경·환전 지연 등 유형별 분류' },
               { n: '4', title: '반영', desc: '확인 가능한 항목만 리포트에 반영' },
             ].map((step) => (
-              <div key={step.n} className="text-center p-5 rounded-xl bg-slate-50 border border-neutral-100">
-                <div className="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center mx-auto mb-3 text-body-sm font-bold">
+              <div key={step.n} className="text-center p-5 rounded-xl bg-secondary border border-border/50">
+                <div className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center mx-auto mb-3 text-body-sm font-bold">
                   {step.n}
                 </div>
-                <h3 className="text-h4 text-neutral-900 mb-1">{step.title}</h3>
-                <p className="text-body-sm text-neutral-700" style={{ wordBreak: 'keep-all' }}>{step.desc}</p>
+                <h3 className="text-h4 text-heading mb-1">{step.title}</h3>
+                <p className="text-body-sm text-body" style={{ wordBreak: 'keep-all' }}>{step.desc}</p>
               </div>
             ))}
           </div>
 
           {/* Important notes - 2 cards */}
           <div className="grid md:grid-cols-2 gap-4 mb-10">
-            <div className="p-5 rounded-xl bg-slate-50 border border-neutral-100">
-              <h4 className="text-h4 text-neutral-900 mb-2">제보 처리 기준</h4>
-              <p className="text-body-sm text-neutral-700" style={{ wordBreak: 'keep-all' }}>
+            <div className="p-5 rounded-xl bg-secondary border border-border/50">
+              <h4 className="text-h4 text-heading mb-2">제보 처리 기준</h4>
+              <p className="text-body-sm text-body" style={{ wordBreak: 'keep-all' }}>
                 제보 내용이 부족하거나 사실 확인이 어려운 경우 데이터 부족 상태로 보류합니다. 동일 사이트에 비슷한 제보가 반복되면 확인 필요로 분류하지만, 단일 제보만으로 단정하지 않습니다.
               </p>
             </div>
-            <div className="p-5 rounded-xl bg-red-50 border border-red-100">
-              <h4 className="text-h4 text-red-800 mb-2 flex items-center gap-2">
+            <div className="p-5 rounded-xl bg-destructive/10 border border-destructive/20">
+              <h4 className="text-h4 text-destructive mb-2 flex items-center gap-2">
                 <XCircle className="w-4 h-4" />
                 반영 제외 대상
               </h4>
               <div className="flex flex-wrap gap-2">
                 {['허위 제보', '경쟁 사이트 비방', '개인정보 노출', '확인되지 않은 주장'].map((item) => (
-                  <span key={item} className="px-2.5 py-1 rounded-md bg-white border border-red-100 text-body-sm text-red-700">
+                  <span key={item} className="px-2.5 py-1 rounded-md bg-white border border-destructive/20 text-body-sm text-destructive">
                     {item}
                   </span>
                 ))}
@@ -524,16 +524,16 @@ export default function Home() {
           </div>
 
           {/* Privacy + CTA */}
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-6 p-5 rounded-xl bg-neutral-100 border border-neutral-200">
-            <div className="flex items-center gap-3 text-body-sm text-neutral-700">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-6 p-5 rounded-xl bg-muted border border-border">
+            <div className="flex items-center gap-3 text-body-sm text-body">
               <Lock className="w-4 h-4 flex-shrink-0" />
               <span style={{ wordBreak: 'keep-all' }}>개인정보는 마스킹 처리됩니다.</span>
-              <a href="/support/terms/" className="underline hover:text-blue-600">이용약관</a>
-              <a href="/support/privacy/" className="underline hover:text-blue-600">개인정보처리방침</a>
+              <a href="/support/terms/" className="underline hover:text-primary">이용약관</a>
+              <a href="/support/privacy/" className="underline hover:text-primary">개인정보처리방침</a>
             </div>
             <a
               href="/support/contact/"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-blue-600 text-white text-body-sm font-medium hover:bg-blue-700 transition-colors flex-shrink-0"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-white text-body-sm font-medium hover:bg-primary/90 transition-colors flex-shrink-0"
             >
               <Send className="w-4 h-4" />
               제보하기
@@ -544,16 +544,16 @@ export default function Home() {
       </section>
 
       {/* ── PREVENTION GUIDE SECTION ── */}
-      <section className="py-24 md:py-32 px-6 md:px-20 bg-slate-50 border-t border-neutral-100">
+      <section className="py-24 md:py-32 px-6 md:px-20 bg-secondary border-t border-border/50">
         <div className="max-w-5xl mx-auto">
 
           {/* Section heading */}
           <div className="text-center mb-14">
-            <p className="text-label text-blue-500 mb-4">Prevention Guide</p>
-            <h2 className="text-h2 text-neutral-900 leading-tight mb-6">
+            <p className="text-label text-primary mb-4">Prevention Guide</p>
+            <h2 className="text-h2 text-heading leading-tight mb-6">
               {GUIDE_TITLE}
             </h2>
-            <p className="text-body-lg text-neutral-700 max-w-2xl mx-auto">
+            <p className="text-body-lg text-body max-w-2xl mx-auto">
               {GUIDE_P1}
             </p>
           </div>
@@ -569,7 +569,7 @@ export default function Home() {
               <a
                 key={i}
                 href="/guide/"
-                className="flex items-center justify-center gap-2 p-4 rounded-xl bg-white border border-neutral-200 hover:border-blue-300 hover:shadow-md transition-all text-body-sm font-medium text-neutral-700 hover:text-blue-600"
+                className="flex items-center justify-center gap-2 p-4 rounded-xl bg-white border border-border hover:border-primary/50 hover:shadow-md transition-all text-body-sm font-medium text-body hover:text-primary"
               >
                 {guide.title}
                 <ChevronRight className="w-4 h-4" />
@@ -578,14 +578,14 @@ export default function Home() {
           </div>
 
           {/* Key message */}
-          <div className="p-5 rounded-xl bg-white border border-neutral-200 mb-10">
-            <p className="text-body-sm text-neutral-700" style={{ wordBreak: 'keep-all' }}>
+          <div className="p-5 rounded-xl bg-white border border-border mb-10">
+            <p className="text-body-sm text-body" style={{ wordBreak: 'keep-all' }}>
               {GUIDE_P2}
             </p>
           </div>
 
           {/* Emergency action - simplified */}
-          <div className="p-6 rounded-xl bg-red-600">
+          <div className="p-6 rounded-xl bg-destructive">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div className="flex items-center gap-3">
                 <Siren className="w-6 h-6 text-white flex-shrink-0" />
@@ -594,7 +594,7 @@ export default function Home() {
                   <p className="text-body-sm text-white/70">대화 기록·입금 내역·주소 변경 내역을 보관 후 공공 신고 경로 확인</p>
                 </div>
               </div>
-              <a href="/guide/" className="px-4 py-2 rounded-lg bg-white text-red-600 text-body-sm font-medium hover:bg-red-50 transition-colors flex-shrink-0">
+              <a href="/guide/" className="px-4 py-2 rounded-lg bg-white text-destructive text-body-sm font-medium hover:bg-destructive/10 transition-colors flex-shrink-0">
                 가이드 보기
               </a>
             </div>
@@ -604,23 +604,23 @@ export default function Home() {
       </section>
 
       {/* ��─ FAQ SECTION ── */}
-      <section className="py-24 md:py-32 px-6 md:px-20 bg-slate-50 border-t border-neutral-100">
+      <section className="py-24 md:py-32 px-6 md:px-20 bg-secondary border-t border-border/50">
         <div className="max-w-5xl mx-auto">
 
           <div className="grid lg:grid-cols-12 gap-12">
             {/* Left: Heading + CTA */}
             <div className="lg:col-span-4">
               <div className="lg:sticky lg:top-24">
-                <p className="text-label text-blue-500 mb-4">FAQ</p>
-                <h2 className="text-h2 text-neutral-900 leading-tight mb-6">
+                <p className="text-label text-primary mb-4">FAQ</p>
+                <h2 className="text-h2 text-heading leading-tight mb-6">
                   {FAQ_TITLE}
                 </h2>
-                <p className="text-body-sm text-neutral-700 mb-8" style={{ wordBreak: 'keep-all' }}>
+                <p className="text-body-sm text-body mb-8" style={{ wordBreak: 'keep-all' }}>
                   자주 묻는 질문을 정리했습니다. 추가 문의는 제보 페이지를 이용하세요.
                 </p>
                 <a
                   href="/support/contact/"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-blue-600 text-white text-body-sm font-medium hover:bg-blue-700 transition-colors"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-white text-body-sm font-medium hover:bg-primary/90 transition-colors"
                 >
                   <Send className="w-4 h-4" />
                   문의하기
@@ -636,7 +636,7 @@ export default function Home() {
                     key={i}
                     className={`rounded-xl transition-all ${
                       openFaq === i 
-                        ? 'bg-white ring-1 ring-blue-200 shadow-sm' 
+                        ? 'bg-white ring-1 ring-primary/30 shadow-sm' 
                         : 'bg-white hover:ring-1 hover:ring-neutral-200'
                     }`}
                   >
@@ -646,23 +646,23 @@ export default function Home() {
                     >
                       <span className={`w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-bold ${
                         openFaq === i 
-                          ? 'bg-blue-600 text-white' 
-                          : 'bg-slate-100 text-neutral-700'
+                          ? 'bg-primary text-white' 
+                          : 'bg-muted text-body'
                       }`}>
                         {i + 1}
                       </span>
-                      <span className="flex-1 text-body-sm font-medium text-neutral-900 pt-0.5" style={{ wordBreak: 'keep-all' }}>
+                      <span className="flex-1 text-body-sm font-medium text-heading pt-0.5" style={{ wordBreak: 'keep-all' }}>
                         {item.q}
                       </span>
                       <ChevronDown
                         className={`w-5 h-5 flex-shrink-0 transition-transform mt-0.5 ${
-                          openFaq === i ? 'rotate-180 text-blue-500' : 'text-neutral-700'
+                          openFaq === i ? 'rotate-180 text-primary' : 'text-body'
                         }`}
                       />
                     </button>
                     {openFaq === i && (
                       <div className="px-5 pb-5 pl-16">
-                        <p className="text-body-sm text-neutral-700 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
+                        <p className="text-body-sm text-body leading-relaxed" style={{ wordBreak: 'keep-all' }}>
                           {item.a}
                         </p>
                       </div>
