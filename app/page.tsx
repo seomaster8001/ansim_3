@@ -64,7 +64,7 @@ const FAQ_TITLE = '자주 묻는 질문'
 const FAQ_ITEMS = [
   {
     q: '먹튀 의심 사이트는 어떻게 확인하나요?',
-    a: '사이트명이나 주소를 검색한 뒤 최근 확인일, 주소 변경 이력, 제보 접수 여부, 관련 리포트 연결 여부를 함께 확인하세요. 하나의 신호만으로 단정하지 말고 여러 항목이 반복되는지 살펴야 하며, 검증 기준 다섯 가지(최근 확인일·주소 변경·운영 정보 일치·제보 패턴·공개 신고 경로)를 단계별로 ��검하면 더 안전한 판단이 가능합니다.',
+    a: '사이트명이나 주소를 검색한 뒤 최근 확인일, 주소 변경 이력, 제보 접수 여부, 관련 리포트 연결 여부를 함께 확인하세요. 하나의 신호만으로 단정하지 말고 여러 항목이 반복되는지 살펴야 하며, 검증 기준 다섯 가지(최근 확인일·주소 변경·운영 정보 일치·제보 패턴·공개 신고 경로)를 단계별로 �����하면 더 안전한 판단이 가능합니다.',
   },
   {
     q: '제보가 들어오면 ���로 공개되나요?',
@@ -331,58 +331,50 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── REPORTS SECTION ── */}
-      <section className="py-28 md:py-36 px-6 md:px-20 bg-white border-t border-neutral-100">
+      {/* ── LATEST REPORTS SECTION ── */}
+      <section className="py-24 md:py-32 px-6 md:px-20 bg-white border-t border-neutral-100">
         <div className="max-w-5xl mx-auto">
 
           {/* Section heading */}
-          <div className="grid lg:grid-cols-12 gap-10 mb-16">
-            <div className="lg:col-span-5">
-              <p className="text-label text-blue-500 mb-4">Report Submission</p>
-              <h2 className="text-h2 text-neutral-900 leading-tight mb-6">
-                {REPORT_TITLE}
-              </h2>
-              <p className="text-body-lg text-neutral-500 mb-8">
-                {REPORT_P1}
-              </p>
-            </div>
-            <div className="lg:col-span-7 flex items-end">
-            <div className="w-full p-6 rounded-2xl bg-slate-50 border border-neutral-200">
-              <p className="text-body-sm text-neutral-700 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
-                  {REPORT_P2}
-                </p>
-              </div>
-            </div>
+          <div className="text-center mb-14">
+            <p className="text-label text-blue-500 mb-4">Latest Reports</p>
+            <h2 className="text-h2 text-neutral-900 leading-tight mb-6">
+              {REPORT_TITLE}
+            </h2>
+            <p className="text-body-lg text-neutral-500 max-w-2xl mx-auto">
+              {REPORT_P1}
+            </p>
           </div>
 
-          {/* Report preview cards */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mb-16">
+          {/* Report preview cards - 3 columns */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
             {[
               {
-                type: '환전지연',
+                type: '환전 지연',
                 title: '○○벳 환전 지연 제보 분석',
                 date: '2025.04.18',
                 signal: '환전 48시간 이상 지연',
                 status: 'warning',
               },
               {
-                type: '주소변경',
+                type: '주소 변경',
                 title: '△△게임 도메인 변경 이력',
                 date: '2025.04.12',
                 signal: '3개월 내 주소 3회 변경',
                 status: 'warning',
               },
               {
-                type: '정보불일치',
+                type: '정보 불일치',
                 title: '□□카지노 운영정보 확인',
                 date: '2025.04.05',
                 signal: '고객센터 정보 불일치',
                 status: 'caution',
               },
             ].map((report, i) => (
-              <div
+              <a
                 key={i}
-                className="group p-6 rounded-2xl bg-white border border-neutral-200 hover:border-blue-300 hover:shadow-lg hover:shadow-blue-50 transition-all cursor-pointer"
+                href="/review/"
+                className="group flex flex-col p-6 rounded-xl bg-white border border-neutral-200 hover:border-blue-300 hover:shadow-md transition-all cursor-pointer"
               >
                 <div className="flex items-center justify-between mb-4">
                   <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
@@ -394,67 +386,24 @@ export default function Home() {
                   </span>
                   <span className="text-xs text-neutral-400">{report.date}</span>
                 </div>
-                <h3 className="text-h4 text-neutral-900 mb-3 group-hover:text-blue-600 transition-colors">
+                <h3 className="text-h4 text-neutral-900 mb-3 group-hover:text-blue-600 transition-colors flex-1">
                   {report.title}
                 </h3>
                 <div className="flex items-center gap-2 text-body-sm text-neutral-500">
-                  <AlertTriangle className="w-4 h-4 text-neutral-400" />
-                  <span>{report.signal}</span>
+                  <AlertTriangle className="w-4 h-4 text-neutral-400 flex-shrink-0" />
+                  <span style={{ wordBreak: 'keep-all' }}>{report.signal}</span>
                 </div>
-                <div className="mt-4 pt-4 border-t border-neutral-100 flex items-center justify-between">
-                  <span className="text-xs text-neutral-400">리포트 보기</span>
-                  <ChevronRight className="w-4 h-4 text-neutral-400 group-hover:text-blue-500 group-hover:translate-x-1 transition-all" />
-                </div>
-              </div>
+              </a>
             ))}
           </div>
 
-          {/* Report structure info */}
-          <div className="grid md:grid-cols-5 gap-4 mb-16">
-            {[
-              { icon: FileText, label: '사건 개요' },
-              { icon: MessageSquare, label: '제보 유형' },
-              { icon: AlertTriangle, label: '위험 신호' },
-              { icon: Globe, label: '관련 사이트' },
-              { icon: BookOpen, label: '체크포인트' },
-            ].map((item, i) => (
-              <div
-                key={i}
-                className="flex flex-col items-center gap-3 p-5 rounded-xl bg-neutral-50 border border-neutral-100"
-              >
-                <div className="w-10 h-10 rounded-xl bg-white border border-neutral-200 flex items-center justify-center">
-                  <item.icon className="w-5 h-5 text-blue-500" />
-                </div>
-                <span className="text-body-sm font-medium text-neutral-700">{item.label}</span>
-              </div>
-            ))}
-          </div>
-
-          {/* Navigation links */}
-          <div className="p-8 rounded-2xl bg-gradient-to-br from-neutral-900 to-neutral-800">
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-              <div>
-                <p className="text-body-lg text-white font-semibold mb-2" style={{ wordBreak: 'keep-all' }}>
-                  {REPORT_P3}
-                </p>
-              </div>
-              <div className="flex flex-wrap gap-3">
-                {[
-                  { label: '최신 리포트', icon: Clock },
-                  { label: '카테고리', icon: FileText },
-                  { label: '피해예방 가이드', icon: BookOpen },
-                ].map((link, i) => (
-                  <button
-                    key={i}
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white text-body-sm font-medium transition-colors"
-                  >
-                    <link.icon className="w-4 h-4" />
-                    {link.label}
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
-                ))}
-              </div>
-            </div>
+          {/* CTA */}
+          <div className="flex items-center justify-between p-5 rounded-xl bg-slate-50 border border-neutral-100">
+            <p className="text-body-sm text-neutral-600">최신 리포트를 모두 확인하세요</p>
+            <a href="/review/" className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-600 text-white text-body-sm font-medium hover:bg-blue-700 transition-colors">
+              모든 리포트 보기
+              <ChevronRight className="w-4 h-4" />
+            </a>
           </div>
 
         </div>
