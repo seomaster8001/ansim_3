@@ -1,6 +1,21 @@
-'use client'
-
 import { ChevronRight, AlertTriangle, Shield, CheckCircle, Clock, FileText, TrendingUp, HelpCircle, BookOpen, Database } from 'lucide-react'
+import { SectionFAQ } from '@/components/section-faq'
+import { SectionCategories } from '@/components/section-categories'
+
+const FAQ_ITEMS = [
+  {
+    q: '익명으로 제보해도 처리되나요?',
+    a: '익명 제보도 정상 접수되며 사이트명, 환전 지연 일자, 금액, 가능한 경우 증빙 자료만 있으면 검토에 포함됩니다. 신원 정보는 안심고고 내부에서 마스킹 처리되어 외부에 노출되지 않으며, 제보자 보호가 우선이므로 익명·실명 여부는 검토 결과나 처리 우선순위에 영향을 일절 주지 않습니다.',
+  },
+  {
+    q: '제보 후 얼마나 걸려서 분류 결과가 나오나요?',
+    a: '제보는 분기 단위 점검 주기에 맞춰 검토되며, 동일 사이트에 누적 제보가 5건 이상 모이면 분기 리포트에 사례별로 분류 결과가 공개됩니다. 즉시 공개 정책은 사용하지 않으며 사실 일치성 점검과 동일 패턴 누적 확인을 거친 후에 분류해야 명예훼손 위험과 사용자 오인 위험을 모두 함께 낮출 수 있습니다.',
+  },
+  {
+    q: '외부 신고 경로는 어디서 안내받을 수 있나요?',
+    a: '안심고고는 신고 플랫폼이 아니므로 본문 페이지에 외부 신고 경로를 박지 않으며, 공공기관과 민간 피해조회처의 공개된 신고 경로 안내는 이용약관 페이지의 "관련 신고 경로 안내" 섹션 한 곳에서만 다룹니다. 안심고고는 해당 기관·조회처와 어떠한 협력·소속·제휴 관계도 일절 없습니다.',
+  },
+]
 
 export default function ReviewPage() {
   return (
@@ -144,107 +159,13 @@ export default function ReviewPage() {
       </section>
 
       {/* ── FAQ SECTION ── */}
-      <section className="py-24 md:py-32 px-6 md:px-20 bg-background border-t border-border">
-        <div className="max-w-5xl mx-auto">
-          <div className="grid lg:grid-cols-12 gap-12">
-            {/* Left: Heading */}
-            <div className="lg:col-span-4">
-              <div className="lg:sticky lg:top-24">
-                <p className="text-label text-primary mb-4">FAQ</p>
-                <h2 className="text-h2 text-heading leading-tight mb-6">
-                  자주 묻는 질문
-                </h2>
-                <p className="text-body-sm text-body mb-8" style={{ wordBreak: 'keep-all' }}>
-                  제보 및 검증 절차에 대한 궁금증을 정리했습니다.
-                </p>
-                <a
-                  href="/support/contact/"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-primary-foreground text-body-sm font-medium hover:bg-primary/90 transition-colors"
-                >
-                  <AlertTriangle className="w-4 h-4" />
-                  문의하기
-                </a>
-              </div>
-            </div>
-
-            {/* Right: FAQ List */}
-            <div className="lg:col-span-8">
-              <div className="space-y-3">
-                {[
-                  {
-                    q: '익명으로 제보해도 처리되나요?',
-                    a: '익명 제보도 정상 접수되며 사이트명, 환전 지연 일자, 금액, 가능한 경우 증빙 자료만 있으면 검토에 포함됩니다. 신원 정보는 안심고고 내부에서 마스킹 처리되어 외부에 노출되지 않으며, 제보자 보호가 우선이므로 익명·실명 여부는 검토 결과나 처리 우선순위에 영향을 일절 주지 않습니다.',
-                  },
-                  {
-                    q: '제보 후 얼마나 걸려서 분류 결과가 나오나요?',
-                    a: '제보는 분기 단위 점검 주기에 맞춰 검토되며, 동일 사이트에 누적 제보가 5건 이상 모이면 분기 리포트에 사례별로 분류 결과가 공개됩니다. 즉시 공개 정책은 사용하지 않으며 사실 일치성 점검과 동일 패턴 누적 확인을 거친 후에 분류해야 명예훼손 위험과 사용자 오인 위험을 모두 함께 낮출 수 있습니다.',
-                  },
-                  {
-                    q: '외부 신고 경로는 어디서 안내받을 수 있나요?',
-                    a: '안심고고는 신고 플랫폼이 아니므로 본문 페이지에 외부 신고 경로를 박지 않으며, 공공기관과 민간 피해조회처의 공개된 신고 경로 안내는 이용약관 페이지의 "관련 신고 경로 안내" 섹션 한 곳에서만 다룹니다. 안심고고는 해당 기관·조회처와 어떠한 협력·소속·제휴 관계도 일절 없습니다.',
-                  },
-                ].map((item, i) => (
-                  <div
-                    key={i}
-                    className="rounded-xl bg-background border border-border hover:border-primary/50 transition-all"
-                  >
-                    <button className="w-full flex items-start gap-4 p-5 text-left">
-                      <HelpCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                      <span className="flex-1 text-body font-medium text-heading" style={{ wordBreak: 'keep-all' }}>
-                        {item.q}
-                      </span>
-                    </button>
-                    <div className="px-5 pb-5 pl-14">
-                      <p className="text-body-sm text-body leading-relaxed" style={{ wordBreak: 'keep-all' }}>
-                        {item.a}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <SectionFAQ 
+        items={FAQ_ITEMS} 
+        description="제보 및 검증 절차에 대한 궁금증을 정리했습니다."
+      />
 
       {/* ── RELATED CATEGORIES ── */}
-      <section className="py-24 md:py-32 px-6 md:px-20 bg-secondary border-t border-border">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-14">
-            <h2 className="text-h2 text-heading mb-6">관련 카테고리</h2>
-            <p className="text-body text-body max-w-2xl mx-auto" style={{ wordBreak: 'keep-all' }}>
-              먹튀 신고·조회 외에 다양한 정보를 카테고리별로 확인할 수 있습니다.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {[
-              { icon: Shield, title: '보증업체', desc: '검증 기준을 통과한 사이트 정보', href: '/safety/' },
-              { icon: FileText, title: '먹튀검증 리포트', desc: '제보 이력과 주소 변경 사건별 기록', href: '/review/' },
-              { icon: TrendingUp, title: '스포츠 분석', desc: 'KBO·MLB·EPL 경기 데이터와 라이브스코어', href: '/picks/' },
-              { icon: BookOpen, title: '피해예방 가이드', desc: '환전 지연, 피싱 주소, 주소 변경 리스크 체크', href: '/guide/' },
-            ].map((cat, i) => (
-              <a
-                key={i}
-                href={cat.href}
-                className="group flex items-start gap-4 p-5 rounded-xl bg-background border border-border hover:border-primary/50 hover:shadow-md transition-all"
-              >
-                <div className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
-                  <cat.icon className="w-5 h-5 text-primary" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <h3 className="text-body font-medium text-heading mb-1 group-hover:text-primary transition-colors">
-                    {cat.title}
-                  </h3>
-                  <p className="text-body-sm text-body" style={{ wordBreak: 'keep-all' }}>
-                    {cat.desc}
-                  </p>
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
+      <SectionCategories currentPage="review" />
     </main>
   )
 }

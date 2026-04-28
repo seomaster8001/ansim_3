@@ -1,10 +1,8 @@
-'use client'
-
 import { ChevronRight, BarChart3, TrendingUp, Clock, Users, BookOpen, AlertCircle, CheckCircle } from 'lucide-react'
-import { useState } from 'react'
+import { SectionFAQ } from '@/components/section-faq'
+import { SectionCategories } from '@/components/section-categories'
 
 export default function PicksPage() {
-  const [openFaq, setOpenFaq] = useState<number | null>(null)
 
   const sports = [
     {
@@ -50,13 +48,6 @@ export default function PicksPage() {
       q: 'KBO·MLB 외 다른 종목도 다루나요',
       a: '현재 KBO·MLB·EPL·UEFA 챔피언스리그를 기본 종목으로 운영하며 사용자 제보와 분기 트래픽을 기준으로 종목 확장 여부를 분기 단위로 검토합니다. 추가 종목은 안심고고 분기 리포트에 검토 결과를 공개한 뒤 단계적으로 등록됩니다.',
     },
-  ]
-
-  const categories = [
-    { icon: AlertCircle, title: '보증업체', href: '/safety/', desc: '검증 기준 통과 사이트' },
-    { icon: CheckCircle, title: '먹튀검증', href: '/review/', desc: '제보 이력과 변경 내역' },
-    { icon: BookOpen, title: '피해예방', href: '/guide/', desc: '환전 지연 및 주소 변경 리스크' },
-    { icon: BarChart3, title: '데이터센터', href: '/data/', desc: '변경 이력·검증 현황' },
   ]
 
   return (
@@ -233,96 +224,13 @@ export default function PicksPage() {
       </section>
 
       {/* ── FAQ SECTION ── */}
-      <section className="py-24 md:py-32 px-6 md:px-20 bg-background border-b border-border/50">
-        <div className="max-w-5xl mx-auto">
-          <div className="grid lg:grid-cols-12 gap-12">
-            {/* Left */}
-            <div className="lg:col-span-4">
-              <div className="lg:sticky lg:top-24">
-                <p className="text-label text-primary mb-4">FAQ</p>
-                <h2 className="text-h2 text-heading leading-tight mb-6">자주 묻는 질문</h2>
-                <p className="text-body-sm text-body mb-8" style={{ wordBreak: 'keep-all' }}>
-                  스포츠 분석에 관한 자주 묻는 질문을 정리했습니다.
-                </p>
-              </div>
-            </div>
+      <SectionFAQ 
+        items={faqItems} 
+        description="스포츠 분석에 관한 자주 묻는 질문을 정리했습니다."
+      />
 
-            {/* Right */}
-            <div className="lg:col-span-8">
-              <div className="space-y-3">
-                {faqItems.map((item, i) => (
-                  <div
-                    key={i}
-                    className={`rounded-xl transition-all ${
-                      openFaq === i 
-                        ? 'bg-secondary ring-1 ring-border/70 shadow-sm' 
-                        : 'bg-background hover:ring-1 hover:ring-border/30'
-                    }`}
-                  >
-                    <button
-                      onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                      className="w-full flex items-start gap-4 p-5 text-left"
-                    >
-                      <span className={`w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-bold ${
-                        openFaq === i 
-                          ? 'bg-primary text-primary-foreground' 
-                          : 'bg-secondary text-body'
-                      }`}>
-                        {i + 1}
-                      </span>
-                      <span className="flex-1 text-body-sm font-medium text-heading pt-0.5" style={{ wordBreak: 'keep-all' }}>
-                        {item.q}
-                      </span>
-                      <svg className={`w-5 h-5 flex-shrink-0 transition-transform mt-0.5 ${
-                        openFaq === i ? 'rotate-180 text-primary' : 'text-subtle'
-                      }`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                      </svg>
-                    </button>
-                    {openFaq === i && (
-                      <div className="px-5 pb-5 pl-16">
-                        <p className="text-body-sm text-body leading-relaxed" style={{ wordBreak: 'keep-all' }}>
-                          {item.a}
-                        </p>
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── RELATED CATEGORIES SECTION ── */}
-      <section className="py-24 md:py-32 px-6 md:px-20 bg-secondary border-b border-border/50">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-14">
-            <h2 className="text-h2 text-heading mb-6">관련 카테고리</h2>
-            <p className="text-body-lg text-body max-w-2xl mx-auto">
-              스포츠 분석 외에도 다양한 정보 카테고리가 있습니다.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
-            {categories.map((cat, i) => (
-              <a
-                key={i}
-                href={cat.href}
-                className="group flex items-start gap-4 p-5 rounded-xl bg-background border border-border hover:border-primary/50 hover:shadow-md transition-all"
-              >
-                <div className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center flex-shrink-0 group-hover:bg-primary/10 transition-colors">
-                  <cat.icon className="w-5 h-5 text-primary" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <h3 className="text-h4 text-heading mb-1 group-hover:text-primary transition-colors">{cat.title}</h3>
-                  <p className="text-body-sm text-body" style={{ wordBreak: 'keep-all' }}>{cat.desc}</p>
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* ── RELATED CATEGORIES ── */}
+      <SectionCategories currentPage="picks" />
     </main>
   )
 }

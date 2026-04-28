@@ -1,6 +1,6 @@
-'use client'
-
 import { ChevronRight, Check, AlertCircle, Eye, Clock, Banknote } from 'lucide-react'
+import { SectionFAQ } from '@/components/section-faq'
+import { SectionCategories } from '@/components/section-categories'
 
 export default function SafetyPage() {
   const tiers = [
@@ -99,8 +99,6 @@ export default function SafetyPage() {
       a: '분기 점검에서 5단계 항목 중 하나라도 미충족이면 디렉토리 카드의 마지막 검증일과 변경 사유가 즉시 갱신되며, 동일 사례는 분기 리포트에 사유 카테고리별로 함께 기록됩니다. 변경 이력 전체는 데이터센터 카테고리에서 분기별 누적 통계와 강등·제외 사유 분포 형태로 함께 공개됩니다.',
     },
   ]
-
-  const [openFaq, setOpenFaq] = React.useState<number | null>(null)
 
   return (
     <main className="min-h-screen bg-background font-sans">
@@ -272,116 +270,13 @@ export default function SafetyPage() {
       </section>
 
       {/* ── FAQ SECTION ── */}
-      <section className="py-24 md:py-32 px-6 md:px-20 bg-background border-b border-border/50">
-        <div className="max-w-5xl mx-auto">
-          <div className="grid lg:grid-cols-12 gap-12">
-            {/* Left: Heading + CTA */}
-            <div className="lg:col-span-4">
-              <div className="lg:sticky lg:top-24">
-                <p className="text-label text-primary mb-4">FAQ</p>
-                <h2 className="text-h2 text-heading leading-tight mb-6">
-                  자주 묻는 질문
-                </h2>
-                <p className="text-body-sm text-body mb-8" style={{ wordBreak: 'keep-all' }}>
-                  보증업체와 검증 기준에 대해 자주 받는 질문을 정리했습니다.
-                </p>
-                <a
-                  href="/support/contact/"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-primary-foreground text-body-sm font-medium hover:bg-primary/90 transition-colors"
-                >
-                  더 궁금한 점이 있으신가요?
-                </a>
-              </div>
-            </div>
-
-            {/* Right: FAQ List */}
-            <div className="lg:col-span-8">
-              <div className="space-y-3">
-                {faqs.map((item, i) => (
-                  <div
-                    key={i}
-                    className={`rounded-xl transition-all ${
-                      openFaq === i 
-                        ? 'bg-accent ring-1 ring-primary/30 shadow-sm' 
-                        : 'bg-background hover:ring-1 hover:ring-border'
-                    }`}
-                  >
-                    <button
-                      onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                      className="w-full flex items-start gap-4 p-5 text-left"
-                    >
-                      <span className={`w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-bold ${
-                        openFaq === i 
-                          ? 'bg-primary text-primary-foreground' 
-                          : 'bg-muted text-body'
-                      }`}>
-                        {i + 1}
-                      </span>
-                      <span className="flex-1 text-body-sm font-medium text-heading pt-0.5" style={{ wordBreak: 'keep-all' }}>
-                        {item.q}
-                      </span>
-                      <svg
-                        className={`w-5 h-5 flex-shrink-0 transition-transform mt-0.5 ${
-                          openFaq === i ? 'rotate-180 text-primary' : 'text-subtle'
-                        }`}
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                      </svg>
-                    </button>
-                    {openFaq === i && (
-                      <div className="px-5 pb-5 pl-16">
-                        <p className="text-body-sm text-body leading-relaxed" style={{ wordBreak: 'keep-all' }}>
-                          {item.a}
-                        </p>
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <SectionFAQ 
+        items={faqs} 
+        description="보증업체와 검증 기준에 대해 자주 받는 질문을 정리했습니다."
+      />
 
       {/* ── RELATED CATEGORIES ── */}
-      <section className="py-24 md:py-32 px-6 md:px-20 bg-secondary border-t border-border/50">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-14">
-            <h2 className="text-h2 text-heading mb-6">관련 카테고리</h2>
-            <p className="text-body-lg text-body max-w-2xl mx-auto">
-              보증업체 디렉토리 외 다른 카테고리에서 더 많은 정보를 확인하세요.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
-            {[
-              { title: '먹튀검증 리포트', desc: '제보 이력과 주소 변경 사건별 기록', href: '/review/' },
-              { title: '스포츠 분석', desc: 'KBO·MLB·EPL 경기 데이터와 라이브스코어', href: '/picks/' },
-              { title: '피해예방 가이드', desc: '환전 지연, 피싱 주소, 주소 변경 리스크 체크', href: '/guide/' },
-              { title: '데이터센터', desc: '변경 이력, 검증 현황, 카테고리별 흐름 요약', href: '/data/' },
-            ].map((cat, i) => (
-              <a
-                key={i}
-                href={cat.href}
-                className="group flex items-start gap-4 p-5 rounded-xl bg-background border border-border hover:border-primary/50 hover:shadow-md transition-all"
-              >
-                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
-                  <ChevronRight className="w-5 h-5 text-primary" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <h3 className="text-h4 text-heading mb-1 group-hover:text-primary transition-colors">{cat.title}</h3>
-                  <p className="text-body-sm text-body" style={{ wordBreak: 'keep-all' }}>{cat.desc}</p>
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
+      <SectionCategories currentPage="safety" />
     </main>
   )
 }
-
-import React from 'react'
