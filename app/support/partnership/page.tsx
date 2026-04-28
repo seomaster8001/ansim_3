@@ -139,7 +139,7 @@ export default function PartnershipPage() {
                 {
                   n: '4',
                   title: '변경 이력 추적',
-                  desc: '주소 변경 빈도·운영 정보 변동 분석',
+                  desc: '주소 변경 빈도·운영 정보 ��동 분석',
                 },
                 {
                   n: '5',
@@ -223,19 +223,6 @@ export default function PartnershipPage() {
                 입점료 납부 여부는 점검 결과와 Tier 산정에 영향을 일절 주지 않도록 분리 운영됩니다.
               </p>
             </div>
-          </div>
-                <div className="flex-1 min-w-0">
-                  <h3 className="text-body font-medium text-heading mb-0.5">{policy.title}</h3>
-                  <p className="text-body-sm text-body">{policy.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-8 p-6 rounded-xl bg-accent border border-border/50">
-            <p className="text-body text-body" style={{ wordBreak: 'keep-all' }}>
-              입점료 납부 여부는 점검 결과와 Tier 산정에 영향을 일절 주지 않도록 분리 운영됩니다.
-            </p>
           </div>
         </div>
       </section>
