@@ -46,7 +46,7 @@ const SUBMIT_TITLE = '제보는 검토 후 반영됩니다'
 const SUBMIT_INTRO =
   '주소 변경, 접속 불가, 환전 지연, 추가 입금 요구, 운영 정보 불일치가 의심되는 경우 제보 페이지를 통해 내용을 보낼 수 있습니다. 제보는 익명으로 접수할 수 있으며, 접수된 내용은 즉시 공개되지 않고 검토 절차를 거친 뒤 확인 가능한 항목만 반영됩니다.'
 const SUBMIT_P1 =
-  '제보 절차는 네 단계로 진행됩니다. 첫째는 접수입니다. 사용자가 사이트명, 현재 주소, 제보 유형, 상세 내용을 입력합니다. 둘째는 검토입니다. 접수된 내용에서 개인정보와 민감 정보가 포함되어 있는지 확인하고 필요한 경우 마스킹합니다. 셋째는 분류입니다. 주소 변경·환전 지연·추가 입금 요구·접속 불가·운영 정보 불일치 등 유형별로 묶습니다. 넷째는 반영입니다. 확인 가능한 항목만 사이트 상세 페이지, 검증 리포���������, 변경 이력에 반영합니다.'
+  '제보 절차는 네 단계로 진행됩니다. 첫째는 접수입니다. 사용자가 사이트명, 현재 주소, 제보 유형, 상세 내용을 입력합니다. 둘째는 검토입니다. 접수된 내용에서 개인정보와 민감 정보가 포함되어 있는지 확인하고 필요한 경우 마스킹합니다. 셋째는 분류입니다. 주소 변경·환전 지연·추가 입금 요구·접속 불가·운영 정보 불일치 등 유형별로 묶습니다. 넷째는 반영입니다. 확인 가능한 항목만 사이트 상세 페이지, 검증 리포�����������, 변경 이력에 반영합니다.'
 const SUBMIT_P2 =
   '제보 내용이 부족하거나 사실 확인이 어려운 경우에는 공개하지 않거나 데이터 부족 상태로 보류합니다. 동일한 사이트에 비슷한 제보가 반복되면 확인 필요 항목으로 분류할 수 있지만, 단일 제보만으로 특정 사이트를 단정하지 않습니다. 허위 제보, 경쟁 사이트 비방, 개인정보 노출, 확인되지 않은 주장성 문구는 반영 대상에서 제외됩니다.'
 const SUBMIT_P3 =
@@ -120,7 +120,7 @@ export default function Home() {
             </h1>
 
             {/* Body */}
-            <p className="text-body-lg text-neutral-500 max-w-2xl mx-auto mb-12">
+            <p className="text-body-lg text-neutral-400 max-w-2xl mx-auto mb-12">
               {HERO_BODY}
             </p>
 
@@ -150,7 +150,7 @@ export default function Home() {
                 <div key={i} className="flex flex-col items-center gap-1.5">
                   <item.icon className="w-5 h-5 text-blue-500" />
                   <span className="text-h4 text-neutral-900 leading-none">{item.value}</span>
-                  <span className="text-xs text-neutral-500">{item.label}</span>
+                  <span className="text-xs text-neutral-400">{item.label}</span>
                 </div>
               ))}
             </div>
@@ -172,7 +172,7 @@ export default function Home() {
               </h2>
             </div>
             <div className="lg:col-span-8 flex items-end">
-              <p className="text-body-lg text-neutral-500">
+              <p className="text-body-lg text-neutral-400">
                 {SEARCH_P1}
               </p>
             </div>
@@ -193,7 +193,7 @@ export default function Home() {
                   </span>
                   <div>
                     <h3 className="text-h4 text-neutral-900 mb-3">{item.title}</h3>
-                    <p className="text-body-sm text-neutral-500">
+                    <p className="text-body-sm text-neutral-400">
                       {item.body}
                     </p>
                   </div>
@@ -230,7 +230,7 @@ export default function Home() {
                   bg: 'bg-neutral-50',
                   border: 'border-neutral-200',
                   bar: 'bg-neutral-400',
-                  iconColor: 'text-neutral-500',
+                  iconColor: 'text-neutral-400',
                   text: 'text-neutral-700',
                   sub: '등록 정보 부족 · 추가 확인 권장',
                 },
@@ -269,7 +269,7 @@ export default function Home() {
             <h2 className="text-h2 text-neutral-900 leading-tight mb-6">
               {CRITERIA_TITLE}
             </h2>
-            <p className="text-body-lg text-neutral-500 max-w-2xl mx-auto">
+            <p className="text-body-lg text-neutral-400 max-w-2xl mx-auto">
               {CRITERIA_INTRO}
             </p>
           </div>
@@ -292,7 +292,7 @@ export default function Home() {
                 </div>
                 <div className="flex-1 min-w-0">
                   <h3 className="text-h4 text-neutral-900 mb-1">{item.title}</h3>
-                  <p className="text-body-sm text-neutral-500" style={{ wordBreak: 'keep-all' }}>
+                  <p className="text-body-sm text-neutral-400" style={{ wordBreak: 'keep-all' }}>
                     {item.desc}
                   </p>
                 </div>
@@ -303,7 +303,7 @@ export default function Home() {
           {/* External links - inline with text */}
           <div className="p-6 rounded-xl bg-slate-50 border border-neutral-100 mb-6">
             <div className="flex flex-wrap items-center gap-3">
-              <span className="text-body-sm text-neutral-600">공개 신고 경로:</span>
+              <span className="text-body-sm text-neutral-400">공개 신고 경로:</span>
               {[
                 { name: 'KISA', url: 'https://www.kisa.or.kr/' },
                 { name: '금융감독원', url: 'https://www.fss.or.kr/' },
@@ -341,7 +341,7 @@ export default function Home() {
             <h2 className="text-h2 text-neutral-900 leading-tight mb-6">
               {REPORT_TITLE}
             </h2>
-            <p className="text-body-lg text-neutral-500 max-w-2xl mx-auto">
+            <p className="text-body-lg text-neutral-400 max-w-2xl mx-auto">
               {REPORT_P1}
             </p>
           </div>
@@ -389,7 +389,7 @@ export default function Home() {
                 <h3 className="text-h4 text-neutral-900 mb-3 group-hover:text-blue-600 transition-colors flex-1">
                   {report.title}
                 </h3>
-                <div className="flex items-center gap-2 text-body-sm text-neutral-500">
+                <div className="flex items-center gap-2 text-body-sm text-neutral-400">
                   <AlertTriangle className="w-4 h-4 text-neutral-400 flex-shrink-0" />
                   <span style={{ wordBreak: 'keep-all' }}>{report.signal}</span>
                 </div>
@@ -399,7 +399,7 @@ export default function Home() {
 
           {/* CTA */}
           <div className="flex items-center justify-between p-5 rounded-xl bg-slate-50 border border-neutral-100">
-            <p className="text-body-sm text-neutral-600">최신 리포트를 모두 확인하세요</p>
+            <p className="text-body-sm text-neutral-400">최신 리포트를 모두 확인하세요</p>
             <a href="/review/" className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-600 text-white text-body-sm font-medium hover:bg-blue-700 transition-colors">
               모든 리포트 보기
               <ChevronRight className="w-4 h-4" />
@@ -419,7 +419,7 @@ export default function Home() {
             <h2 className="text-h2 text-neutral-900 leading-tight mb-6">
               {CATEGORY_TITLE}
             </h2>
-            <p className="text-body-lg text-neutral-500 max-w-2xl mx-auto">
+            <p className="text-body-lg text-neutral-400 max-w-2xl mx-auto">
               {CATEGORY_INTRO}
             </p>
           </div>
@@ -443,7 +443,7 @@ export default function Home() {
                 </div>
                 <div className="flex-1 min-w-0">
                   <h3 className="text-h4 text-neutral-900 mb-1 group-hover:text-blue-600 transition-colors">{cat.title}</h3>
-                  <p className="text-body-sm text-neutral-500" style={{ wordBreak: 'keep-all' }}>{cat.desc}</p>
+                  <p className="text-body-sm text-neutral-400" style={{ wordBreak: 'keep-all' }}>{cat.desc}</p>
                 </div>
               </a>
             ))}
@@ -477,7 +477,7 @@ export default function Home() {
             <h2 className="text-h2 text-neutral-900 leading-tight mb-6">
               {SUBMIT_TITLE}
             </h2>
-            <p className="text-body-lg text-neutral-500 max-w-2xl mx-auto">
+            <p className="text-body-lg text-neutral-400 max-w-2xl mx-auto">
               {SUBMIT_INTRO}
             </p>
           </div>
@@ -485,7 +485,7 @@ export default function Home() {
           {/* 4 Steps - horizontal flow */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-14">
             {[
-              { n: '1', title: '접수', desc: '사이트명, 주소, 제보 유형, 상세 내용 입력' },
+              { n: '1', title: '접수', desc: '사이트명, 주소, 제보 유형, ��세 내용 입력' },
               { n: '2', title: '검토', desc: '개인정보·민감정보 확인 및 마스킹' },
               { n: '3', title: '분류', desc: '주소 변경·환전 지연 등 유형별 분류' },
               { n: '4', title: '반영', desc: '확인 가능한 항목만 리포트에 반영' },
@@ -495,7 +495,7 @@ export default function Home() {
                   {step.n}
                 </div>
                 <h3 className="text-h4 text-neutral-900 mb-1">{step.title}</h3>
-                <p className="text-body-sm text-neutral-500" style={{ wordBreak: 'keep-all' }}>{step.desc}</p>
+                <p className="text-body-sm text-neutral-400" style={{ wordBreak: 'keep-all' }}>{step.desc}</p>
               </div>
             ))}
           </div>
@@ -504,7 +504,7 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-4 mb-10">
             <div className="p-5 rounded-xl bg-slate-50 border border-neutral-100">
               <h4 className="text-h4 text-neutral-900 mb-2">제보 처리 기준</h4>
-              <p className="text-body-sm text-neutral-500" style={{ wordBreak: 'keep-all' }}>
+              <p className="text-body-sm text-neutral-400" style={{ wordBreak: 'keep-all' }}>
                 제보 내용이 부족하거나 사실 확인이 어려운 경우 데이터 부족 상태로 보류합니다. 동일 사이트에 비슷한 제보가 반복되면 확인 필요로 분류하지만, 단일 제보만으로 단정하지 않습니다.
               </p>
             </div>
@@ -525,7 +525,7 @@ export default function Home() {
 
           {/* Privacy + CTA */}
           <div className="flex flex-col sm:flex-row items-center justify-between gap-6 p-5 rounded-xl bg-neutral-100 border border-neutral-200">
-            <div className="flex items-center gap-3 text-body-sm text-neutral-500">
+            <div className="flex items-center gap-3 text-body-sm text-neutral-400">
               <Lock className="w-4 h-4 flex-shrink-0" />
               <span style={{ wordBreak: 'keep-all' }}>개인정보는 마스킹 처리됩니다.</span>
               <a href="/support/terms/" className="underline hover:text-blue-600">이용약관</a>
@@ -553,7 +553,7 @@ export default function Home() {
             <h2 className="text-h2 text-neutral-900 leading-tight mb-6">
               {GUIDE_TITLE}
             </h2>
-            <p className="text-body-lg text-neutral-500 max-w-2xl mx-auto">
+            <p className="text-body-lg text-neutral-400 max-w-2xl mx-auto">
               {GUIDE_P1}
             </p>
           </div>
@@ -579,7 +579,7 @@ export default function Home() {
 
           {/* Key message */}
           <div className="p-5 rounded-xl bg-white border border-neutral-200 mb-10">
-            <p className="text-body-sm text-neutral-600" style={{ wordBreak: 'keep-all' }}>
+            <p className="text-body-sm text-neutral-400" style={{ wordBreak: 'keep-all' }}>
               {GUIDE_P2}
             </p>
           </div>
@@ -615,7 +615,7 @@ export default function Home() {
                 <h2 className="text-h2 text-neutral-900 leading-tight mb-6">
                   {FAQ_TITLE}
                 </h2>
-                <p className="text-body-sm text-neutral-500 mb-8" style={{ wordBreak: 'keep-all' }}>
+                <p className="text-body-sm text-neutral-400 mb-8" style={{ wordBreak: 'keep-all' }}>
                   자주 묻는 질문을 정리했습니다. 추가 문의는 제보 페이지를 이용하세요.
                 </p>
                 <a
@@ -647,7 +647,7 @@ export default function Home() {
                       <span className={`w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-bold ${
                         openFaq === i 
                           ? 'bg-blue-600 text-white' 
-                          : 'bg-slate-100 text-neutral-500'
+                          : 'bg-slate-100 text-neutral-400'
                       }`}>
                         {i + 1}
                       </span>
@@ -662,7 +662,7 @@ export default function Home() {
                     </button>
                     {openFaq === i && (
                       <div className="px-5 pb-5 pl-16">
-                        <p className="text-body-sm text-neutral-600 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
+                        <p className="text-body-sm text-neutral-400 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
                           {item.a}
                         </p>
                       </div>
