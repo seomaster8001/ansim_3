@@ -59,6 +59,7 @@ export default function PicksPage() {
         title="KBO · MLB · EPL 라이브 + 일정 + 통계 hub"
         description="스포츠 분석 종합 hub — 종목별 경기 데이터 / 라이브스코어 / 일정 / 통계 자료 디렉토리"
         icon={BarChart3}
+        variant="accent"
       />
 
       {/* ── INTRODUCTION SECTION ── */}
