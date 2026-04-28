@@ -26,7 +26,7 @@ export default function SiteFooter() {
 
           {/* Col 2 — 카테고리 */}
           <div>
-            <h4 className="text-[11px] font-semibold tracking-widest text-neutral-500 uppercase mb-5">카테고리</h4>
+            <h4 className="text-[13px] font-bold text-neutral-200 mb-5">카테고리</h4>
             <nav className="space-y-1">
               {[
                 { label: 'SAFETY — 보증업체', href: '/safety/' },
@@ -38,7 +38,7 @@ export default function SiteFooter() {
                 <a
                   key={i}
                   href={link.href}
-                  className="flex items-center gap-2 px-0 py-1.5 text-[13px] text-neutral-400 hover:text-white transition-colors group"
+                  className="flex items-center gap-2 py-2 text-[14px] text-neutral-300 hover:text-white transition-colors group"
                 >
                   <span className="w-1 h-1 rounded-full bg-neutral-600 group-hover:bg-blue-400 transition-colors" />
                   {link.label}
@@ -49,7 +49,7 @@ export default function SiteFooter() {
 
           {/* Col 3 — 지원 · 정책 */}
           <div>
-            <h4 className="text-[11px] font-semibold tracking-widest text-neutral-500 uppercase mb-5">지원 · 정책</h4>
+            <h4 className="text-[13px] font-bold text-neutral-200 mb-5">지원 · 정책</h4>
             <nav className="space-y-1">
               {[
                 { label: 'About', href: '/about/' },
@@ -61,7 +61,7 @@ export default function SiteFooter() {
                 <a
                   key={i}
                   href={link.href}
-                  className="flex items-center gap-2 py-1.5 text-[13px] text-neutral-400 hover:text-white transition-colors group"
+                  className="flex items-center gap-2 py-2 text-[14px] text-neutral-300 hover:text-white transition-colors group"
                 >
                   <span className="w-1 h-1 rounded-full bg-neutral-600 group-hover:bg-blue-400 transition-colors" />
                   {link.label}
@@ -72,7 +72,7 @@ export default function SiteFooter() {
 
           {/* Col 4 — 채널 */}
           <div>
-            <h4 className="text-[11px] font-semibold tracking-widest text-neutral-500 uppercase mb-5">채널</h4>
+            <h4 className="text-[13px] font-bold text-neutral-200 mb-5">채널</h4>
             <div className="space-y-3">
               <a
                 href="https://t.me/ansimgogo"
@@ -84,8 +84,8 @@ export default function SiteFooter() {
                   <Send className="w-4 h-4 text-[#229ED9]" />
                 </div>
                 <div className="min-w-0">
-                  <p className="text-[13px] font-medium text-white">텔레그램 채널</p>
-                  <p className="text-[11px] text-neutral-500">@ansimgogo</p>
+                  <p className="text-[14px] font-medium text-white">텔레그램 채널</p>
+                  <p className="text-[12px] text-neutral-400">@ansimgogo</p>
                 </div>
                 <ExternalLink className="w-3.5 h-3.5 text-neutral-500 ml-auto group-hover:text-[#229ED9] transition-colors" />
               </a>
@@ -97,8 +97,8 @@ export default function SiteFooter() {
                   <Mail className="w-4 h-4 text-neutral-400" />
                 </div>
                 <div className="min-w-0">
-                  <p className="text-[13px] font-medium text-white">이메일</p>
-                  <p className="text-[11px] text-neutral-500">hello@ansimgogo.com</p>
+                  <p className="text-[14px] font-medium text-white">이메일</p>
+                  <p className="text-[12px] text-neutral-400">hello@ansimgogo.com</p>
                 </div>
               </a>
             </div>
@@ -111,18 +111,18 @@ export default function SiteFooter() {
           <div className="grid md:grid-cols-2 gap-8 mb-8">
             {/* Left Column */}
             <div>
-              <p className="text-[12px] text-neutral-600 mb-4">
+              <p className="text-[13px] text-neutral-500 mb-4">
                 &copy; {YEAR} 안심고고. All rights reserved.
               </p>
-              <p className="text-[11px] text-neutral-700 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
+              <p className="text-[13px] text-neutral-400 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
                 안심고고는 공식기관이 아니며 사이트 검증 정보·피해예방 가이드를 제공합니다. 제공 정보는 법적 효력이 없으며, 실제 피해 신고는 관련 공공기관을 통해 진행하세요.
               </p>
             </div>
 
             {/* Right Column */}
             <div className="text-right">
-              <p className="text-[12px] text-neutral-600 mb-4">
-                마지막 갱신: <span className="text-neutral-500">{LAST_MOD}</span>
+              <p className="text-[13px] text-neutral-500 mb-4">
+                마지막 갱신: <span className="text-neutral-400">{LAST_MOD}</span>
               </p>
               <div className="flex flex-wrap gap-4 justify-end">
                 {[
@@ -133,7 +133,7 @@ export default function SiteFooter() {
                   <a
                     key={i}
                     href={link.href}
-                    className="text-[12px] text-neutral-500 hover:text-neutral-300 transition-colors"
+                    className="text-[13px] text-neutral-400 hover:text-neutral-200 transition-colors"
                   >
                     {link.label}
                   </a>
