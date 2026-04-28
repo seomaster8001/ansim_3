@@ -65,9 +65,9 @@ export default function SiteFooter() {
             </nav>
           </div>
 
-          {/* Col 3 — 정책·지원 */}
+          {/* Col 3 — 지원 · 정책 */}
           <div>
-            <h4 className="text-[11px] font-semibold tracking-widest text-neutral-500 uppercase mb-5">정책 · 지원</h4>
+            <h4 className="text-[11px] font-semibold tracking-widest text-neutral-500 uppercase mb-5">지원 · 정책</h4>
             <nav className="space-y-1">
               {[
                 { label: 'About', href: '/about/' },
@@ -75,9 +75,6 @@ export default function SiteFooter() {
                 { label: '연락처', href: '/support/contact/' },
                 { label: 'FAQ', href: '/support/faq/' },
                 { label: '입점 문의', href: '/support/listing/' },
-                { label: '이용약관', href: '/support/terms/' },
-                { label: '개인정보처리방침', href: '/support/privacy/' },
-                { label: '청소년보호정책', href: '/support/youth/' },
               ].map((link, i) => (
                 <a
                   key={i}
@@ -124,22 +121,19 @@ export default function SiteFooter() {
               </a>
             </div>
 
-            {/* Public report links */}
-            <h4 className="text-[11px] font-semibold tracking-widest text-neutral-500 uppercase mb-3">공공 신고 경로</h4>
+            {/* Public channels and policies */}
+            <h4 className="text-[11px] font-semibold tracking-widest text-neutral-500 uppercase mb-3">이용약관</h4>
             <div className="space-y-1">
               {[
-                { label: 'KISA', href: 'https://www.kisa.or.kr/' },
-                { label: '금융감독원', href: 'https://www.fss.or.kr/' },
-                { label: '더치트', href: 'https://thecheat.co.kr/' },
+                { label: '이용약관', href: '/support/terms/' },
+                { label: '개인정보처리방침', href: '/support/privacy/' },
+                { label: '청소년보호정책', href: '/support/youth/' },
               ].map((link, i) => (
                 <a
                   key={i}
                   href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="flex items-center gap-1.5 py-1 text-[12px] text-neutral-500 hover:text-neutral-300 transition-colors"
                 >
-                  <ExternalLink className="w-3 h-3" />
                   {link.label}
                 </a>
               ))}
