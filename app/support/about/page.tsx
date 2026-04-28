@@ -127,7 +127,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ── OPERATING SIGNALS SECTION ── */}
+      {/* ── OPERATING SIGNALS SECTION ─��� */}
       <section className="py-24 md:py-32 px-6 md:px-20 bg-background border-b border-border/50">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
@@ -219,12 +219,6 @@ export default function AboutPage() {
                   </div>
                 </div>
                 <p className="text-body text-body" style={{ wordBreak: 'keep-all' }}>
-                  {principle.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-                <p className="text-body-sm text-body" style={{ wordBreak: 'keep-all' }}>
                   {principle.desc}
                 </p>
               </div>
