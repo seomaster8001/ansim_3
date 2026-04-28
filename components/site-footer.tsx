@@ -1,4 +1,4 @@
-import { Shield, Send, Mail, TrendingUp, Users, Database, ExternalLink } from 'lucide-react'
+import { Shield, Send, Mail, ExternalLink } from 'lucide-react'
 
 const YEAR = new Date().getFullYear()
 const LAST_MOD = new Date().toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\. /g, '.').replace(/\.$/, '')
@@ -19,27 +19,9 @@ export default function SiteFooter() {
               </div>
               <span className="text-[15px] font-bold tracking-tight">안심고고</span>
             </div>
-            <p className="text-[13px] text-neutral-400 leading-relaxed mb-6" style={{ wordBreak: 'keep-all' }}>
+            <p className="text-[13px] text-neutral-400 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
               사이트 조회, 검증 이력, 제보 확인까지 한 번에. 감정 없이, 근거 중심으로.
             </p>
-            <div className="space-y-2.5">
-              {[
-                { icon: TrendingUp, label: '4년 운영', desc: 'Since 2022' },
-                { icon: Users, label: '편집부 5명', desc: '실명·경력 공개' },
-                { icon: Database, label: '자체 데이터', desc: '자체 갱신' },
-                { icon: Shield, label: '이용료 없음', desc: '완전 무료' },
-              ].map((item, i) => (
-                <div key={i} className="flex items-center gap-3">
-                  <div className="w-7 h-7 rounded-md bg-white/5 flex items-center justify-center flex-shrink-0">
-                    <item.icon className="w-3.5 h-3.5 text-neutral-400" />
-                  </div>
-                  <div className="flex items-center gap-1.5 min-w-0">
-                    <span className="text-[13px] font-medium text-neutral-200">{item.label}</span>
-                    <span className="text-[12px] text-neutral-500">{item.desc}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
           </div>
 
           {/* Col 2 — 카테고리 */}
