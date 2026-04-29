@@ -230,7 +230,7 @@
 [data-category="picks"] {
   --primary: var(--brand-red);
   --primary-foreground: #ffffff;
-  --accent: #fef2f2; /* red-50 */
+  --accent: #f8fafc; /* slate-50, neutral white */
   --accent-foreground: #b91c1c; /* red-700 */
   --ring: var(--brand-red);
 }
