@@ -103,7 +103,7 @@ const FAQ_ITEMS = [
     answer: '안심고고는 도메인 변경 이력, 운영 기간, 사용자 제보, 보증금 예치 여부 등 5단계 검증 프로세스를 통해 사이트를 분석합니다. 외부 출처 인용 없이 자체 데이터만 사용합니다.',
   },
   {
-    question: '위험 신호는?',
+    question: '위험 신호���?',
     answer: '잦은 도메인 변경, 운영사 정보 미공개, 보증금 미확인, 반복 제보 패턴, 고객센터 응답 지연 등이 주요 위험 신호입니다. 본 사이트에서는 5개 중 4개의 위험 신호가 감지되었습니다.',
   },
 ]
@@ -577,13 +577,43 @@ export default function MeoktuPolicePage() {
               ))}
             </div>
             
-            <p className="text-xs text-muted mt-4">
+            <p className="text-xs text-body mt-4">
               {SITE_DATA.totalReports === 0 
-                ? '현재까지 접수된 제보가 없���니다. 이는 긍정적 신호입니다.'
+                ? '현재까지 접수된 제보가 없습니다. 이는 긍정적 신호입니다.'
                 : SITE_DATA.totalReports >= 5
                 ? '반복 제보가 확인되었습니다. 이용에 각별한 주의가 필요합니다.'
                 : '일부 제보가 확인되었습니다. 이용 전 확인을 권장합니다.'}
             </p>
+          </div>
+
+          {/* 제보 리스트 */}
+          <div className="p-6 rounded-xl bg-background border-2 border-border">
+            <h3 className="text-h4 text-heading mb-4">최근 제보 내역</h3>
+            <div className="space-y-3">
+              {USER_REVIEWS.map((review, i) => (
+                <div key={i} className="p-4 rounded-lg bg-secondary border border-border/50">
+                  <div className="flex items-start justify-between mb-2">
+                    <div className="flex items-center gap-2">
+                      <span className={`px-2 py-0.5 rounded text-xs font-medium ${
+                        review.type === '환전 지연' ? 'bg-red-100 text-red-700' :
+                        review.type === '추가 입금 요구' ? 'bg-amber-100 text-amber-700' :
+                        'bg-slate-100 text-slate-700'
+                      }`}>
+                        {review.type}
+                      </span>
+                      <span className="text-xs text-body">{review.date}</span>
+                    </div>
+                    {review.verified && (
+                      <span className="text-xs text-green-600 flex items-center gap-1">
+                        <CheckCircle className="w-3 h-3" />
+                        확인됨
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-body-sm text-body leading-relaxed">{review.summary}</p>
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* 제보 리스트 */}
