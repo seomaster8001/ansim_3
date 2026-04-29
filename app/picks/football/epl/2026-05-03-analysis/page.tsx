@@ -1,7 +1,7 @@
 import { 
   BarChart3, TrendingUp, Users, Clock, Calendar, 
   CheckCircle, AlertCircle, AlertTriangle, Shield,
-  ChevronRight, Target, Activity, Zap
+  ChevronRight, Target, Activity, Zap, FileText
 } from 'lucide-react'
 import { SectionFAQ } from '@/components/section-faq'
 import { SectionCategories } from '@/components/section-categories'
@@ -228,6 +228,47 @@ export default function EPLAnalysisPage() {
             <span className="px-2 py-1 rounded bg-primary/10 text-primary text-xs font-medium">
               {MATCH_DATA.league}
             </span>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 편집자 의견 ── */}
+      <section className="py-10 px-6 md:px-20 bg-background border-b border-border/50">
+        <div className="max-w-5xl mx-auto">
+          <div className="p-6 rounded-xl border-2 border-border bg-secondary">
+            <div className="flex items-start gap-4">
+              {/* 아이콘 */}
+              <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center flex-shrink-0 mt-0.5">
+                <FileText className="w-5 h-5 text-white" />
+              </div>
+
+              <div className="flex-1">
+                {/* 헤더 */}
+                <div className="flex items-center justify-between mb-3">
+                  <div>
+                    <span className="text-body font-bold text-heading">편집자 의견</span>
+                    <span className="ml-2 px-2 py-0.5 rounded text-xs font-medium bg-primary/10 text-primary">분석 노트</span>
+                  </div>
+                  <span className="text-xs text-body">안심고고 분석팀 · {MATCH_DATA.lastUpdated}</span>
+                </div>
+
+                {/* 본문 */}
+                <p className="text-body text-body leading-relaxed mb-4" style={{ wordBreak: 'keep-all' }}>
+                  이번 매치의 핵심은 <strong className="text-heading">홈팀 맨체스터 시티의 최근 수비 불안</strong>과 <strong className="text-heading">아스널의 원정 강세</strong>가 충돌하는 구도입니다.
+                  시티는 최근 3경기 연속 실점(총 7실점)으로 수비 조직이 흔들리고 있는 반면, 아스날은 원정 최근 5경기 중 4승으로 원정 성적이 뛰어납니다.
+                </p>
+                <p className="text-body text-body leading-relaxed" style={{ wordBreak: 'keep-all' }}>
+                  선발 라인업 확정 전까지 핵심 변수는 <strong className="text-heading">하랄드 노르드베이트의 부상 여부</strong>입니다.
+                  해당 정보는 경기 당일 공식 라인업 발표 시점에 갱신됩니다. 본 의견은 데이터 기반의 정보 제공 목적이며 결과를 예측하거나 이용을 권유하는 자료가 아닙니다.
+                </p>
+
+                {/* 면책 태그 */}
+                <div className="mt-4 pt-4 border-t border-border/50 flex items-center gap-2">
+                  <Shield className="w-3.5 h-3.5 text-body" />
+                  <span className="text-xs text-body">정보 제공 목적 · 이용 권유 아님 · KGAB 톤앤매너 준수</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
