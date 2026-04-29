@@ -375,69 +375,33 @@ export default function MeoktuPolicePage() {
                 </p>
               </div>
 
-              {/* 월별 제보 비율 스택 바 */}
-              <div className="mt-4 pt-4 border-t border-border/50">
-                <p className="text-body-sm text-body mb-3">월별 제보 분포</p>
-                <div className="flex items-end gap-0.5 h-12 bg-slate-50 rounded-lg p-2 mb-3">
-                  {REPORT_TREND.map((m, i) => {
-                    const totalReports = REPORT_TREND.reduce((sum, item) => sum + item.count, 0) || 1
-                    const percentage = (m.count / totalReports) * 100
-                    const colors = [
-                      m.count === 0 ? 'bg-slate-200' :
-                      m.count === 1 ? 'bg-amber-300' :
-                      m.count >= 2 ? 'bg-red-400' : 'bg-slate-300'
-                    ]
-                    return (
-                      <div
-                        key={i}
-                        className={`flex-1 rounded-sm transition-all group relative ${colors}`}
-                        style={{ height: Math.max(percentage * 0.8, 4) + 'px', minHeight: '4px' }}
-                        title={`${m.month.split('.')[1]}월: ${m.count}건`}
-                      >
-                        {/* 호버 툴팁 */}
-                        <div className="absolute -top-7 left-1/2 transform -translate-x-1/2 hidden group-hover:block bg-heading text-white text-xs px-2 py-1 rounded whitespace-nowrap">
-                          {m.month.split('.')[1]}월: {m.count}건
-                        </div>
-                      </div>
-                    )
-                  })}
+              {/* 통계 요약 */}
+              <div className="mt-4 pt-4 border-t border-border/50 grid grid-cols-3 gap-3">
+                <div className="text-center">
+                  <p className="text-h4 text-heading font-bold">{Math.max(...REPORT_TREND.map(m => m.count))}</p>
+                  <p className="text-xs text-body">최고 제보월</p>
                 </div>
-                <div className="flex justify-between text-xs text-body">
-                  <span>11월</span>
-                  <span>12월</span>
-                  <span>1월</span>
-                  <span>2월</span>
-                  <span>3월</span>
-                  <span>4월</span>
+                <div className="text-center">
+                  <p className="text-h4 text-heading font-bold">{(REPORT_TREND.reduce((sum, m) => sum + m.count, 0) / 6).toFixed(1)}</p>
+                  <p className="text-xs text-body">월평균</p>
                 </div>
-
-                {/* 통계 요약 */}
-                <div className="mt-4 pt-4 border-t border-border/50 grid grid-cols-3 gap-3">
-                  <div className="text-center">
-                    <p className="text-h4 text-heading font-bold">{Math.max(...REPORT_TREND.map(m => m.count))}</p>
-                    <p className="text-xs text-body">최고 제보월</p>
-                  </div>
-                  <div className="text-center">
-                    <p className="text-h4 text-heading font-bold">{(REPORT_TREND.reduce((sum, m) => sum + m.count, 0) / 6).toFixed(1)}</p>
-                    <p className="text-xs text-body">월평균</p>
-                  </div>
-                  <div className="text-center">
-                    <p className="text-h4 text-heading font-bold">{REPORT_TREND.filter(m => m.count > 0).length}</p>
-                    <p className="text-xs text-body">제보 발생월</p>
-                  </div>
-                </div>
-
-                {/* 해석 가이드 */}
-                <div className="mt-3 p-2.5 rounded bg-slate-50 border border-border/50">
-                  <p className="text-xs text-body leading-relaxed" style={{ wordBreak: 'keep-all' }}>
-                    {REPORT_TREND.reduce((sum, m) => sum + m.count, 0) === 0 
-                      ? '안정적: 지난 6개월간 제보가 없어 운영이 안정적인 상태입니다.'
-                      : Math.max(...REPORT_TREND.map(m => m.count)) >= 2
-                      ? '불안정: 월 2건 이상의 반복 제보가 발생하고 있습니다. 주의가 필요합니다.'
-                      : '주의: 산발적 제보가 확인되고 있습니다. 이용 전 상세 확인을 권장합니다.'}
-                  </p>
+                <div className="text-center">
+                  <p className="text-h4 text-heading font-bold">{REPORT_TREND.filter(m => m.count > 0).length}</p>
+                  <p className="text-xs text-body">제보 발생월</p>
                 </div>
               </div>
+
+              {/* 해석 가이드 */}
+              <div className="mt-3 p-2.5 rounded bg-slate-50 border border-border/50">
+                <p className="text-xs text-body leading-relaxed" style={{ wordBreak: 'keep-all' }}>
+                  {REPORT_TREND.reduce((sum, m) => sum + m.count, 0) === 0 
+                    ? '안정적: 지난 6개월간 제보가 없어 운영이 안정적인 상태입니다.'
+                    : Math.max(...REPORT_TREND.map(m => m.count)) >= 2
+                    ? '불안정: 월 2건 이상의 반복 제보가 발생하고 있습니다. 주의가 필요합니다.'
+                    : '주의: 산발적 제보가 확인되고 있습니다. 이용 전 상세 확인을 권장합니다.'}
+                </p>
+              </div>
+            </div>
             </div>
           </div>
         </div>
