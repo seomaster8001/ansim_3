@@ -209,7 +209,7 @@ export default function MeoktuPolicePage() {
                   { label: '최근 도메인 변경', value: SITE_DATA.lastDomainChange },
                 ].map((item, i) => (
                   <div key={i} className="flex justify-between py-2">
-                    <dt className="text-body-sm text-muted">{item.label}</dt>
+                    <dt className="text-body-sm text-body">{item.label}</dt>
                     <dd className={`text-body-sm font-medium ${item.warn ? 'text-amber-600' : 'text-heading'}`}>{item.value}</dd>
                   </div>
                 ))}
@@ -217,19 +217,19 @@ export default function MeoktuPolicePage() {
 
               {/* 도메인 안정성 지수 */}
               <div className="space-y-3">
-                <p className="text-body-sm text-muted">도메인 안정성 지수</p>
+                <p className="text-body-sm text-body">도메인 안정성 지수</p>
                 <div className="flex items-center gap-3">
                   <div className="flex-1 h-2 bg-slate-200 rounded-full overflow-hidden">
                     <div className="h-full bg-amber-500" style={{ width: '40%' }} />
                   </div>
                   <span className="text-h4 text-amber-600 font-bold">40%</span>
                 </div>
-                <p className="text-xs text-muted">IP 변경 3회 + 도메인 변경 2회 = 낮은 안정성</p>
+                <p className="text-xs text-body">IP 변경 3회 + 도메인 변경 2회 = 낮은 안정성</p>
               </div>
 
               {/* 신뢰도 뱃지 */}
               <div className="mt-4 pt-4 border-t border-border/50">
-                <p className="text-body-sm text-muted mb-3">종합 신뢰도</p>
+                <p className="text-body-sm text-body mb-3">종합 신뢰도</p>
                 <div className="flex gap-2">
                   <span className="px-3 py-1 rounded-full text-label font-semibold bg-red-100 text-red-700">주의 필요</span>
                   <span className="px-3 py-1 rounded-full text-label font-semibold bg-amber-100 text-amber-700">반복 제보</span>
@@ -269,7 +269,7 @@ export default function MeoktuPolicePage() {
             <div className="p-6 rounded-xl bg-background border-2 border-border">
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-h4 text-heading">운영 정보 상세</h3>
-                <span className="text-label text-muted text-xs">검증: {OPERATION_INFO.verifiedAt}</span>
+                <span className="text-label text-body text-xs">검증: {OPERATION_INFO.verifiedAt}</span>
               </div>
               <div className="space-y-1">
                 {[
@@ -284,8 +284,8 @@ export default function MeoktuPolicePage() {
                 ].map((item, i) => (
                   <div key={i} className="flex items-center justify-between py-3 border-b border-border/50 last:border-0">
                     <div className="flex items-center gap-2">
-                      <item.icon className="w-4 h-4 text-muted" />
-                      <span className="text-body-sm text-muted">{item.label}</span>
+                      <item.icon className="w-4 h-4 text-body" />
+                      <span className="text-body-sm text-body">{item.label}</span>
                     </div>
                     <span className={`text-body-sm font-medium text-right max-w-[50%] truncate ${item.warn ? 'text-amber-600' : 'text-heading'}`}>
                       {item.value}
@@ -293,7 +293,7 @@ export default function MeoktuPolicePage() {
                   </div>
                 ))}
               </div>
-              <p className="text-xs text-muted mt-4">* 검증 시점 기준이며, 실제 현황과 다를 수 있습니다.</p>
+              <p className="text-xs text-body mt-4">* 검증 시점 기준이며, 실제 현황과 다를 수 있습니다.</p>
             </div>
 
             {/* 제보 추이 (최근 6개월) */}
@@ -320,7 +320,7 @@ export default function MeoktuPolicePage() {
                   const height = m.count === 0 ? 3 : (m.count / maxCount) * 100
                   return (
                     <div key={i} className="flex-1 flex flex-col items-center gap-1.5">
-                      {m.count > 0 && <span className="text-xs text-muted font-semibold">{m.count}</span>}
+                      {m.count > 0 && <span className="text-xs text-heading font-semibold">{m.count}</span>}
                       <div 
                         className={`w-full rounded-t ${
                           m.count === 0 ? 'bg-slate-200' :
@@ -328,13 +328,13 @@ export default function MeoktuPolicePage() {
                         }`}
                         style={{ height: `${height}%`, minHeight: '3px' }}
                       />
-                      <span className="text-xs text-muted">{m.month.split('.')[1]}월</span>
+                      <span className="text-xs text-body">{m.month.split('.')[1]}월</span>
                     </div>
                   )
                 })}
               </div>
               
-              <p className="text-xs text-muted">
+              <p className="text-xs text-body">
                 {REPORT_TREND.reduce((sum, m) => sum + m.count, 0) === 0 
                   ? '✓ 제보 없음 (긍정적 신호)'
                   : REPORT_TREND.reduce((sum, m) => sum + m.count, 0) >= 5
@@ -439,7 +439,7 @@ export default function MeoktuPolicePage() {
             
             <p className="text-xs text-muted mt-4">
               {SITE_DATA.totalReports === 0 
-                ? '현재까지 접수된 제보가 없습니다. 이는 긍정적 신호입니다.'
+                ? '현재까지 접수된 제보가 없���니다. 이는 긍정적 신호입니다.'
                 : SITE_DATA.totalReports >= 5
                 ? '반복 제보가 확인되었습니다. 이용에 각별한 주의가 필요합니다.'
                 : '일부 제보가 확인되었습니다. 이용 전 확인을 권장합니다.'}
