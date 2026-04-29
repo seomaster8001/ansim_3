@@ -331,29 +331,46 @@ export default function MeoktuPolicePage() {
                 </span>
               </div>
               
-              {/* 바 차트 */}
-              <div className="flex items-end gap-1.5 h-24 mb-4">
-                {REPORT_TREND.map((m, i) => {
-                  const maxCount = Math.max(...REPORT_TREND.map(r => r.count), 1)
-                  const height = m.count === 0 ? 3 : (m.count / maxCount) * 100
-                  return (
-                    <div key={i} className="flex-1 flex flex-col items-center gap-1.5">
-                      {m.count > 0 && <span className="text-xs text-heading font-semibold">{m.count}</span>}
-                      <div 
-                        className={`w-full rounded-t ${
-                          m.count === 0 ? 'bg-slate-200' :
-                          m.count >= 2 ? 'bg-red-400' : 'bg-amber-400'
-                        }`}
-                        style={{ height: `${height}%`, minHeight: '3px' }}
-                      />
-                      <span className="text-xs text-body">{m.month.split('.')[1]}월</span>
-                    </div>
-                  )
-                })}
+              
+              {/* 월별 제보 비율 스택 바 */}
+              <div className="mb-4">
+                <p className="text-body-sm text-body mb-2">월별 제보 분포</p>
+                <div className="flex items-end gap-0.5 h-12 bg-slate-50 rounded-lg p-2 mb-2">
+                  {REPORT_TREND.map((m, i) => {
+                    const totalReports = REPORT_TREND.reduce((sum, item) => sum + item.count, 0) || 1
+                    const percentage = (m.count / totalReports) * 100
+                    const colors = [
+                      m.count === 0 ? 'bg-slate-200' :
+                      m.count === 1 ? 'bg-amber-300' :
+                      m.count >= 2 ? 'bg-red-400' : 'bg-slate-300'
+                    ]
+                    return (
+                      <div
+                        key={i}
+                        className={`flex-1 rounded-sm transition-all group relative ${colors}`}
+                        style={{ height: Math.max(percentage * 0.8, 4) + 'px', minHeight: '4px' }}
+                        title={`${m.month.split('.')[1]}월: ${m.count}건`}
+                      >
+                        {/* 호버 툴팁 */}
+                        <div className="absolute -top-7 left-1/2 transform -translate-x-1/2 hidden group-hover:block bg-heading text-white text-xs px-2 py-1 rounded whitespace-nowrap">
+                          {m.month.split('.')[1]}월: {m.count}건
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
+                <div className="flex justify-between text-xs text-body">
+                  <span>11월</span>
+                  <span>12월</span>
+                  <span>1월</span>
+                  <span>2월</span>
+                  <span>3월</span>
+                  <span>4월</span>
+                </div>
               </div>
               
               {/* 요약 메시지 */}
-              <div className={`p-3 rounded-lg ${
+              <div className={`p-3 rounded-lg mb-4 ${
                 REPORT_TREND.reduce((sum, m) => sum + m.count, 0) === 0 
                   ? 'bg-green-50 border border-green-200'
                   : REPORT_TREND.reduce((sum, m) => sum + m.count, 0) >= 5
