@@ -1,6 +1,6 @@
 'use client'
 
-import { AlertTriangle, Shield, Clock, FileText, AlertCircle, CheckCircle, ChevronRight, Users, TrendingDown, Image as ImageIcon, ExternalLink } from 'lucide-react'
+import { AlertTriangle, Shield, Clock, FileText, AlertCircle, CheckCircle, ChevronRight, Users, TrendingDown, Image as ImageIcon, ExternalLink, Zap, Globe, Inbox, AlertOctagon, BarChart3 } from 'lucide-react'
 import { SectionHero } from '@/components/section-hero'
 import { SectionFAQ } from '@/components/section-faq'
 import { SectionCategories } from '@/components/section-categories'
@@ -22,6 +22,8 @@ const SITE_DATA = {
   domainChanges: 2,
   lastDomainChange: '2024.08',
   totalReports: 7,
+  dangerSignalsDetected: 3, // 위험 신호 감지 개수
+  dangerSignalsTotal: 5, // 총 위험 신호 항목
   screenshot: '/placeholder.svg?height=400&width=700',
 }
 
@@ -35,7 +37,7 @@ const OPERATION_INFO = {
   verifiedAt: '2025.04.15',
   registrar: 'Namecheap (해외)',
   sslStatus: 'valid',
-  ipHistory: 3, // IP 변경 횟수
+  ipHistory: 3,
 }
 
 // 제보 추이 (최근 6개월)
@@ -100,8 +102,15 @@ const FAQ_ITEMS = [
 // ============================================================
 // 컴포넌트
 // ============================================================
-export default function MeoktuPolicePage() {
-  const detectedCount = DANGER_SIGNALS.filter(s => s.detected).length
+
+export default function MeoktuPoliceReviewPage() {
+  const riskScore = Math.round((SITE_DATA.dangerSignalsDetected / SITE_DATA.dangerSignalsTotal) * 100)
+  const statusColors = {
+    danger: { bg: 'bg-red-50', border: 'border-red-200', text: 'text-red-700', badge: 'bg-red-100' },
+    warning: { bg: 'bg-amber-50', border: 'border-amber-200', text: 'text-amber-700', badge: 'bg-amber-100' },
+    monitoring: { bg: 'bg-blue-50', border: 'border-blue-200', text: 'text-blue-700', badge: 'bg-blue-100' },
+  }
+  const colors = statusColors[SITE_DATA.status as keyof typeof statusColors]
 
   return (
     <main 
@@ -114,8 +123,9 @@ export default function MeoktuPolicePage() {
       } as React.CSSProperties}
       className="min-h-screen bg-background font-sans"
     >
+      {/* ── HERO ── */}
       <SectionHero
-        label="먹튀검증"
+        label="Scam Review"
         title={SITE_DATA.h1}
         description={SITE_DATA.subtitle}
         icon={AlertTriangle}
@@ -123,103 +133,170 @@ export default function MeoktuPolicePage() {
       />
 
       {/* ── STATUS BANNER ── */}
-      <div className={`py-4 px-6 md:px-20 ${
-        SITE_DATA.status === 'danger' ? 'bg-red-600' :
-        SITE_DATA.status === 'warning' ? 'bg-amber-500' : 'bg-slate-500'
-      }`}>
-        <div className="max-w-5xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <AlertTriangle className="w-5 h-5 text-white" />
-            <span className="text-white font-semibold">현재 분류: [{SITE_DATA.statusLabel}]</span>
-          </div>
-          <span className="text-white/80 text-sm">마지막 점검: {SITE_DATA.lastChecked}</span>
-        </div>
-      </div>
-
-      {/* ── SITE PREVIEW + OPENING ── */}
-      <section className="py-16 md:py-24 px-6 md:px-20 bg-background border-b border-border/50">
+      <section className={`py-6 px-6 md:px-20 ${colors.bg} border-b-2 ${colors.border}`}>
         <div className="max-w-5xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-10 items-start">
-            {/* Screenshot Placeholder */}
-            <div className="relative rounded-xl overflow-hidden border-2 border-border bg-secondary">
-              <div className="aspect-video flex items-center justify-center bg-slate-100">
-                <div className="text-center">
-                  <ImageIcon className="w-12 h-12 text-slate-400 mx-auto mb-3" />
-                  <p className="text-body-sm text-muted">사이트 스크린샷</p>
-                  <p className="text-label text-muted mt-1">{SITE_DATA.lastChecked} 기준</p>
-                </div>
-              </div>
-              {/* Status Badge Overlay */}
-              <div className={`absolute top-4 left-4 px-3 py-1.5 rounded-lg font-semibold text-sm ${
-                SITE_DATA.status === 'danger' ? 'bg-red-600 text-white' :
-                SITE_DATA.status === 'warning' ? 'bg-amber-500 text-white' : 'bg-slate-500 text-white'
-              }`}>
-                {SITE_DATA.statusLabel}
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <AlertCircle className={`w-6 h-6 ${colors.text}`} />
+              <div>
+                <h3 className={`text-h4 ${colors.text} font-bold`}>{SITE_DATA.statusLabel}</h3>
+                <p className="text-body-sm text-muted">{SITE_DATA.openingAnswer}</p>
               </div>
             </div>
+            <span className={`px-4 py-2 rounded-lg ${colors.badge} ${colors.text} text-label font-bold whitespace-nowrap`}>
+              위험도 {riskScore}%
+            </span>
+          </div>
+        </div>
+      </section>
 
-            {/* Opening Answer + Quick Stats */}
-            <div>
-              <p className="text-body-lg text-body leading-relaxed mb-8" style={{ wordBreak: 'keep-all' }}>
-                {SITE_DATA.openingAnswer}
-              </p>
-              
-              <div className="grid grid-cols-2 gap-4">
-                <div className="p-4 rounded-lg bg-secondary">
-                  <p className="text-label text-muted mb-1">운영 기간</p>
-                  <p className="text-h4 text-heading">{SITE_DATA.operationYears}</p>
+      {/* ── SITE SCREENSHOT ── */}
+      <section className="py-16 md:py-24 px-6 md:px-20 bg-background border-b border-border/50">
+        <div className="max-w-5xl mx-auto">
+          <div className="relative h-80 rounded-xl bg-secondary border-2 border-border flex items-center justify-center overflow-hidden">
+            <img 
+              src={SITE_DATA.screenshot} 
+              alt={`${SITE_DATA.name} 사이트 스크린샷`}
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 flex items-center justify-center bg-black/10 backdrop-blur-sm">
+              <ImageIcon className="w-12 h-12 text-muted" />
+            </div>
+          </div>
+          <p className="text-xs text-muted mt-3">
+            * 스크린샷은 검증 시점({SITE_DATA.lastChecked}) 기준입니다.
+          </p>
+        </div>
+      </section>
+
+      {/* ── QUICK STATS ── */}
+      <section className="py-16 md:py-24 px-6 md:px-20 bg-secondary border-b border-border/50">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-h2 text-heading mb-12">주요 지표</h2>
+          <div className="grid md:grid-cols-4 gap-4">
+            {[
+              { 
+                label: '운영 기간', 
+                value: SITE_DATA.operationYears, 
+                icon: Clock, 
+                status: 'warning',
+                subtext: `${SITE_DATA.operationStart}부터`
+              },
+              { 
+                label: '도메인 변경', 
+                value: `${SITE_DATA.domainChanges}회`, 
+                icon: Globe, 
+                status: 'danger',
+                subtext: `최근 ${SITE_DATA.lastDomainChange}`
+              },
+              { 
+                label: '누적 제보', 
+                value: `${SITE_DATA.totalReports}건`, 
+                icon: AlertOctagon, 
+                status: 'warning',
+                subtext: '6개월 기준'
+              },
+              { 
+                label: '위험 신호', 
+                value: `${SITE_DATA.dangerSignalsDetected}/${SITE_DATA.dangerSignalsTotal}`, 
+                icon: Zap, 
+                status: 'danger',
+                subtext: '감지됨'
+              },
+            ].map((stat, i) => {
+              const Icon = stat.icon
+              const statusMap = {
+                danger: { bg: 'bg-red-100', text: 'text-red-700', border: 'border-red-200' },
+                warning: { bg: 'bg-amber-100', text: 'text-amber-700', border: 'border-amber-200' },
+                safe: { bg: 'bg-green-100', text: 'text-green-700', border: 'border-green-200' },
+              }
+              const s = statusMap[stat.status as keyof typeof statusMap]
+              return (
+                <div key={i} className={`p-6 rounded-xl ${s.bg} border-2 ${s.border}`}>
+                  <div className="flex items-start justify-between mb-4">
+                    <Icon className={`w-6 h-6 ${s.text}`} />
+                  </div>
+                  <p className="text-body-sm text-muted mb-2">{stat.label}</p>
+                  <p className={`text-h3 ${s.text} font-bold mb-1`}>{stat.value}</p>
+                  <p className="text-xs text-muted">{stat.subtext}</p>
                 </div>
-                <div className="p-4 rounded-lg bg-secondary">
-                  <p className="text-label text-muted mb-1">도메인 변경</p>
-                  <p className="text-h4 text-heading">{SITE_DATA.domainChanges}회</p>
-                </div>
-                <div className="p-4 rounded-lg bg-secondary">
-                  <p className="text-label text-muted mb-1">누적 제보</p>
-                  <p className="text-h4 text-amber-600">{SITE_DATA.totalReports}건</p>
-                </div>
-                <div className="p-4 rounded-lg bg-secondary">
-                  <p className="text-label text-muted mb-1">위험 신호</p>
-                  <p className="text-h4 text-red-600">{detectedCount}/5 감지</p>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ── OPENING ANSWER + RISK SCORE ── */}
+      <section className="py-16 md:py-24 px-6 md:px-20 bg-background border-b border-border/50">
+        <div className="max-w-5xl mx-auto grid md:grid-cols-3 gap-8">
+          {/* 좌측: 텍스트 */}
+          <div className="md:col-span-2">
+            <h2 className="text-h2 text-heading mb-6 flex items-center gap-3">
+              <Shield className="w-8 h-8 text-primary" />
+              이 사이트에 대해
+            </h2>
+            <p className="text-body-lg text-body leading-relaxed mb-6" style={{ wordBreak: 'keep-all' }}>
+              {SITE_DATA.openingAnswer}
+            </p>
+            <ul className="space-y-3">
+              {[
+                '운영 이력 및 도메인 변경 추적',
+                '사용자 제보 누적 분석',
+                '위험 신호 패턴 매칭',
+                '환전 처리 이력 검증',
+              ].map((item, i) => (
+                <li key={i} className="flex items-start gap-3">
+                  <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                  <span className="text-body text-body">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* 우측: 위험도 점수 */}
+          <div className={`p-8 rounded-xl ${colors.bg} border-2 ${colors.border} text-center`}>
+            <p className="text-body-sm text-muted mb-4 uppercase tracking-wide">종합 위험도</p>
+            <div className="mb-6">
+              <div className="relative w-32 h-32 mx-auto">
+                <svg className="w-full h-full transform -rotate-90" viewBox="0 0 120 120">
+                  <circle cx="60" cy="60" r="54" fill="none" stroke="#e5e7eb" strokeWidth="8" />
+                  <circle 
+                    cx="60" cy="60" r="54" 
+                    fill="none" 
+                    stroke={riskScore >= 60 ? '#dc2626' : '#f59e0b'} 
+                    strokeWidth="8"
+                    strokeDasharray={`${(riskScore / 100) * 339.29} 339.29`}
+                    strokeLinecap="round"
+                  />
+                </svg>
+                <div className="absolute inset-0 flex flex-col items-center justify-center">
+                  <p className={`text-h2 font-bold ${colors.text}`}>{riskScore}%</p>
+                  <p className="text-label text-muted">위험</p>
                 </div>
               </div>
+            </div>
+            <div className="text-sm text-muted space-y-2 text-left">
+              <p className="font-semibold">{SITE_DATA.dangerSignalsDetected}개 위험 신호 감지</p>
+              <p>5개 항목 중</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── 1. 운영 이력 ── */}
-      <section className="py-16 md:py-24 px-6 md:px-20 bg-secondary border-b border-border/50">
+      {/* ── SECTION 1: 운영 이력 ── */}
+      <section className="py-16 md:py-24 px-6 md:px-20 bg-background border-b border-border/50">
         <div className="max-w-5xl mx-auto">
-          <div className="flex items-center gap-3 mb-8">
-            <div className="w-10 h-10 rounded-lg bg-amber-100 flex items-center justify-center">
-              <Clock className="w-5 h-5 text-amber-600" />
-            </div>
-            <h2 className="text-h2 text-heading">운영 이력</h2>
-          </div>
-          
-          <div className="grid lg:grid-cols-2 gap-6">
-            {/* 기본 정보 */}
-            <div className="p-6 rounded-xl bg-background border-2 border-border">
-              <h3 className="text-h4 text-heading mb-4">기본 정보</h3>
-              <div className="space-y-1">
-                {[
-                  { label: '운영 시작', value: `${SITE_DATA.operationStart} (${SITE_DATA.operationYears})` },
-                  { label: '도메인 변경', value: `${SITE_DATA.domainChanges}회 (최근: ${SITE_DATA.lastDomainChange})` },
-                  { label: '마지막 점검일', value: SITE_DATA.lastChecked },
-                  { label: '현재 분류', value: `[${SITE_DATA.statusLabel}]`, highlight: true },
-                ].map((item, i) => (
-                  <div key={i} className="flex justify-between py-3 border-b border-border/50 last:border-0">
-                    <span className="text-body-sm text-muted">{item.label}</span>
-                    <span className={`text-body-sm font-medium ${item.highlight ? 'text-amber-600' : 'text-heading'}`}>
-                      {item.value}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
+          <h2 className="text-h2 text-heading mb-4 flex items-center gap-3">
+            <Clock className="w-8 h-8 text-primary" />
+            운영 이력
+          </h2>
+          <p className="text-body-lg text-body mb-12" style={{ wordBreak: 'keep-all' }}>
+            {SITE_DATA.name}의 운영 기간, 도메인 변경, 분류 변동 이력을 추적합니다.
+          </p>
 
+          <div className="space-y-8">
             {/* 타임라인 */}
-            <div className="p-6 rounded-xl bg-background border-2 border-border">
+            <div className="p-6 rounded-xl bg-secondary border-2 border-border">
               <h3 className="text-h4 text-heading mb-6">변경 이력 타임라인</h3>
               <div className="space-y-4">
                 {TIMELINE_DATA.map((item, i) => (
@@ -242,136 +319,148 @@ export default function MeoktuPolicePage() {
                 ))}
               </div>
             </div>
-          </div>
 
-          {/* 운영 정보 상세 테이블 */}
-          <div className="mt-8 p-6 rounded-xl bg-background border-2 border-border">
-            <div className="flex items-center justify-between mb-6">
-              <h3 className="text-h4 text-heading">운영 정보 상세</h3>
-              <span className="text-label text-muted">검증 시점: {OPERATION_INFO.verifiedAt}</span>
-            </div>
-            <div className="grid md:grid-cols-2 gap-x-8 gap-y-1">
-              {[
-                { label: '현재 도메인', value: OPERATION_INFO.currentDomain },
-                { label: '이전 도메인', value: OPERATION_INFO.previousDomains.join(', ') || '없음' },
-                { label: '서버 위치', value: OPERATION_INFO.serverLocation, warn: OPERATION_INFO.serverLocation.includes('해외') },
-                { label: 'IP 변경 횟수', value: `${OPERATION_INFO.ipHistory}회`, warn: OPERATION_INFO.ipHistory >= 3 },
-                { label: '도메인 등록기관', value: OPERATION_INFO.registrar },
-                { label: 'SSL 인증서', value: OPERATION_INFO.sslStatus === 'valid' ? '유효' : '만료/미확인', warn: OPERATION_INFO.sslStatus !== 'valid' },
-                { label: '고객센터', value: OPERATION_INFO.customerService },
-                { label: '운영 시간', value: OPERATION_INFO.operationHours },
-              ].map((item, i) => (
-                <div key={i} className="flex justify-between py-3 border-b border-border/50">
-                  <span className="text-body-sm text-muted">{item.label}</span>
-                  <span className={`text-body-sm font-medium text-right max-w-[60%] ${item.warn ? 'text-amber-600' : 'text-heading'}`}>
-                    {item.value}
-                  </span>
-                </div>
-              ))}
-            </div>
-            <p className="text-xs text-muted mt-4">
-              * 위 정보는 검증 시점({OPERATION_INFO.verifiedAt}) 기준이며, 실제 현황과 다를 수 있습니다.
-            </p>
-          </div>
-
-          {/* 제보 추이 (최근 6개월) */}
-          <div className="mt-8 p-6 rounded-xl bg-background border-2 border-border">
-            <div className="flex items-center justify-between mb-6">
-              <h3 className="text-h4 text-heading">제보 추이 (최근 6개월)</h3>
-              <span className={`px-3 py-1 rounded-full text-label font-semibold ${
-                REPORT_TREND.reduce((sum, m) => sum + m.count, 0) === 0
-                  ? 'bg-green-100 text-green-700'
-                  : REPORT_TREND.reduce((sum, m) => sum + m.count, 0) >= 5
-                  ? 'bg-red-100 text-red-700'
-                  : 'bg-amber-100 text-amber-700'
-              }`}>
-                {REPORT_TREND.reduce((sum, m) => sum + m.count, 0) === 0 
-                  ? '제보 없음' 
-                  : `총 ${REPORT_TREND.reduce((sum, m) => sum + m.count, 0)}건`}
-              </span>
-            </div>
-            
-            {/* 간단한 바 차트 */}
-            <div className="flex items-end gap-2 h-32 mb-4">
-              {REPORT_TREND.map((m, i) => {
-                const maxCount = Math.max(...REPORT_TREND.map(r => r.count), 1)
-                const height = m.count === 0 ? 4 : (m.count / maxCount) * 100
-                return (
-                  <div key={i} className="flex-1 flex flex-col items-center gap-2">
-                    <span className="text-label text-muted">{m.count}건</span>
-                    <div 
-                      className={`w-full rounded-t ${
-                        m.count === 0 ? 'bg-slate-200' :
-                        m.count >= 2 ? 'bg-red-400' : 'bg-amber-400'
-                      }`}
-                      style={{ height: `${height}%`, minHeight: '4px' }}
-                    />
-                    <span className="text-xs text-muted">{m.month.split('.')[1]}월</span>
-                  </div>
-                )
-              })}
-            </div>
-            
-            <p className="text-xs text-muted">
-              {REPORT_TREND.reduce((sum, m) => sum + m.count, 0) === 0 
-                ? '최근 6개월간 제보가 없습니다. 이는 긍정적 신호입니다.'
-                : REPORT_TREND.reduce((sum, m) => sum + m.count, 0) >= 5
-                ? '최근 6개월간 반복 제보가 확인되었습니다. 이용에 각별한 주의가 필요합니다.'
-                : '최근 6개월간 일부 제보가 확인되었습니다. 이용 전 확인을 권장합니다.'}
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* ── 2. 보증 상태 ── */}
-      <section className="py-16 md:py-24 px-6 md:px-20 bg-background border-b border-border/50">
-        <div className="max-w-5xl mx-auto">
-          <div className="flex items-center gap-3 mb-8">
-            <div className="w-10 h-10 rounded-lg bg-amber-100 flex items-center justify-center">
-              <Shield className="w-5 h-5 text-amber-600" />
-            </div>
-            <h2 className="text-h2 text-heading">보증 상태</h2>
-          </div>
-          
-          <div className="grid md:grid-cols-3 gap-6">
-            {GUARANTEE_STATUS.map((item, i) => (
-              <div key={i} className={`p-6 rounded-xl border-2 ${
-                item.status === 'danger' ? 'bg-red-50 border-red-200' :
-                item.status === 'warning' ? 'bg-amber-50 border-amber-200' : 'bg-green-50 border-green-200'
-              }`}>
-                <div className="flex items-center gap-2 mb-3">
-                  {item.status === 'danger' ? (
-                    <AlertCircle className="w-5 h-5 text-red-600" />
-                  ) : item.status === 'warning' ? (
-                    <AlertTriangle className="w-5 h-5 text-amber-600" />
-                  ) : (
-                    <CheckCircle className="w-5 h-5 text-green-600" />
-                  )}
-                  <span className={`text-label font-semibold ${
-                    item.status === 'danger' ? 'text-red-700' :
-                    item.status === 'warning' ? 'text-amber-700' : 'text-green-700'
-                  }`}>{item.statusLabel}</span>
-                </div>
-                <h3 className="text-h4 text-heading mb-2">{item.label}</h3>
-                <p className="text-body-sm text-body">{item.desc}</p>
+            {/* 운영 정보 상세 테이블 */}
+            <div className="p-6 rounded-xl bg-secondary border-2 border-border">
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-h4 text-heading flex items-center gap-2">
+                  <Globe className="w-5 h-5 text-primary" />
+                  운영 정보 상세
+                </h3>
+                <span className="text-label text-muted">검증: {OPERATION_INFO.verifiedAt}</span>
               </div>
-            ))}
+              <div className="grid md:grid-cols-2 gap-x-8 gap-y-1">
+                {[
+                  { label: '현재 도메인', value: OPERATION_INFO.currentDomain, icon: Globe, warn: false },
+                  { label: '이전 도메인', value: OPERATION_INFO.previousDomains.join(', '), icon: AlertTriangle, warn: true },
+                  { label: '서버 위치', value: OPERATION_INFO.serverLocation, icon: Globe, warn: true },
+                  { label: 'IP 변경 횟수', value: `${OPERATION_INFO.ipHistory}회`, icon: Zap, warn: OPERATION_INFO.ipHistory >= 3 },
+                  { label: '고객센터', value: OPERATION_INFO.customerService, icon: Inbox, warn: true },
+                  { label: '운영 시간', value: OPERATION_INFO.operationHours, icon: Clock, warn: true },
+                ].map((item, i) => {
+                  const Icon = item.icon
+                  return (
+                    <div key={i} className="flex items-start justify-between py-4 border-b border-border/50 group hover:bg-background/50 px-2 -mx-2 rounded transition-colors">
+                      <div className="flex items-start gap-3">
+                        <Icon className={`w-5 h-5 mt-0.5 flex-shrink-0 ${item.warn ? 'text-amber-600' : 'text-muted'}`} />
+                        <span className="text-body-sm text-muted">{item.label}</span>
+                      </div>
+                      <span className={`text-body-sm font-medium text-right max-w-[50%] ${item.warn ? 'text-amber-700' : 'text-heading'}`}>
+                        {item.value}
+                      </span>
+                    </div>
+                  )
+                })}
+              </div>
+              <p className="text-xs text-muted mt-4">* 위 정보는 검증 시점 기준이며, 실제 현황과 다를 수 있습니다.</p>
+            </div>
+
+            {/* 제보 추이 */}
+            <div className="p-6 rounded-xl bg-secondary border-2 border-border">
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-h4 text-heading flex items-center gap-2">
+                  <BarChart3 className="w-5 h-5 text-primary" />
+                  제보 추이 (최근 6개월)
+                </h3>
+                <span className={`px-3 py-1 rounded-full text-label font-semibold ${
+                  REPORT_TREND.reduce((sum, m) => sum + m.count, 0) === 0
+                    ? 'bg-green-100 text-green-700'
+                    : REPORT_TREND.reduce((sum, m) => sum + m.count, 0) >= 5
+                    ? 'bg-red-100 text-red-700'
+                    : 'bg-amber-100 text-amber-700'
+                }`}>
+                  {REPORT_TREND.reduce((sum, m) => sum + m.count, 0) === 0 
+                    ? '제보 없음' 
+                    : `총 ${REPORT_TREND.reduce((sum, m) => sum + m.count, 0)}건`}
+                </span>
+              </div>
+              
+              <div className="flex items-end gap-2 h-40 mb-4">
+                {REPORT_TREND.map((m, i) => {
+                  const maxCount = Math.max(...REPORT_TREND.map(r => r.count), 1)
+                  const height = m.count === 0 ? 4 : (m.count / maxCount) * 100
+                  return (
+                    <div key={i} className="flex-1 flex flex-col items-center gap-2">
+                      <span className="text-label text-muted text-xs">{m.count}건</span>
+                      <div 
+                        className={`w-full rounded-t transition-all ${
+                          m.count === 0 ? 'bg-slate-200' :
+                          m.count >= 2 ? 'bg-red-400' : 'bg-amber-400'
+                        }`}
+                        style={{ height: `${height}%`, minHeight: '4px' }}
+                      />
+                      <span className="text-xs text-muted">{m.month.split('.')[1]}월</span>
+                    </div>
+                  )
+                })}
+              </div>
+              
+              <p className="text-xs text-muted">
+                {REPORT_TREND.reduce((sum, m) => sum + m.count, 0) === 0 
+                  ? '최근 6개월간 제보가 없습니다.'
+                  : REPORT_TREND.reduce((sum, m) => sum + m.count, 0) >= 5
+                  ? '반복 제보가 확인되었습니다. 각별한 주의가 필요합니다.'
+                  : '일부 제보가 확인되었습니다.'}
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ── 3. 사용자 후기 ── */}
+      {/* ── SECTION 2: 보증 상태 ── */}
       <section className="py-16 md:py-24 px-6 md:px-20 bg-secondary border-b border-border/50">
         <div className="max-w-5xl mx-auto">
-          <div className="flex items-center gap-3 mb-8">
-            <div className="w-10 h-10 rounded-lg bg-amber-100 flex items-center justify-center">
-              <Users className="w-5 h-5 text-amber-600" />
-            </div>
-            <h2 className="text-h2 text-heading">사용자 후기</h2>
+          <h2 className="text-h2 text-heading mb-4 flex items-center gap-3">
+            <Shield className="w-8 h-8 text-primary" />
+            보증 상태
+          </h2>
+          <p className="text-body-lg text-body mb-12" style={{ wordBreak: 'keep-all' }}>
+            보증금 예치, 운영 안정성, 환전 처리 상태를 종합적으로 평가합니다.
+          </p>
+
+          <div className="space-y-4">
+            {GUARANTEE_STATUS.map((item, i) => {
+              const statusMap = {
+                danger: { icon: AlertCircle, bg: 'bg-red-50', border: 'border-red-200', textColor: 'text-red-700' },
+                warning: { icon: AlertTriangle, bg: 'bg-amber-50', border: 'border-amber-200', textColor: 'text-amber-700' },
+                safe: { icon: CheckCircle, bg: 'bg-green-50', border: 'border-green-200', textColor: 'text-green-700' },
+              }
+              const s = statusMap[item.status as keyof typeof statusMap]
+              const Icon = s.icon
+              return (
+                <div key={i} className={`p-6 rounded-xl ${s.bg} border-2 ${s.border}`}>
+                  <div className="flex items-start gap-4">
+                    <Icon className={`w-6 h-6 mt-1 flex-shrink-0 ${s.textColor}`} />
+                    <div className="flex-1">
+                      <div className="flex items-center justify-between mb-2">
+                        <h3 className="text-body font-semibold text-heading">{item.label}</h3>
+                        <span className={`px-3 py-1 rounded text-label font-semibold ${s.bg} ${s.textColor}`}>
+                          {item.statusLabel}
+                        </span>
+                      </div>
+                      <p className="text-body-sm text-body">{item.desc}</p>
+                    </div>
+                  </div>
+                </div>
+              )
+            })}
           </div>
-          
+        </div>
+      </section>
+
+      {/* ── SECTION 3: 사용자 후기 + 제보 통계 ── */}
+      <section className="py-16 md:py-24 px-6 md:px-20 bg-background border-b border-border/50">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-h2 text-heading mb-4 flex items-center gap-3">
+            <Users className="w-8 h-8 text-primary" />
+            사용자 후기
+          </h2>
+          <p className="text-body-lg text-body mb-12" style={{ wordBreak: 'keep-all' }}>
+            접수된 제보와 사용자 후기를 분석하여 주요 이슈를 파악합니다.
+          </p>
+
           {/* 제보 유형 분포 */}
-          <div className="p-6 rounded-xl bg-background border-2 border-border mb-6">
+          <div className="p-6 rounded-xl bg-secondary border-2 border-border mb-8">
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-h4 text-heading">제보 유형 분포</h3>
               <span className={`px-3 py-1 rounded-full text-label font-semibold ${
@@ -385,7 +474,6 @@ export default function MeoktuPolicePage() {
               </span>
             </div>
             
-            {/* 비율 바 차트 */}
             <div className="space-y-4 mb-6">
               {REPORT_STATS.map((stat, i) => {
                 const percentage = SITE_DATA.totalReports > 0 
@@ -409,191 +497,165 @@ export default function MeoktuPolicePage() {
               })}
             </div>
             
-            {/* 요약 카드 */}
             <div className="grid md:grid-cols-3 gap-4">
               {REPORT_STATS.map((stat, i) => (
-                <div key={i} className="text-center p-4 rounded-lg bg-secondary">
+                <div key={i} className="text-center p-4 rounded-lg bg-background border border-border">
                   <p className="text-h3 text-heading font-bold">{stat.count}건</p>
                   <p className="text-body-sm text-muted">{stat.label}</p>
                 </div>
               ))}
             </div>
-            
-            <p className="text-xs text-muted mt-4">
-              {SITE_DATA.totalReports === 0 
-                ? '현재까지 접수된 제보가 없습니다. 이는 긍정적 신호입니다.'
-                : SITE_DATA.totalReports >= 5
-                ? '반복 제보가 확인되었습니다. 이용에 각별한 주의가 필요합니다.'
-                : '일부 제보가 확인되었습니다. 이용 전 확인을 권장합니다.'}
-            </p>
           </div>
 
-          {/* 제보 이력 + 증빙 자료 */}
-          <div className="grid lg:grid-cols-3 gap-6">
-            <div className="lg:col-span-2 space-y-4">
-              <h3 className="text-h4 text-heading mb-4">최근 제보 이력</h3>
-              {REPORT_HISTORY.map((item, i) => (
-                <div key={i} className="p-4 rounded-xl bg-background border-2 border-border">
-                  <div className="flex items-start gap-4">
-                    <div className="px-2 py-1 rounded bg-amber-100 text-amber-700 text-label whitespace-nowrap">
-                      {item.date}
+          {/* 제보 이력 갤러리 */}
+          <div className="p-6 rounded-xl bg-secondary border-2 border-border">
+            <h3 className="text-h4 text-heading mb-6">최근 제보 이력</h3>
+            <div className="space-y-4">
+              {REPORT_HISTORY.map((report, i) => (
+                <div key={i} className="p-4 rounded-lg bg-background border border-border hover:border-primary/50 transition-colors">
+                  <div className="flex items-start justify-between mb-3">
+                    <div>
+                      <span className="text-label text-muted">{report.date}</span>
+                      <span className="px-3 py-1 rounded text-label font-semibold bg-amber-100 text-amber-700 ml-3">
+                        {report.type}
+                      </span>
                     </div>
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        <span className="text-body font-medium text-heading">{item.type}</span>
-                        {item.hasEvidence && (
-                          <span className="px-2 py-0.5 rounded bg-slate-100 text-slate-600 text-xs">증빙 첨부</span>
-                        )}
-                      </div>
-                      <p className="text-body-sm text-body">{item.summary}</p>
-                    </div>
+                    {report.hasEvidence && (
+                      <ImageIcon className="w-5 h-5 text-primary" />
+                    )}
+                  </div>
+                  <p className="text-body-sm text-body">{report.summary}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* 증빙 자료 갤러리 */}
+          <div className="mt-8 p-6 rounded-xl bg-secondary border-2 border-border">
+            <h3 className="text-h4 text-heading mb-6 flex items-center gap-2">
+              <ImageIcon className="w-5 h-5 text-primary" />
+              증빙 자료 갤러리
+            </h3>
+            <div className="grid md:grid-cols-4 gap-4">
+              {[1, 2, 3, 4].map((i) => (
+                <div 
+                  key={i}
+                  className="h-40 rounded-lg bg-background border-2 border-border flex items-center justify-center hover:border-primary/50 transition-colors cursor-pointer group"
+                >
+                  <div className="text-center">
+                    <img 
+                      src={`/placeholder.svg?height=160&width=200`}
+                      alt={`증빙 자료 ${i}`}
+                      className="w-full h-full object-cover rounded-lg"
+                    />
                   </div>
                 </div>
               ))}
             </div>
-
-            {/* 증빙 자료 갤러리 Placeholder */}
-            <div className="p-6 rounded-xl bg-background border-2 border-border">
-              <h3 className="text-h4 text-heading mb-4">증빙 자료</h3>
-              <div className="grid grid-cols-2 gap-3">
-                {[1, 2, 3, 4].map((i) => (
-                  <div key={i} className="aspect-square rounded-lg bg-slate-100 flex items-center justify-center">
-                    <div className="text-center">
-                      <ImageIcon className="w-6 h-6 text-slate-400 mx-auto mb-1" />
-                      <p className="text-xs text-muted">증빙 {i}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <p className="text-xs text-muted mt-4 text-center">
-                * 개인정보 마스킹 처리됨
-              </p>
-            </div>
           </div>
         </div>
       </section>
 
-      {/* ── 4. 먹튀 의심 신호 ── */}
-      <section className="py-16 md:py-24 px-6 md:px-20 bg-background border-b border-border/50">
+      {/* ── SECTION 4: 먹튀 의심 신호 ── */}
+      <section className="py-16 md:py-24 px-6 md:px-20 bg-secondary border-b border-border/50">
         <div className="max-w-5xl mx-auto">
-          <div className="flex items-center gap-3 mb-8">
-            <div className="w-10 h-10 rounded-lg bg-red-100 flex items-center justify-center">
-              <TrendingDown className="w-5 h-5 text-red-600" />
-            </div>
-            <h2 className="text-h2 text-heading">먹튀 의심 신호</h2>
-          </div>
-          
-          <p className="text-body-lg text-body max-w-2xl mb-8 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
-            아래 항목은 {SITE_DATA.name}에서 확인된 위험 신호입니다. 5개 중 {detectedCount}개 이상 해당 시 이용에 각별한 주의가 필요합니다.
+          <h2 className="text-h2 text-heading mb-4 flex items-center gap-3">
+            <Zap className="w-8 h-8 text-primary" />
+            먹튀 의심 신호
+          </h2>
+          <p className="text-body-lg text-body mb-12" style={{ wordBreak: 'keep-all' }}>
+            이 사이트에서 감지된 위험 신호를 정리합니다. 2개 이상 해당 시 주의 필요, 4개 이상 해당 시 이용 자제를 권고합니다.
           </p>
 
-          <div className="space-y-4">
+          <div className="space-y-3">
             {DANGER_SIGNALS.map((item, i) => (
-              <div key={i} className={`flex items-center gap-4 p-4 rounded-xl border-2 ${
-                item.detected 
-                  ? 'bg-red-50 border-red-200' 
-                  : 'bg-background border-border'
-              }`}>
-                {item.detected ? (
-                  <AlertCircle className="w-6 h-6 text-red-600 flex-shrink-0" />
-                ) : (
-                  <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0" />
-                )}
-                <span className={`text-body font-medium flex-1 ${item.detected ? 'text-red-700' : 'text-heading'}`}>
-                  {item.signal}
-                </span>
-                <span className={`text-label font-semibold ${item.detected ? 'text-red-600' : 'text-green-600'}`}>
-                  {item.detected ? '감지됨' : '미감지'}
-                </span>
+              <div 
+                key={i}
+                className={`p-4 rounded-lg border-2 flex items-center gap-4 transition-colors ${
+                  item.detected 
+                    ? 'bg-red-50 border-red-200' 
+                    : 'bg-green-50 border-green-200'
+                }`}
+              >
+                <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 ${
+                  item.detected 
+                    ? 'bg-red-200' 
+                    : 'bg-green-200'
+                }`}>
+                  {item.detected ? (
+                    <AlertTriangle className="w-4 h-4 text-red-700" />
+                  ) : (
+                    <CheckCircle className="w-4 h-4 text-green-700" />
+                  )}
+                </div>
+                <div className="flex-1">
+                  <p className={`text-body-sm font-medium ${
+                    item.detected ? 'text-red-700' : 'text-green-700'
+                  }`}>
+                    {item.signal}
+                  </p>
+                  <p className="text-xs text-muted">
+                    {item.detected ? '이 신호가 감지되었습니다' : '이 신호는 감지되지 않았습니다'}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
 
-          {/* 경고 배너 */}
-          <div className={`mt-8 p-4 rounded-xl ${
-            detectedCount >= 4 ? 'bg-red-100 border-2 border-red-300' :
-            detectedCount >= 2 ? 'bg-amber-50 border-2 border-amber-200' : 'bg-green-50 border-2 border-green-200'
-          }`}>
-            <div className="flex items-start gap-3">
-              <AlertTriangle className={`w-5 h-5 mt-0.5 flex-shrink-0 ${
-                detectedCount >= 4 ? 'text-red-600' :
-                detectedCount >= 2 ? 'text-amber-600' : 'text-green-600'
-              }`} />
-              <p className={`text-body-sm ${
-                detectedCount >= 4 ? 'text-red-800' :
-                detectedCount >= 2 ? 'text-amber-800' : 'text-green-800'
-              }`} style={{ wordBreak: 'keep-all' }}>
-                <strong>
-                  {detectedCount >= 4 ? '경고:' : detectedCount >= 2 ? '주의:' : '참고:'}
-                </strong>{' '}
-                5개 신호 중 {detectedCount}개가 감지되었습니다.{' '}
-                {detectedCount >= 4 
-                  ? '이용을 권장하지 않으며, 피해 발생 시 즉시 제보해 주시기 바랍니다.'
-                  : detectedCount >= 2 
-                  ? '이용 전 충분한 확인이 필요하며, 피해 발생 시 즉시 제보해 주시기 바랍니다.'
-                  : '현재까지 심각한 위험 신호는 감지되지 않았습니다.'}
-              </p>
-            </div>
+          <div className="mt-8 p-6 rounded-xl bg-background border-2 border-border">
+            <p className="text-body-sm text-muted">
+              <span className="font-semibold text-heading">위험도 평가:</span> {SITE_DATA.dangerSignalsDetected}개 신호 감지됨. 
+              {SITE_DATA.dangerSignalsDetected >= 4 
+                ? ' 이 사이트의 이용을 자제하시기 바랍니다.'
+                : SITE_DATA.dangerSignalsDetected >= 2
+                ? ' 이용 전 충분한 검토를 권고합니다.'
+                : ' 상대적으로 안정적입니다.'}
+            </p>
           </div>
         </div>
       </section>
 
-      {/* ── 5. 신고 방법 ── */}
-      <section className="py-16 md:py-24 px-6 md:px-20 bg-secondary border-b border-border/50">
+      {/* ── SECTION 5: 신고 방법 ── */}
+      <section className="py-16 md:py-24 px-6 md:px-20 bg-background border-b border-border/50">
         <div className="max-w-5xl mx-auto">
-          <div className="flex items-center gap-3 mb-8">
-            <div className="w-10 h-10 rounded-lg bg-amber-100 flex items-center justify-center">
-              <FileText className="w-5 h-5 text-amber-600" />
-            </div>
-            <h2 className="text-h2 text-heading">신고 방법</h2>
-          </div>
-          
-          <p className="text-body-lg text-body max-w-2xl mb-8 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
-            {SITE_DATA.name} 이용 중 피해를 경험하셨다면 아래 경로로 제보해 주시기 바랍니다. 누적 제보는 분기별 재검증에 반영됩니다.
+          <h2 className="text-h2 text-heading mb-4 flex items-center gap-3">
+            <FileText className="w-8 h-8 text-primary" />
+            신고 방법
+          </h2>
+          <p className="text-body-lg text-body mb-12" style={{ wordBreak: 'keep-all' }}>
+            이 사이트에서 피해를 입으셨거나 의심 사항이 있으시면 안심고고에 제보해주세요. 모든 정보는 익명으로 처리되며 검증에 활용됩니다.
           </p>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="p-6 rounded-xl bg-background border-2 border-border">
-              <h3 className="text-h4 text-heading mb-4">안심고고 제보</h3>
-              <ul className="space-y-3">
-                <li className="flex items-start gap-2">
-                  <ChevronRight className="w-4 h-4 text-primary mt-1 flex-shrink-0" />
-                  <span className="text-body-sm text-body">제보 폼: /support/contact/</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <ChevronRight className="w-4 h-4 text-primary mt-1 flex-shrink-0" />
-                  <span className="text-body-sm text-body">필요 정보: 사이트명, 피해 일자, 금액, 증빙 자료</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <ChevronRight className="w-4 h-4 text-primary mt-1 flex-shrink-0" />
-                  <span className="text-body-sm text-body">익명 제보 가능, 신원 정보 마스킹 처리</span>
-                </li>
-              </ul>
-              <a 
-                href="/support/contact/"
-                className="inline-flex items-center gap-2 mt-6 px-4 py-2 rounded-lg bg-primary text-primary-foreground text-body-sm font-semibold hover:bg-primary/90 transition-colors"
-              >
-                제보하기
-                <ExternalLink className="w-4 h-4" />
-              </a>
-            </div>
-            <div className="p-6 rounded-xl bg-background border-2 border-border">
-              <h3 className="text-h4 text-heading mb-4">제보 후 처리 과정</h3>
-              <ul className="space-y-4">
-                {[
-                  { step: 1, text: '제보 접수 및 사실 확인 (1~3일)' },
-                  { step: 2, text: '동일 패턴 누적 여부 확인' },
-                  { step: 3, text: '증빙 자료 검토 및 분류' },
-                  { step: 4, text: '분기 점검 시 분류 반영' },
-                ].map((item) => (
-                  <li key={item.step} className="flex items-start gap-3">
-                    <span className="w-6 h-6 rounded-full bg-primary/20 text-primary text-label font-semibold flex items-center justify-center flex-shrink-0">
-                      {item.step}
-                    </span>
-                    <span className="text-body-sm text-body">{item.text}</span>
-                  </li>
-                ))}
-              </ul>
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              { step: '1', title: '피해 정보 작성', desc: '언제, 어떤 피해를 입으셨는지 작성해주세요' },
+              { step: '2', title: '증빙 자료 첨부', desc: '거래 내역, 채팅 기록 등 증빙자료를 첨부해주세요' },
+              { step: '3', title: '제보 완료', desc: '검증팀에서 신속히 검토 후 반영합니다' },
+            ].map((item, i) => (
+              <div key={i} className="p-6 rounded-xl bg-secondary border-2 border-border text-center">
+                <div className="w-12 h-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center mx-auto mb-4 text-h4 font-bold">
+                  {item.step}
+                </div>
+                <h3 className="text-h4 text-heading mb-2">{item.title}</h3>
+                <p className="text-body-sm text-body">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 p-6 rounded-xl bg-background border-2 border-border">
+            <div className="flex items-start gap-4">
+              <ExternalLink className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+              <div>
+                <h3 className="text-h4 text-heading mb-2">안심고고 제보 센터</h3>
+                <p className="text-body-sm text-body mb-4">아래 링크를 통해 피해 정보를 제보하실 수 있습니다.</p>
+                <a 
+                  href="/review/report"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground text-body-sm font-semibold hover:bg-primary/90 transition-colors"
+                >
+                  제보 센터 방문
+                  <ChevronRight className="w-4 h-4" />
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -601,16 +663,16 @@ export default function MeoktuPolicePage() {
 
       {/* ── FAQ ── */}
       <SectionFAQ 
-        items={FAQ_ITEMS} 
-        description={`${SITE_DATA.name} 먹튀 검증에 관한 자주 묻는 질문입니다.`}
+        items={FAQ_ITEMS}
+        description="먹튀폴리스 검증과 피해 예방에 관한 자주 묻는 질문입니다."
       />
 
-      {/* ── CTA ── */}
-      <section className="py-16 md:py-24 px-6 md:px-20 bg-accent border-b border-border/50">
+      {/* ── CTA SECTION ── */}
+      <section className="py-24 md:py-32 px-6 md:px-20 bg-accent border-b border-border/50">
         <div className="max-w-5xl mx-auto text-center">
-          <h2 className="text-h2 text-heading mb-6">피해 예방을 위해</h2>
+          <h2 className="text-h2 text-heading mb-6">더 알아보기</h2>
           <p className="text-body-lg text-body max-w-2xl mx-auto mb-10" style={{ wordBreak: 'keep-all' }}>
-            안심고고의 사용자 보호 가이드와 FAQ를 확인하여 피해를 예방하세요.
+            피해 예방 방법과 안심고고의 검증 방식을 더 자세히 확인하세요.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
@@ -632,7 +694,7 @@ export default function MeoktuPolicePage() {
       </section>
 
       {/* ── RELATED CATEGORIES ── */}
-      <SectionCategories currentPage="review" />
+      <SectionCategories currentPage="scam-review" />
     </main>
   )
 }
