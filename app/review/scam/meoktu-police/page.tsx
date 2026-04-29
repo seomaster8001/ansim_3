@@ -386,7 +386,7 @@ export default function MeoktuPolicePage() {
               </div>
 
               {/* 해석 가이드 */}
-              <div className="mt-3 p-2.5 rounded bg-slate-50 border border-border/50">
+              <div className="mt-3 p-2.5 rounded bg-slate-50 border border-border/50 mb-4">
                 <p className="text-xs text-body leading-relaxed" style={{ wordBreak: 'keep-all' }}>
                   {REPORT_TREND.reduce((sum, m) => sum + m.count, 0) === 0 
                     ? '안정적: 지난 6개월간 제보가 없어 운영이 안정적인 상태입니다.'
@@ -394,6 +394,54 @@ export default function MeoktuPolicePage() {
                     ? '불안정: 월 2건 이상의 반복 제보가 발생하고 있습니다. 주의가 필요합니다.'
                     : '주의: 산발적 제보가 확인되고 있습니다. 이용 전 상세 확인을 권장합니다.'}
                 </p>
+              </div>
+
+              {/* 전월 대비 변화 */}
+              <div className="grid grid-cols-2 gap-3 mb-4">
+                <div className="p-3 rounded-lg bg-blue-50 border border-blue-200">
+                  <p className="text-xs text-body mb-1">4월 제보</p>
+                  <p className="text-h4 text-heading font-bold">{REPORT_TREND[REPORT_TREND.length - 1]?.count || 0}건</p>
+                </div>
+                <div className={`p-3 rounded-lg border ${
+                  REPORT_TREND[REPORT_TREND.length - 1]?.count < REPORT_TREND[REPORT_TREND.length - 2]?.count
+                    ? 'bg-green-50 border-green-200'
+                    : REPORT_TREND[REPORT_TREND.length - 1]?.count > REPORT_TREND[REPORT_TREND.length - 2]?.count
+                    ? 'bg-red-50 border-red-200'
+                    : 'bg-slate-50 border-slate-200'
+                }`}>
+                  <p className="text-xs text-body mb-1">3월 대비</p>
+                  <div className="flex items-center gap-2">
+                    <p className="text-h4 text-heading font-bold">
+                      {REPORT_TREND[REPORT_TREND.length - 1]?.count === REPORT_TREND[REPORT_TREND.length - 2]?.count
+                        ? '→'
+                        : REPORT_TREND[REPORT_TREND.length - 1]?.count < REPORT_TREND[REPORT_TREND.length - 2]?.count
+                        ? '↓'
+                        : '↑'}
+                    </p>
+                    <p className="text-body-sm text-body">
+                      {Math.abs((REPORT_TREND[REPORT_TREND.length - 1]?.count || 0) - (REPORT_TREND[REPORT_TREND.length - 2]?.count || 0))}건
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* 색상 범례 */}
+              <div className="p-3 rounded-lg bg-slate-50 border border-border/50">
+                <p className="text-xs text-body font-medium mb-2">그래프 색상 범례</p>
+                <div className="flex gap-3 text-xs">
+                  <div className="flex items-center gap-1">
+                    <div className="w-3 h-3 rounded-sm bg-slate-200" />
+                    <span className="text-body">0건</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <div className="w-3 h-3 rounded-sm bg-amber-300" />
+                    <span className="text-body">1건</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <div className="w-3 h-3 rounded-sm bg-red-400" />
+                    <span className="text-body">2건+</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
