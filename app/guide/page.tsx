@@ -31,8 +31,14 @@ export default function GuidePage() {
         description="안전 가이드 종합 hub — 토토 기초 / 룰 안내 / 피해예방 체크리스트 / 단계별 학습 경로"
         icon={BookOpen}
         variant="accent"
-        widget={<CategoryHeroGuide />}
       />
+
+      {/* Category Widget Section */}
+      <section className="py-16 md:py-24 px-6 md:px-20 bg-background border-b border-border/50">
+        <div className="max-w-5xl mx-auto">
+          <CategoryHeroGuide />
+        </div>
+      </section>
 
       {/* ── ABOUT GUIDE SECTION ── */}
       <section className="py-24 md:py-32 px-6 md:px-20 bg-background border-b border-border/50">

@@ -29,8 +29,14 @@ export default function ReviewPage() {
         description="사이트 조회 / 사용자 제보 / 위험 신호 패턴 / 신고 절차"
         icon={AlertIcon}
         variant="accent"
-        widget={<CategoryHeroReview />}
       />
+
+      {/* Category Widget Section */}
+      <section className="py-16 md:py-24 px-6 md:px-20 bg-background border-b border-border/50">
+        <div className="max-w-5xl mx-auto">
+          <CategoryHeroReview />
+        </div>
+      </section>
 
       {/* ── DEFINITION SECTION ── */}
       <section className="py-24 md:py-32 px-6 md:px-20 bg-background border-t border-border">

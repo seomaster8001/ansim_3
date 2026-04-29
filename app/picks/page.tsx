@@ -61,8 +61,14 @@ export default function PicksPage() {
         description="스포츠 분석 종합 hub — 종목별 경기 데이터 / 라이브스코어 / 일정 / 통계 자료 디렉토리"
         icon={BarChart3}
         variant="accent"
-        widget={<CategoryHeroPicks />}
       />
+
+      {/* Category Widget Section */}
+      <section className="py-16 md:py-24 px-6 md:px-20 bg-background border-b border-border/50">
+        <div className="max-w-5xl mx-auto">
+          <CategoryHeroPicks />
+        </div>
+      </section>
 
       {/* ── INTRODUCTION SECTION ── */}
       <section className="py-24 md:py-32 px-6 md:px-20 bg-background border-b border-border/50">
@@ -131,7 +137,7 @@ export default function PicksPage() {
           <div className="p-7 rounded-xl bg-background border-2 border-border/50 shadow-sm">
             <p className="text-body text-body flex items-start gap-3 leading-relaxed">
               <span className="text-primary font-semibold mt-0.5 flex-shrink-0">•</span>
-              <span style={{ wordBreak: 'keep-all' }}>종목 추가는 분기 단위로 검토합니다. 사용자 제보와 분기 트래픽을 기준으로 확장 여부를 결정하고, 추가 종목은 분기 리포트를 통해 공개됩니다.</span>
+              <span style={{ wordBreak: 'keep-all' }}>종목 추가는 분기 단위로 검토합니다. 사용자 제보와 분기 트래픽을 기준으로 확장 여부를 ��정하고, 추가 종목은 분기 리포트를 통해 공개됩니다.</span>
             </p>
           </div>
         </div>

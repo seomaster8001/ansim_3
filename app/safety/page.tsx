@@ -111,8 +111,14 @@ export default function SafetyPage() {
         description="검증 통과 사이트만 모아둔 카테고리. 5단계 검증을 통과한 사이트를 Gold·Silver·Bronze Tier로 분류하고 분기마다 재점검합니다."
         icon={Shield}
         variant="accent"
-        widget={<CategoryHeroSafety />}
       />
+
+      {/* Category Widget Section */}
+      <section className="py-16 md:py-24 px-6 md:px-20 bg-background border-b border-border/50">
+        <div className="max-w-5xl mx-auto">
+          <CategoryHeroSafety />
+        </div>
+      </section>
 
       {/* ── WHAT IS CERTIFIED ── */}
       <section className="py-24 md:py-32 px-6 md:px-20 bg-background border-b border-border/50">

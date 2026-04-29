@@ -29,8 +29,14 @@ export default function DataPage() {
         description="데이터센터 종합 hub — Tier 랭킹 / 분기 통계 / 경기 일정 / 인포그래픽 데이터셋"
         icon={BarChart3}
         variant="accent"
-        widget={<CategoryHeroData />}
       />
+
+      {/* Category Widget Section */}
+      <section className="py-16 md:py-24 px-6 md:px-20 bg-background border-b border-border/50">
+        <div className="max-w-5xl mx-auto">
+          <CategoryHeroData />
+        </div>
+      </section>
 
       {/* ── ABOUT DATA CENTER SECTION ── */}
       <section className="py-24 md:py-32 px-6 md:px-20 bg-background border-b border-border/50">
