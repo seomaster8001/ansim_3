@@ -212,6 +212,32 @@ export default function AboutPage() {
         description="안심고고의 운영 방식과 정보 제공에 관한 자주 묻는 질문을 정리했습니다."
       />
 
+      {/* ── CTA SECTION ── */}
+      <section className="py-24 md:py-32 px-6 md:px-20 bg-accent border-b border-border/50">
+        <div className="max-w-5xl mx-auto text-center">
+          <h2 className="text-h2 text-heading mb-6">더 알아보기</h2>
+          <p className="text-body-lg text-body max-w-2xl mx-auto mb-10" style={{ wordBreak: 'keep-all' }}>
+            안심고고의 운영 방식과 정보 활용법을 더 자세히 확인하세요.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a
+              href="/guide/"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground text-body-sm font-semibold hover:bg-primary/90 transition-colors"
+            >
+              <Shield className="w-4 h-4" />
+              사용자 보호 가이드
+            </a>
+            <a
+              href="/support/faq/"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-background border-2 border-border text-heading text-body-sm font-semibold hover:border-primary/50 transition-colors"
+            >
+              <AlertCircle className="w-4 h-4" />
+              자주 묻는 질문
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* ── RELATED CATEGORIES ── */}
       <SectionCategories currentPage="about" />
     </main>
