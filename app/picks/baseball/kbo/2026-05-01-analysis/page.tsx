@@ -170,7 +170,7 @@ export default function KBOAnalysisPage() {
             </span>
           </div>
           
-          <h1 className="text-5xl md:text-6xl font-bold text-heading mb-6" style={{ wordBreak: 'keep-all' }}>
+          <h1 className="text-h1 text-heading mb-6" style={{ wordBreak: 'keep-all' }}>
             {MATCH_DATA.h1}
           </h1>
           <p className="text-body-lg text-body mb-8 max-w-3xl leading-relaxed" style={{ wordBreak: 'keep-all' }}>
