@@ -167,6 +167,7 @@ const FAQ_DATA = [
 // ─────────────────────────────────────────
 
 export default function DokkaebiWithdrawalPage() {
+  const totalReports6Months = WITHDRAWAL_REPORT_TRENDS.reduce((sum, r) => sum + r.count, 0)
   const delayReports = WITHDRAWAL_REPORT_TRENDS.filter(r => r.type === 'delay').reduce((sum, r) => sum + r.count, 0)
   const contactIssues = WITHDRAWAL_REPORT_TRENDS.filter(r => r.type === 'contact').reduce((sum, r) => sum + r.count, 0)
   const errorReports = WITHDRAWAL_REPORT_TRENDS.filter(r => r.type === 'error').reduce((sum, r) => sum + r.count, 0)
@@ -174,9 +175,19 @@ export default function DokkaebiWithdrawalPage() {
   return (
     <main className="w-full">
       {/* ── HERO SECTION ── */}
-      <section className="py-20 md:py-32 px-6 md:px-20 bg-background border-b border-border/50">
+      <section className="py-20 md:py-32 px-6 md:px-20 bg-gradient-to-b from-amber-50 to-background border-b border-border/50">
         <div className="max-w-5xl mx-auto">
-          <h1 className="text-h1 text-heading mb-6" style={{ wordBreak: 'keep-all' }}>
+          {/* GOLD 티어 배지 */}
+          <div className="flex items-center gap-3 mb-6">
+            <span className="px-3 py-1.5 rounded-full text-sm font-bold bg-amber-400 text-amber-900">GOLD Tier</span>
+            <span className="px-3 py-1.5 rounded-full text-sm font-medium bg-green-100 text-green-700 flex items-center gap-1.5">
+              <CheckCircle className="w-4 h-4" />
+              점검 통과
+            </span>
+            <span className="text-body-sm text-body">최종 확인: {SITE_DATA.lastUpdated}</span>
+          </div>
+
+          <h1 className="text-h1 text-heading mb-4" style={{ wordBreak: 'keep-all' }}>
             {SITE_DATA.h1}
           </h1>
           
@@ -185,18 +196,73 @@ export default function DokkaebiWithdrawalPage() {
           </p>
 
           {/* 퀵 스탯 */}
-          <div className="grid grid-cols-3 gap-4 max-w-2xl">
-            <div className="p-4 rounded-lg bg-secondary border border-border">
-              <p className="text-h3 text-heading font-bold mb-1">{SITE_DATA.cumulativeReports}건</p>
-              <p className="text-body-sm text-body">누적 환전 지연 제보</p>
-            </div>
-            <div className="p-4 rounded-lg bg-secondary border border-border">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="p-5 rounded-xl bg-background border-2 border-amber-200">
+              <div className="flex items-center justify-between mb-2">
+                <Shield className="w-5 h-5 text-amber-500" />
+                <span className="px-2 py-0.5 rounded text-xs font-medium bg-amber-100 text-amber-700">GOLD</span>
+              </div>
               <p className="text-h3 text-heading font-bold mb-1">{VERIFICATION_DATA.tier}</p>
               <p className="text-body-sm text-body">점검 등급</p>
             </div>
-            <div className="p-4 rounded-lg bg-secondary border border-border">
+            <div className="p-5 rounded-xl bg-background border-2 border-border">
+              <div className="flex items-center justify-between mb-2">
+                <Clock className="w-5 h-5 text-primary" />
+              </div>
               <p className="text-h3 text-heading font-bold mb-1">{VERIFICATION_DATA.checkFrequency}</p>
               <p className="text-body-sm text-body">점검 빈도</p>
+            </div>
+            <div className="p-5 rounded-xl bg-background border-2 border-red-200">
+              <div className="flex items-center justify-between mb-2">
+                <AlertTriangle className="w-5 h-5 text-red-500" />
+                <span className="px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-700">주의</span>
+              </div>
+              <p className="text-h3 text-heading font-bold mb-1">{SITE_DATA.cumulativeReports}건</p>
+              <p className="text-body-sm text-body">누적 환전 지연 제보</p>
+            </div>
+            <div className="p-5 rounded-xl bg-background border-2 border-border">
+              <div className="flex items-center justify-between mb-2">
+                <BarChart3 className="w-5 h-5 text-primary" />
+              </div>
+              <p className="text-h3 text-heading font-bold mb-1">{totalReports6Months}건</p>
+              <p className="text-body-sm text-body">최근 6개월 제보</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 편집자 의견 ── */}
+      <section className="py-10 px-6 md:px-20 bg-background border-b border-border/50">
+        <div className="max-w-5xl mx-auto">
+          <div className="p-6 rounded-xl border-2 border-amber-200 bg-amber-50/50">
+            <div className="flex items-start gap-4">
+              <div className="w-10 h-10 rounded-full bg-amber-400 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <FileText className="w-5 h-5 text-amber-900" />
+              </div>
+
+              <div className="flex-1">
+                <div className="flex items-center justify-between mb-3">
+                  <div>
+                    <span className="text-body font-bold text-heading">편집자 의견</span>
+                    <span className="ml-2 px-2 py-0.5 rounded text-xs font-medium bg-amber-100 text-amber-700">GOLD 분석</span>
+                  </div>
+                  <span className="text-xs text-body">안심고고 분석팀 / {SITE_DATA.lastUpdated}</span>
+                </div>
+
+                <p className="text-body text-body leading-relaxed mb-4" style={{ wordBreak: 'keep-all' }}>
+                  도깨비는 GOLD Tier로 분기 4회 정기 점검을 통과하고 있지만, <strong className="text-heading">누적 환전 지연 제보가 42건</strong>으로 동일 등급 경쟁 사이트 대비 다소 높은 수치입니다.
+                  특히 최근 6개월간 월평균 6건 이상의 제보가 지속되고 있어 <strong className="text-heading">출금 시 여유 시간 확보</strong>를 권장합니다.
+                </p>
+                <p className="text-body text-body leading-relaxed" style={{ wordBreak: 'keep-all' }}>
+                  핵심 변수는 <strong className="text-heading">피크 시간대(저녁 8~11시) 처리 지연</strong>입니다.
+                  해당 시간대를 피해 출금 신청하면 처리 속도가 개선될 수 있습니다. 본 의견은 데이터 기반의 정보 제공 목적이며 이용을 권유하지 않습니다.
+                </p>
+
+                <div className="mt-4 pt-4 border-t border-amber-200/50 flex items-center gap-2">
+                  <Shield className="w-3.5 h-3.5 text-body" />
+                  <span className="text-xs text-body">정보 제공 목적 / 이용 권유 아님 / KGAB 톤앤매너 준수</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
