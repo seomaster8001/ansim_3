@@ -23,10 +23,10 @@ export default function DataPage() {
     <main 
       data-category="data" 
       style={{
-        '--primary': '#64748b',
+        '--primary': '#4f46e5',
         '--primary-foreground': '#ffffff',
-        '--accent': '#f8fafc',
-        '--accent-foreground': '#334155',
+        '--accent': '#eef2ff',
+        '--accent-foreground': '#3730a3',
       } as React.CSSProperties}
       className="min-h-screen bg-background font-sans"
     >
