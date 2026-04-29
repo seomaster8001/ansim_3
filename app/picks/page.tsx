@@ -2,7 +2,6 @@ import { ChevronRight, BarChart3, TrendingUp, Clock, Users, BookOpen, AlertCircl
 import { SectionFAQ } from '@/components/section-faq'
 import { SectionCategories } from '@/components/section-categories'
 import { SectionHero } from '@/components/section-hero'
-import { CategoryHeroPicks } from '@/components/category-hero-picks'
 
 export default function PicksPage() {
 
@@ -62,13 +61,6 @@ export default function PicksPage() {
         icon={BarChart3}
         variant="accent"
       />
-
-      {/* Category Widget Section */}
-      <section className="py-16 md:py-24 px-6 md:px-20 bg-background border-b border-border/50">
-        <div className="max-w-5xl mx-auto">
-          <CategoryHeroPicks />
-        </div>
-      </section>
 
       {/* ── INTRODUCTION SECTION ── */}
       <section className="py-24 md:py-32 px-6 md:px-20 bg-background border-b border-border/50">

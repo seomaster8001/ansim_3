@@ -2,7 +2,6 @@ import { BarChart3, TrendingUp, Calendar, Download, CheckCircle, Database, Alert
 import { SectionHero } from '@/components/section-hero'
 import { SectionFAQ } from '@/components/section-faq'
 import { SectionCategories } from '@/components/section-categories'
-import { CategoryHeroData } from '@/components/category-hero-data'
 
 const FAQ_ITEMS = [
   {
@@ -30,13 +29,6 @@ export default function DataPage() {
         icon={BarChart3}
         variant="accent"
       />
-
-      {/* Category Widget Section */}
-      <section className="py-16 md:py-24 px-6 md:px-20 bg-background border-b border-border/50">
-        <div className="max-w-5xl mx-auto">
-          <CategoryHeroData />
-        </div>
-      </section>
 
       {/* ── ABOUT DATA CENTER SECTION ── */}
       <section className="py-24 md:py-32 px-6 md:px-20 bg-background border-b border-border/50">

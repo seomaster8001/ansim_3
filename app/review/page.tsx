@@ -2,7 +2,6 @@ import { ChevronRight, AlertTriangle, Shield, CheckCircle, Clock, FileText, Tren
 import { SectionFAQ } from '@/components/section-faq'
 import { SectionCategories } from '@/components/section-categories'
 import { SectionHero } from '@/components/section-hero'
-import { CategoryHeroReview } from '@/components/category-hero-review'
 
 const FAQ_ITEMS = [
   {
@@ -30,13 +29,6 @@ export default function ReviewPage() {
         icon={AlertIcon}
         variant="accent"
       />
-
-      {/* Category Widget Section */}
-      <section className="py-16 md:py-24 px-6 md:px-20 bg-background border-b border-border/50">
-        <div className="max-w-5xl mx-auto">
-          <CategoryHeroReview />
-        </div>
-      </section>
 
       {/* ── DEFINITION SECTION ── */}
       <section className="py-24 md:py-32 px-6 md:px-20 bg-background border-t border-border">

@@ -2,7 +2,6 @@ import { ChevronRight, Check, AlertCircle, Eye, Clock, Banknote, Shield } from '
 import { SectionFAQ } from '@/components/section-faq'
 import { SectionCategories } from '@/components/section-categories'
 import { SectionHero } from '@/components/section-hero'
-import { CategoryHeroSafety } from '@/components/category-hero-safety'
 
 export default function SafetyPage() {
   const tiers = [
@@ -112,13 +111,6 @@ export default function SafetyPage() {
         icon={Shield}
         variant="accent"
       />
-
-      {/* Category Widget Section */}
-      <section className="py-16 md:py-24 px-6 md:px-20 bg-background border-b border-border/50">
-        <div className="max-w-5xl mx-auto">
-          <CategoryHeroSafety />
-        </div>
-      </section>
 
       {/* ── WHAT IS CERTIFIED ── */}
       <section className="py-24 md:py-32 px-6 md:px-20 bg-background border-b border-border/50">

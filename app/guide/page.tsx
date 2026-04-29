@@ -4,7 +4,6 @@ import { ChevronRight, BookOpen, CheckCircle, AlertCircle, ClipboardList, Lightb
 import { SectionHero } from '@/components/section-hero'
 import { SectionFAQ } from '@/components/section-faq'
 import { SectionCategories } from '@/components/section-categories'
-import { CategoryHeroGuide } from '@/components/category-hero-guide'
 
 const GUIDE_FAQ = [
   {
@@ -32,13 +31,6 @@ export default function GuidePage() {
         icon={BookOpen}
         variant="accent"
       />
-
-      {/* Category Widget Section */}
-      <section className="py-16 md:py-24 px-6 md:px-20 bg-background border-b border-border/50">
-        <div className="max-w-5xl mx-auto">
-          <CategoryHeroGuide />
-        </div>
-      </section>
 
       {/* ── ABOUT GUIDE SECTION ── */}
       <section className="py-24 md:py-32 px-6 md:px-20 bg-background border-b border-border/50">
