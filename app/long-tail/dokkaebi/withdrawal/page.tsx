@@ -456,29 +456,29 @@ export default function DokkaebiWithdrawalPage() {
             <h2 className="text-h2 text-heading">도깨비 출금 처리 절차</h2>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-2">
             {WITHDRAWAL_PROCESS.steps.map((step, i) => (
-              <div key={i} className="p-6 rounded-xl bg-secondary border-2 border-border">
-                <div className="flex items-start gap-6">
+              <div key={i} className="p-4 rounded-xl bg-secondary border-2 border-border">
+                <div className="flex items-start gap-4">
                   {/* 스텝 번호 */}
-                  <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center flex-shrink-0">
-                    <span className="text-white font-bold text-h4">{step.step}</span>
+                  <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center flex-shrink-0">
+                    <span className="text-white font-bold text-body">{step.step}</span>
                   </div>
 
                   <div className="flex-1">
-                    <div className="flex items-start justify-between mb-3">
+                    <div className="flex items-start justify-between mb-2">
                       <div>
-                        <p className="text-body font-bold text-heading">{step.title}</p>
-                        <p className="text-body-sm text-body">{step.description}</p>
+                        <p className="text-body-sm font-bold text-heading">{step.title}</p>
+                        <p className="text-xs text-body">{step.description}</p>
                       </div>
-                      <span className="px-3 py-1 rounded text-xs font-medium bg-primary/10 text-primary flex-shrink-0">
+                      <span className="px-2 py-0.5 rounded text-xs font-medium bg-primary/10 text-primary flex-shrink-0">
                         {step.duration}
                       </span>
                     </div>
 
-                    <div className="flex flex-wrap gap-2 pt-3 border-t border-border/50">
+                    <div className="flex flex-wrap gap-1.5 pt-2 border-t border-border/50">
                       {step.details.map((detail, di) => (
-                        <span key={di} className="px-2 py-1 rounded bg-background border border-border/50 text-xs text-body">
+                        <span key={di} className="px-1.5 py-0.5 rounded bg-background border border-border/50 text-xs text-body">
                           {detail}
                         </span>
                       ))}
@@ -487,8 +487,8 @@ export default function DokkaebiWithdrawalPage() {
                 </div>
 
                 {i < WITHDRAWAL_PROCESS.steps.length - 1 && (
-                  <div className="mt-4 flex justify-center">
-                    <ChevronRight className="w-5 h-5 text-border/50 rotate-90" />
+                  <div className="mt-2 flex justify-center">
+                    <ChevronRight className="w-4 h-4 text-border/50 rotate-90" />
                   </div>
                 )}
               </div>
@@ -638,7 +638,7 @@ export default function DokkaebiWithdrawalPage() {
         <div className="max-w-5xl mx-auto">
           <h3 className="text-body font-semibold text-heading mb-4">데이터 출처</h3>
           <p className="text-body-sm text-body mb-4" style={{ wordBreak: 'keep-all' }}>
-            본 페이지의 모든 정보는 안심고고 자체 점검 데이터 및 사용자 제보 기반입니다. GOLD Tier 분기 4회 정기 점검 결과를 포함하며, 사용자 후기 키워드는 6개월 누적 데이터입니다.
+            본 페이지의 모든 정보는 안심고고 자체 점검 데이터 및 사용자 제보 기반입니다. GOLD Tier 분기 4회 정기 점검 결과를 포���하며, 사용자 후기 키워드는 6개월 누적 데이터입니다.
           </p>
           
           <div className="p-4 rounded-lg bg-background border border-border/50">
