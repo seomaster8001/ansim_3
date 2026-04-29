@@ -456,20 +456,94 @@ export default function MeoktuPolicePage() {
             <h2 className="text-h2 text-heading">사용자 후기</h2>
           </div>
 
-          {/* 제보 유형 분포 */}
-          <div className="p-6 rounded-xl bg-background border-2 border-border mb-6">
-            <div className="flex items-center justify-between mb-6">
-              <h3 className="text-h4 text-heading">제보 유형 분포</h3>
-              <span className={`px-3 py-1 rounded-full text-label font-semibold ${
-                SITE_DATA.totalReports === 0 
-                  ? 'bg-green-100 text-green-700' 
-                  : SITE_DATA.totalReports >= 5 
-                  ? 'bg-red-100 text-red-700' 
-                  : 'bg-amber-100 text-amber-700'
-              }`}>
-                총 {SITE_DATA.totalReports}건
-              </span>
+          {/* 제보 유형 분포 + 제보 리스트 (2칼럼) */}
+          <div className="grid lg:grid-cols-2 gap-6 mb-8">
+            {/* 제보 유형 분포 */}
+            <div className="p-6 rounded-xl bg-background border-2 border-border">
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-h4 text-heading">제보 유형 분포</h3>
+                <span className={`px-3 py-1 rounded-full text-label font-semibold ${
+                  SITE_DATA.totalReports === 0 
+                    ? 'bg-green-100 text-green-700' 
+                    : SITE_DATA.totalReports >= 5 
+                    ? 'bg-red-100 text-red-700' 
+                    : 'bg-amber-100 text-amber-700'
+                }`}>
+                  총 {SITE_DATA.totalReports}건
+                </span>
+              </div>
+              
+              <div className="space-y-4 mb-6">
+                {REPORT_STATS.map((stat, i) => {
+                  const percentage = SITE_DATA.totalReports > 0 
+                    ? Math.round((stat.count / SITE_DATA.totalReports) * 100) 
+                    : 0
+                  const colors = ['bg-red-500', 'bg-amber-500', 'bg-slate-400']
+                  return (
+                    <div key={i}>
+                      <div className="flex justify-between mb-2">
+                        <span className="text-body-sm text-heading font-medium">{stat.label}</span>
+                        <span className="text-body-sm text-body">{stat.count}건 ({percentage}%)</span>
+                      </div>
+                      <div className="h-3 bg-slate-100 rounded-full overflow-hidden">
+                        <div 
+                          className={`h-full ${colors[i]} rounded-full transition-all`}
+                          style={{ width: `${percentage}%` }}
+                        />
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
+              
+              <div className="grid grid-cols-3 gap-3">
+                {REPORT_STATS.map((stat, i) => (
+                  <div key={i} className="text-center p-3 rounded-lg bg-secondary">
+                    <p className="text-h4 text-heading font-bold">{stat.count}건</p>
+                    <p className="text-xs text-body">{stat.label}</p>
+                  </div>
+                ))}
+              </div>
+              
+              <p className="text-xs text-body mt-4">
+                {SITE_DATA.totalReports === 0 
+                  ? '현재까지 접수된 제보가 없습니다.'
+                  : SITE_DATA.totalReports >= 5
+                  ? '반복 제보 확인. 주의가 필요합니다.'
+                  : '일부 제보 확인. 이용 전 확인 권장.'}
+              </p>
             </div>
+
+            {/* 제보 리스트 */}
+            <div className="p-6 rounded-xl bg-background border-2 border-border">
+              <h3 className="text-h4 text-heading mb-4">최근 제보 내역</h3>
+              <div className="space-y-3">
+                {USER_REVIEWS.map((review, i) => (
+                  <div key={i} className="p-4 rounded-lg bg-secondary border border-border/50">
+                    <div className="flex items-start justify-between mb-2">
+                      <div className="flex items-center gap-2">
+                        <span className={`px-2 py-0.5 rounded text-xs font-medium ${
+                          review.type === '환전 지연' ? 'bg-red-100 text-red-700' :
+                          review.type === '추가 입금 요구' ? 'bg-amber-100 text-amber-700' :
+                          'bg-slate-100 text-slate-700'
+                        }`}>
+                          {review.type}
+                        </span>
+                        <span className="text-xs text-body">{review.date}</span>
+                      </div>
+                      {review.verified && (
+                        <span className="text-xs text-green-600 flex items-center gap-1">
+                          <CheckCircle className="w-3 h-3" />
+                          확인됨
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-body-sm text-body leading-relaxed">{review.summary}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
             
             <div className="space-y-4 mb-6">
               {REPORT_STATS.map((stat, i) => {
