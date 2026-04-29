@@ -36,8 +36,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="ko" className="bg-white" data-category="picks">
-      <body className={`${notoSansKr.className} font-sans antialiased text-gray-900`}>
+    <html lang="ko" className="bg-white">
+      <body className={`${notoSansKr.className} font-sans antialiased text-gray-900 bg-white`}>
         <SiteHeader />
         <div className="pt-16">
           {children}
