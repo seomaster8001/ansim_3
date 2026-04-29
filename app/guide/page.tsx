@@ -22,7 +22,16 @@ const GUIDE_FAQ = [
 
 export default function GuidePage() {
   return (
-    <main data-category="guide" className="min-h-screen bg-background font-sans">
+    <main 
+      data-category="guide" 
+      style={{
+        '--primary': '#3b82f6',
+        '--primary-foreground': '#ffffff',
+        '--accent': '#eff6ff',
+        '--accent-foreground': '#1d4ed8',
+      } as React.CSSProperties}
+      className="min-h-screen bg-background font-sans"
+    >
       {/* ── HERO SECTION ── */}
       <SectionHero
         label="안전 가이드"

@@ -20,7 +20,16 @@ const FAQ_ITEMS = [
 
 export default function DataPage() {
   return (
-    <main data-category="data" className="min-h-screen bg-background font-sans">
+    <main 
+      data-category="data" 
+      style={{
+        '--primary': '#64748b',
+        '--primary-foreground': '#ffffff',
+        '--accent': '#f8fafc',
+        '--accent-foreground': '#334155',
+      } as React.CSSProperties}
+      className="min-h-screen bg-background font-sans"
+    >
       {/* ── HERO SECTION ── */}
       <SectionHero
         label="Data Center"

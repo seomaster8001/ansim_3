@@ -20,7 +20,16 @@ const FAQ_ITEMS = [
 
 export default function ReviewPage() {
   return (
-    <main data-category="review" className="min-h-screen bg-background font-sans">
+    <main 
+      data-category="review" 
+      style={{
+        '--primary': '#f59e0b',
+        '--primary-foreground': '#ffffff',
+        '--accent': '#fffbeb',
+        '--accent-foreground': '#b45309',
+      } as React.CSSProperties}
+      className="min-h-screen bg-background font-sans"
+    >
       {/* ── HERO SECTION ── */}
       <SectionHero
         label="Verification Report"

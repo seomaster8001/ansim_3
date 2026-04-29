@@ -52,7 +52,16 @@ export default function PicksPage() {
   ]
 
   return (
-    <main data-category="picks" className="min-h-screen bg-background font-sans">
+    <main 
+      data-category="picks" 
+      style={{
+        '--primary': '#ef4444',
+        '--primary-foreground': '#ffffff',
+        '--accent': '#fef2f2',
+        '--accent-foreground': '#b91c1c',
+      } as React.CSSProperties}
+      className="min-h-screen bg-background font-sans"
+    >
       {/* ── HERO SECTION ── */}
       <SectionHero
         label="스포츠 분석"

@@ -102,7 +102,16 @@ export default function SafetyPage() {
   ]
 
   return (
-    <main data-category="safety" className="min-h-screen bg-background font-sans">
+    <main 
+      data-category="safety" 
+      style={{
+        '--primary': '#14b8a6',
+        '--primary-foreground': '#ffffff',
+        '--accent': '#f0fdfa',
+        '--accent-foreground': '#0f766e',
+      } as React.CSSProperties}
+      className="min-h-screen bg-background font-sans"
+    >
       {/* ── HERO SECTION ── */}
       <SectionHero
         label="Verified Directory"
