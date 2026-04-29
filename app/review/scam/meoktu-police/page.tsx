@@ -375,18 +375,40 @@ export default function MeoktuPolicePage() {
                 </p>
               </div>
 
-              {/* 월별 상세 */}
+              {/* 월별 제보 비율 스택 바 */}
               <div className="mt-4 pt-4 border-t border-border/50">
-                <p className="text-body-sm text-body mb-2">월별 제보 현황</p>
-                <div className="flex flex-wrap gap-2">
-                  {REPORT_TREND.map((m, i) => (
-                    <span key={i} className={`px-2 py-1 rounded text-xs font-medium ${
-                      m.count === 0 ? 'bg-slate-100 text-slate-600' :
-                      m.count >= 2 ? 'bg-red-100 text-red-700' : 'bg-amber-100 text-amber-700'
-                    }`}>
-                      {m.month.split('.')[1]}월: {m.count}건
-                    </span>
-                  ))}
+                <p className="text-body-sm text-body mb-3">월별 제보 분포</p>
+                <div className="flex items-end gap-0.5 h-12 bg-slate-50 rounded-lg p-2 mb-3">
+                  {REPORT_TREND.map((m, i) => {
+                    const totalReports = REPORT_TREND.reduce((sum, item) => sum + item.count, 0) || 1
+                    const percentage = (m.count / totalReports) * 100
+                    const colors = [
+                      m.count === 0 ? 'bg-slate-200' :
+                      m.count === 1 ? 'bg-amber-300' :
+                      m.count >= 2 ? 'bg-red-400' : 'bg-slate-300'
+                    ]
+                    return (
+                      <div
+                        key={i}
+                        className={`flex-1 rounded-sm transition-all group relative ${colors}`}
+                        style={{ height: Math.max(percentage * 0.8, 4) + 'px', minHeight: '4px' }}
+                        title={`${m.month.split('.')[1]}월: ${m.count}건`}
+                      >
+                        {/* 호버 툴팁 */}
+                        <div className="absolute -top-7 left-1/2 transform -translate-x-1/2 hidden group-hover:block bg-heading text-white text-xs px-2 py-1 rounded whitespace-nowrap">
+                          {m.month.split('.')[1]}월: {m.count}건
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
+                <div className="flex justify-between text-xs text-body">
+                  <span>11월</span>
+                  <span>12월</span>
+                  <span>1월</span>
+                  <span>2월</span>
+                  <span>3월</span>
+                  <span>4월</span>
                 </div>
               </div>
             </div>
