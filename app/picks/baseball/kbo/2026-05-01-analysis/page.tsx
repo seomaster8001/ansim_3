@@ -215,16 +215,16 @@ export default function KBOAnalysisPage() {
       </section>
 
       {/* ── H2: 매치업 개요 ── */}
-      <section className="py-16 md:py-24 px-6 md:px-20 bg-red-50 border-b-4 border-primary">
+      <section className="py-16 md:py-24 px-6 md:px-20 bg-accent border-b border-border/50">
         <div className="max-w-5xl mx-auto">
-          <div className="flex items-center gap-3 mb-8 pb-4 border-b-2 border-primary/20">
+          <div className="flex items-center gap-3 mb-8 pb-4 border-b-2 border-border">
             <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
               <Target className="w-5 h-5 text-white" />
             </div>
             <h2 className="text-h2 text-heading">매치업 개요</h2>
           </div>
 
-          <div className="p-6 rounded-xl bg-white border-2 border-primary/20 mb-8">
+          <div className="p-6 rounded-xl bg-background border-2 border-border mb-8">
             <p className="text-body text-body leading-relaxed" style={{ wordBreak: 'keep-all' }}>
               {MATCH_DATA.openingAnswer}
             </p>
@@ -232,7 +232,7 @@ export default function KBOAnalysisPage() {
 
           {/* Quick Stats */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            <div className="p-5 rounded-xl bg-white border-2 border-primary/20">
+            <div className="p-5 rounded-xl bg-background border-2 border-border">
               <div className="flex items-center justify-between mb-3">
                 <Calendar className="w-5 h-5 text-primary" />
                 <span className="px-2 py-0.5 rounded text-xs font-medium bg-primary/10 text-primary">{MATCH_DATA.league}</span>
@@ -240,21 +240,21 @@ export default function KBOAnalysisPage() {
               <p className="text-h4 text-heading font-bold mb-1">{MATCH_DATA.date}</p>
               <p className="text-body-sm text-body">경기 일자</p>
             </div>
-            <div className="p-5 rounded-xl bg-white border-2 border-primary/20">
+            <div className="p-5 rounded-xl bg-background border-2 border-border">
               <div className="flex items-center justify-between mb-3">
                 <Clock className="w-5 h-5 text-primary" />
               </div>
               <p className="text-h4 text-heading font-bold mb-1">{MATCH_DATA.time}</p>
               <p className="text-body-sm text-body">경기 시작</p>
             </div>
-            <div className="p-5 rounded-xl bg-white border-2 border-primary/20">
+            <div className="p-5 rounded-xl bg-background border-2 border-border">
               <div className="flex items-center justify-between mb-3">
                 <Users className="w-5 h-5 text-primary" />
               </div>
               <p className="text-h4 text-heading font-bold mb-1">{HEAD_TO_HEAD.homeWins}-{HEAD_TO_HEAD.awayWins}</p>
               <p className="text-body-sm text-body">시즌 상대전적</p>
             </div>
-            <div className="p-5 rounded-xl bg-white border-2 border-primary/20">
+            <div className="p-5 rounded-xl bg-background border-2 border-border">
               <div className="flex items-center justify-between mb-3">
                 <BarChart3 className="w-5 h-5 text-primary" />
               </div>
@@ -266,9 +266,9 @@ export default function KBOAnalysisPage() {
       </section>
 
       {/* ── H2: 양 팀 최근 폼 ── */}
-      <section className="py-16 md:py-24 px-6 md:px-20 bg-background border-b-4 border-primary">
+      <section className="py-16 md:py-24 px-6 md:px-20 bg-background border-b border-border/50">
         <div className="max-w-5xl mx-auto">
-          <div className="flex items-center gap-3 mb-8 pb-4 border-b-2 border-primary/20">
+          <div className="flex items-center gap-3 mb-8 pb-4 border-b-2 border-border">
             <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
               <TrendingUp className="w-5 h-5 text-white" />
             </div>
@@ -278,8 +278,8 @@ export default function KBOAnalysisPage() {
           {/* 2칼럼 레이아웃 */}
           <div className="grid lg:grid-cols-2 gap-6">
             {/* 홈팀 */}
-            <div className="p-6 rounded-xl bg-red-50 border-2 border-primary/30">
-              <div className="flex items-center justify-between mb-6 pb-3 border-b-2 border-primary/10">
+            <div className="p-6 rounded-xl bg-secondary border-2 border-border">
+              <div className="flex items-center justify-between mb-6 pb-3 border-b border-border/50">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
                     <span className="text-lg font-bold text-primary">{TEAM_FORM.home.name[0]}</span>
@@ -366,9 +366,9 @@ export default function KBOAnalysisPage() {
       </section>
 
       {/* ── H2: 선발 투수 매치업 ── */}
-      <section className="py-16 md:py-24 px-6 md:px-20 bg-red-50 border-b-4 border-primary">
+      <section className="py-16 md:py-24 px-6 md:px-20 bg-accent border-b border-border/50">
         <div className="max-w-5xl mx-auto">
-          <div className="flex items-center gap-3 mb-8 pb-4 border-b-2 border-primary/20">
+          <div className="flex items-center gap-3 mb-8 pb-4 border-b-2 border-border">
             <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
               <Zap className="w-5 h-5 text-white" />
             </div>
@@ -378,8 +378,8 @@ export default function KBOAnalysisPage() {
           {/* 2칼럼 레이아웃 */}
           <div className="grid lg:grid-cols-2 gap-6">
             {/* 홈팀 선발 */}
-            <div className="p-6 rounded-xl bg-white border-2 border-primary/20">
-              <div className="flex items-center gap-3 mb-6 pb-3 border-b-2 border-primary/10">
+            <div className="p-6 rounded-xl bg-background border-2 border-border">
+              <div className="flex items-center gap-3 mb-6 pb-3 border-b border-border/50">
                 <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
                   <span className="text-lg font-bold text-primary">{PITCHERS.home.name[0]}</span>
                 </div>
@@ -391,15 +391,15 @@ export default function KBOAnalysisPage() {
 
               {/* 주요 지표 */}
               <div className="grid grid-cols-3 gap-3 mb-6">
-                <div className="p-3 rounded-lg bg-red-50 text-center border border-primary/10">
+                <div className="p-3 rounded-lg bg-secondary text-center">
                   <p className="text-h4 text-heading font-bold">{PITCHERS.home.era}</p>
                   <p className="text-xs text-body">ERA</p>
                 </div>
-                <div className="p-3 rounded-lg bg-red-50 text-center border border-primary/10">
+                <div className="p-3 rounded-lg bg-secondary text-center">
                   <p className="text-h4 text-heading font-bold">{PITCHERS.home.wins}-{PITCHERS.home.losses}</p>
                   <p className="text-xs text-body">승-패</p>
                 </div>
-                <div className="p-3 rounded-lg bg-red-50 text-center border border-primary/10">
+                <div className="p-3 rounded-lg bg-secondary text-center">
                   <p className="text-h4 text-heading font-bold">{PITCHERS.home.whip}</p>
                   <p className="text-xs text-body">WHIP</p>
                 </div>
@@ -465,9 +465,9 @@ export default function KBOAnalysisPage() {
       </section>
 
       {/* ── H2: 헤드투헤드 ── */}
-      <section className="py-16 md:py-24 px-6 md:px-20 bg-background border-b-4 border-primary">
+      <section className="py-16 md:py-24 px-6 md:px-20 bg-background border-b border-border/50">
         <div className="max-w-5xl mx-auto">
-          <div className="flex items-center gap-3 mb-8 pb-4 border-b-2 border-primary/20">
+          <div className="flex items-center gap-3 mb-8 pb-4 border-b-2 border-border">
             <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
               <Activity className="w-5 h-5 text-white" />
             </div>
@@ -477,8 +477,8 @@ export default function KBOAnalysisPage() {
           {/* 2칼럼 레이아웃 */}
           <div className="grid lg:grid-cols-2 gap-6">
             {/* 상대 전적 요약 */}
-            <div className="p-6 rounded-xl bg-red-50 border-2 border-primary/20">
-              <h3 className="text-h4 text-heading mb-6 pb-3 border-b-2 border-primary/10">시즌 맞대결 요약</h3>
+            <div className="p-6 rounded-xl bg-secondary border-2 border-border">
+              <h3 className="text-h4 text-heading mb-6 pb-3 border-b border-border/50">시즌 맞대결 요약</h3>
               
               {/* 전적 바 */}
               <div className="mb-6">
@@ -500,7 +500,7 @@ export default function KBOAnalysisPage() {
 
               {/* 통계 */}
               <div className="grid grid-cols-3 gap-3">
-                <div className="p-3 rounded-lg bg-white border border-primary/10 text-center">
+                <div className="p-3 rounded-lg bg-background border border-border/50 text-center">
                   <p className="text-h4 text-heading font-bold">{HEAD_TO_HEAD.totalGames}</p>
                   <p className="text-xs text-body">총 경기</p>
                 </div>
@@ -516,11 +516,11 @@ export default function KBOAnalysisPage() {
             </div>
 
             {/* 최근 맞대결 */}
-            <div className="p-6 rounded-xl bg-red-50 border-2 border-primary/20">
-              <h3 className="text-h4 text-heading mb-4 pb-3 border-b-2 border-primary/10">최근 맞대결</h3>
+            <div className="p-6 rounded-xl bg-secondary border-2 border-border">
+              <h3 className="text-h4 text-heading mb-4 pb-3 border-b border-border/50">최근 맞대결</h3>
               <div className="space-y-2">
                 {HEAD_TO_HEAD.recentMeetings.map((m, i) => (
-                  <div key={i} className="flex items-center justify-between p-3 rounded-lg bg-white border border-primary/10">
+                  <div key={i} className="flex items-center justify-between p-3 rounded-lg bg-background border border-border/50">
                     <span className="text-body-sm text-body">{m.date}</span>
                     <div className="flex items-center gap-3">
                       <span className={`text-body-sm font-bold ${m.winner === TEAM_FORM.home.name ? 'text-primary' : 'text-heading'}`}>
@@ -549,9 +549,9 @@ export default function KBOAnalysisPage() {
       </section>
 
       {/* ── H2: 라인업/일정 변수 ── */}
-      <section className="py-16 md:py-24 px-6 md:px-20 bg-red-50 border-b-4 border-primary">
+      <section className="py-16 md:py-24 px-6 md:px-20 bg-accent border-b border-border/50">
         <div className="max-w-5xl mx-auto">
-          <div className="flex items-center gap-3 mb-8 pb-4 border-b-2 border-primary/20">
+          <div className="flex items-center gap-3 mb-8 pb-4 border-b-2 border-border">
             <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
               <AlertCircle className="w-5 h-5 text-white" />
             </div>
@@ -614,7 +614,7 @@ export default function KBOAnalysisPage() {
       />
 
       {/* ── CTA SECTION ── */}
-      <section className="py-16 md:py-24 px-6 md:px-20 bg-red-50 border-b-4 border-primary">
+      <section className="py-16 md:py-24 px-6 md:px-20 bg-accent border-b border-border/50">
         <div className="max-w-5xl mx-auto text-center">
           <h2 className="text-h2 text-heading mb-6">더 알아보기</h2>
           <p className="text-body-lg text-body max-w-2xl mx-auto mb-10" style={{ wordBreak: 'keep-all' }}>
@@ -630,7 +630,7 @@ export default function KBOAnalysisPage() {
             </a>
             <a
               href="/support/faq/"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-white border-2 border-primary/30 text-heading text-body-sm font-semibold hover:border-primary/60 transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-background border-2 border-border text-heading text-body-sm font-semibold hover:border-primary/60 transition-colors"
             >
               <AlertCircle className="w-4 h-4" />
               자주 묻는 질문
@@ -650,7 +650,7 @@ export default function KBOAnalysisPage() {
                 href={s.url} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="px-3 py-1.5 rounded-lg bg-red-50 border border-primary/20 text-body-sm text-body hover:border-primary/50 transition-colors"
+                className="px-3 py-1.5 rounded-lg bg-secondary border border-border text-body-sm text-body hover:border-primary/50 transition-colors"
               >
                 {s.name}
               </a>
