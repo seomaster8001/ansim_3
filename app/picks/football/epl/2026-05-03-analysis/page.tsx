@@ -611,7 +611,7 @@ export default function EPLAnalysisPage() {
       </section>
 
       {/* ── H2: FAQ ── */}
-      <SectionFAQ faqs={FAQ_DATA} />
+      <SectionFAQ items={FAQ_DATA} />
 
       {/* ── CTA SECTION ── */}
       <section className="py-16 md:py-24 px-6 md:px-20 bg-secondary border-b border-border/50">
