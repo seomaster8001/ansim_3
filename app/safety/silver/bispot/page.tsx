@@ -130,7 +130,7 @@ export default function SilverBispotPage() {
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircle className="w-5 h-5 text-slate-500 flex-shrink-0 mt-0.5" />
-                  <span className="text-body text-body">오전 9시~자정 고객센터 운영</span>
+                  <span className="text-body text-body">오전 9시~자정 고객센터 ��영</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircle className="w-5 h-5 text-slate-500 flex-shrink-0 mt-0.5" />
@@ -236,6 +236,43 @@ export default function SilverBispotPage() {
                 환전 지연 제보 1건이 접수되었으나 24시간 내 정상 처리되어 등급 유지 중입니다.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── VERIFICATION ITEMS ── */}
+      <section className="py-16 md:py-24 px-6 md:px-20 bg-secondary border-b border-border/50">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-h2 text-heading mb-8">검증 항목별 통과 현황</h2>
+          <p className="text-body-lg text-body max-w-2xl mb-10 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
+            비스팟은 안심고고의 5단계 검증 프로세스의 주요 항목을 충족하여 Silver Tier로 분류되었습니다.
+          </p>
+          <div className="space-y-4">
+            {[
+              { title: '운영 안정성', desc: '2년 이상 운영 중 + 1건 누적 제보', status: 'pass' },
+              { title: '자본금 검증', desc: '보증금 2억 원 확인 + 운영사 공시 자료 일치', status: 'pass' },
+              { title: '입출금 속도', desc: '평균 환전 처리 10분 이내 + 지연 1건', status: 'partial' },
+              { title: '고객 응대', desc: '오전 9시~자정 운영 + 기본 응대 충족', status: 'pass' },
+              { title: '보증금 예치', desc: '독립 은행 예치 확인 + 월 1회 재검증', status: 'pass' },
+            ].map((item, i) => (
+              <div key={i} className="flex items-start gap-4 p-6 rounded-xl bg-background border-2 border-slate-200">
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${
+                  item.status === 'pass' 
+                    ? 'bg-green-100' 
+                    : 'bg-amber-100'
+                }`}>
+                  {item.status === 'pass' ? (
+                    <CheckCircle className="w-6 h-6 text-green-600" />
+                  ) : (
+                    <AlertTriangle className="w-6 h-6 text-amber-600" />
+                  )}
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-body font-semibold text-heading mb-2">{item.title}</h3>
+                  <p className="text-body-sm text-body">{item.desc}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

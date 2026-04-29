@@ -258,6 +258,47 @@ export default function BronzeWinbetPage() {
         </div>
       </section>
 
+      {/* ── VERIFICATION ITEMS ── */}
+      <section className="py-16 md:py-24 px-6 md:px-20 bg-secondary border-b border-border/50">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-h2 text-heading mb-8">검증 항목별 통과 현황</h2>
+          <p className="text-body-lg text-body max-w-2xl mb-10 leading-relaxed" style={{ wordBreak: 'keep-all' }}>
+            윈벳은 안심고고의 5단계 검증 프로세스의 최소 항목만 충족하여 Bronze Tier로 분류되었습니다. 추가 모니터링 중입니다.
+          </p>
+          <div className="space-y-4">
+            {[
+              { title: '운영 안정성', desc: '9개월 운영 중 + 2건 누적 제보', status: 'warn' },
+              { title: '자본금 검증', desc: '보증금 8천만 원 확인 + 운영사 공시 자료 확인 중', status: 'partial' },
+              { title: '입출금 속도', desc: '평균 환전 처리 30분~1시간 + 지연 사례 2건', status: 'warn' },
+              { title: '고객 응대', desc: '오후 2시~밤 10시만 운영 + 기본 응대 충족', status: 'partial' },
+              { title: '보증금 예치', desc: '보증금 예치 확인 완료 + 월 1회 재검증', status: 'pass' },
+            ].map((item, i) => (
+              <div key={i} className="flex items-start gap-4 p-6 rounded-xl bg-background border-2 border-orange-200">
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${
+                  item.status === 'pass' 
+                    ? 'bg-green-100' 
+                    : item.status === 'partial'
+                    ? 'bg-amber-100'
+                    : 'bg-red-100'
+                }`}>
+                  {item.status === 'pass' ? (
+                    <CheckCircle className="w-6 h-6 text-green-600" />
+                  ) : item.status === 'partial' ? (
+                    <AlertTriangle className="w-6 h-6 text-amber-600" />
+                  ) : (
+                    <AlertCircle className="w-6 h-6 text-red-600" />
+                  )}
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-body font-semibold text-heading mb-2">{item.title}</h3>
+                  <p className="text-body-sm text-body">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── FAQ SECTION ── */}
       <SectionFAQ 
         items={FAQ_ITEMS} 
