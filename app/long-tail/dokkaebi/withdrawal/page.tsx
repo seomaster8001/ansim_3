@@ -4,7 +4,7 @@ import {
   BarChart3, TrendingUp, Users, AlertCircle, AlertTriangle, 
   CheckCircle, Shield, Clock, Target, FileText, ChevronRight
 } from 'lucide-react'
-import SectionFAQ from '@/components/section-faq'
+import { SectionFAQ } from '@/components/section-faq'
 
 // ─────────────────────────────────────────
 // 데이터 구조
