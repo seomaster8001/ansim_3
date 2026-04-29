@@ -164,24 +164,42 @@ export default function MeoktuPolicePage() {
 
             <div className="grid grid-cols-2 gap-4">
               <div className="p-5 rounded-xl bg-secondary border-2 border-border">
-                <Clock className="w-5 h-5 text-primary mb-2" />
-                <p className="text-h4 text-heading font-bold">{SITE_DATA.operationYears}</p>
-                <p className="text-label text-muted">운영 기간</p>
+                <div className="flex items-center justify-between mb-3">
+                  <Clock className="w-5 h-5 text-primary" />
+                  <span className="px-2 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-700">보통</span>
+                </div>
+                <p className="text-h3 text-heading font-bold mb-1">{SITE_DATA.operationYears}</p>
+                <p className="text-body-sm text-body">운영 기간</p>
+                <p className="text-xs text-body mt-2">{SITE_DATA.operationStart} 시작</p>
               </div>
-              <div className="p-5 rounded-xl bg-secondary border-2 border-border">
-                <Globe className="w-5 h-5 text-amber-500 mb-2" />
-                <p className="text-h4 text-heading font-bold">{SITE_DATA.domainChanges}회</p>
-                <p className="text-label text-muted">도메인 변경</p>
+              <div className="p-5 rounded-xl bg-amber-50 border-2 border-amber-200">
+                <div className="flex items-center justify-between mb-3">
+                  <Globe className="w-5 h-5 text-amber-600" />
+                  <span className="px-2 py-0.5 rounded text-xs font-medium bg-amber-100 text-amber-700">주의</span>
+                </div>
+                <p className="text-h3 text-heading font-bold mb-1">{SITE_DATA.domainChanges}회</p>
+                <p className="text-body-sm text-body">도메인 변경</p>
+                <p className="text-xs text-body mt-2">최근 {SITE_DATA.lastDomainChange}</p>
               </div>
-              <div className="p-5 rounded-xl bg-secondary border-2 border-border">
-                <FileText className="w-5 h-5 text-red-500 mb-2" />
-                <p className="text-h4 text-heading font-bold">{SITE_DATA.totalReports}건</p>
-                <p className="text-label text-muted">누적 제보</p>
+              <div className="p-5 rounded-xl bg-red-50 border-2 border-red-200">
+                <div className="flex items-center justify-between mb-3">
+                  <FileText className="w-5 h-5 text-red-600" />
+                  <span className="px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-700">경고</span>
+                </div>
+                <p className="text-h3 text-heading font-bold mb-1">{SITE_DATA.totalReports}건</p>
+                <p className="text-body-sm text-body">누적 제보</p>
+                <p className="text-xs text-body mt-2">최근 6개월 {REPORT_TREND.reduce((sum, m) => sum + m.count, 0)}건</p>
               </div>
-              <div className="p-5 rounded-xl bg-secondary border-2 border-border">
-                <AlertTriangle className="w-5 h-5 text-red-500 mb-2" />
-                <p className="text-h4 text-heading font-bold">{detectedSignals}/{totalSignals}</p>
-                <p className="text-label text-muted">위험 신호</p>
+              <div className="p-5 rounded-xl bg-red-50 border-2 border-red-200">
+                <div className="flex items-center justify-between mb-3">
+                  <AlertTriangle className="w-5 h-5 text-red-600" />
+                  <span className="px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-700">위험</span>
+                </div>
+                <p className="text-h3 text-heading font-bold mb-1">{detectedSignals}/{totalSignals}</p>
+                <p className="text-body-sm text-body">위험 신호</p>
+                <div className="mt-2 h-1.5 bg-slate-200 rounded-full overflow-hidden">
+                  <div className="h-full bg-red-500 rounded-full" style={{ width: `${(detectedSignals/totalSignals)*100}%` }} />
+                </div>
               </div>
             </div>
           </div>
@@ -334,50 +352,44 @@ export default function MeoktuPolicePage() {
                 })}
               </div>
               
-              <p className="text-xs text-body">
-                {REPORT_TREND.reduce((sum, m) => sum + m.count, 0) === 0 
-                  ? '✓ 제보 없음 (긍정적 신호)'
+              {/* 요약 메시지 */}
+              <div className={`p-3 rounded-lg ${
+                REPORT_TREND.reduce((sum, m) => sum + m.count, 0) === 0 
+                  ? 'bg-green-50 border border-green-200'
                   : REPORT_TREND.reduce((sum, m) => sum + m.count, 0) >= 5
-                  ? '⚠ 반복 제보 (주의 필요)'
-                  : '⚠ 일부 제보 (확인 권장)'}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── H2: 보증 상태 ── */}
-      <section className="py-16 md:py-24 px-6 md:px-20 bg-background border-b border-border/50">
-        <div className="max-w-5xl mx-auto">
-          <div className="flex items-center gap-3 mb-8">
-            <Shield className="w-6 h-6 text-primary" />
-            <h2 className="text-h2 text-heading">보증 상태</h2>
-          </div>
-
-          <div className="grid md:grid-cols-4 gap-4">
-            {GUARANTEE_STATUS.map((item, i) => (
-              <div key={i} className={`p-5 rounded-xl border-2 text-center ${
-                item.status === 'positive' ? 'bg-green-50 border-green-200' :
-                item.status === 'negative' ? 'bg-red-50 border-red-200' :
-                'bg-slate-50 border-slate-200'
+                  ? 'bg-red-50 border border-red-200'
+                  : 'bg-amber-50 border border-amber-200'
               }`}>
-                <div className={`w-10 h-10 rounded-full mx-auto mb-3 flex items-center justify-center ${
-                  item.status === 'positive' ? 'bg-green-100' :
-                  item.status === 'negative' ? 'bg-red-100' :
-                  'bg-slate-100'
+                <p className={`text-body-sm font-medium ${
+                  REPORT_TREND.reduce((sum, m) => sum + m.count, 0) === 0 
+                    ? 'text-green-700'
+                    : REPORT_TREND.reduce((sum, m) => sum + m.count, 0) >= 5
+                    ? 'text-red-700'
+                    : 'text-amber-700'
                 }`}>
-                  {item.status === 'positive' ? (
-                    <CheckCircle className="w-5 h-5 text-green-600" />
-                  ) : item.status === 'negative' ? (
-                    <AlertCircle className="w-5 h-5 text-red-600" />
-                  ) : (
-                    <AlertTriangle className="w-5 h-5 text-slate-500" />
-                  )}
-                </div>
-                <p className="text-body font-semibold text-heading mb-1">{item.value}</p>
-                <p className="text-label text-muted">{item.label}</p>
+                  {REPORT_TREND.reduce((sum, m) => sum + m.count, 0) === 0 
+                    ? '최근 6개월간 제보가 없습니다.'
+                    : REPORT_TREND.reduce((sum, m) => sum + m.count, 0) >= 5
+                    ? '반복 제보가 확인되었습니다. 주의가 필요합니다.'
+                    : '일부 제보가 확인되었습니다. 이용 전 확인을 권장합니다.'}
+                </p>
               </div>
-            ))}
+
+              {/* 월별 상세 */}
+              <div className="mt-4 pt-4 border-t border-border/50">
+                <p className="text-body-sm text-body mb-2">월별 제보 현황</p>
+                <div className="flex flex-wrap gap-2">
+                  {REPORT_TREND.map((m, i) => (
+                    <span key={i} className={`px-2 py-1 rounded text-xs font-medium ${
+                      m.count === 0 ? 'bg-slate-100 text-slate-600' :
+                      m.count >= 2 ? 'bg-red-100 text-red-700' : 'bg-amber-100 text-amber-700'
+                    }`}>
+                      {m.month.split('.')[1]}월: {m.count}건
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
