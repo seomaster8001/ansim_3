@@ -2,6 +2,7 @@ import { ChevronRight, AlertTriangle, Shield, CheckCircle, Clock, FileText, Tren
 import { SectionFAQ } from '@/components/section-faq'
 import { SectionCategories } from '@/components/section-categories'
 import { SectionHero } from '@/components/section-hero'
+import { CategoryHeroReview } from '@/components/category-hero-review'
 
 const FAQ_ITEMS = [
   {
@@ -28,6 +29,7 @@ export default function ReviewPage() {
         description="사이트 조회 / 사용자 제보 / 위험 신호 패턴 / 신고 절차"
         icon={AlertIcon}
         variant="accent"
+        widget={<CategoryHeroReview />}
       />
 
       {/* ── DEFINITION SECTION ── */}

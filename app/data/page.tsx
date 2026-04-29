@@ -2,6 +2,7 @@ import { BarChart3, TrendingUp, Calendar, Download, CheckCircle, Database, Alert
 import { SectionHero } from '@/components/section-hero'
 import { SectionFAQ } from '@/components/section-faq'
 import { SectionCategories } from '@/components/section-categories'
+import { CategoryHeroData } from '@/components/category-hero-data'
 
 const FAQ_ITEMS = [
   {
@@ -28,6 +29,7 @@ export default function DataPage() {
         description="데이터센터 종합 hub — Tier 랭킹 / 분기 통계 / 경기 일정 / 인포그래픽 데이터셋"
         icon={BarChart3}
         variant="accent"
+        widget={<CategoryHeroData />}
       />
 
       {/* ── ABOUT DATA CENTER SECTION ── */}

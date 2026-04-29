@@ -4,6 +4,7 @@ import { ChevronRight, BookOpen, CheckCircle, AlertCircle, ClipboardList, Lightb
 import { SectionHero } from '@/components/section-hero'
 import { SectionFAQ } from '@/components/section-faq'
 import { SectionCategories } from '@/components/section-categories'
+import { CategoryHeroGuide } from '@/components/category-hero-guide'
 
 const GUIDE_FAQ = [
   {
@@ -30,6 +31,7 @@ export default function GuidePage() {
         description="안전 가이드 종합 hub — 토토 기초 / 룰 안내 / 피해예방 체크리스트 / 단계별 학습 경로"
         icon={BookOpen}
         variant="accent"
+        widget={<CategoryHeroGuide />}
       />
 
       {/* ── ABOUT GUIDE SECTION ── */}

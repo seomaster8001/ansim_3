@@ -2,6 +2,7 @@ import { ChevronRight, Check, AlertCircle, Eye, Clock, Banknote, Shield } from '
 import { SectionFAQ } from '@/components/section-faq'
 import { SectionCategories } from '@/components/section-categories'
 import { SectionHero } from '@/components/section-hero'
+import { CategoryHeroSafety } from '@/components/category-hero-safety'
 
 export default function SafetyPage() {
   const tiers = [
@@ -110,6 +111,7 @@ export default function SafetyPage() {
         description="검증 통과 사이트만 모아둔 카테고리. 5단계 검증을 통과한 사이트를 Gold·Silver·Bronze Tier로 분류하고 분기마다 재점검합니다."
         icon={Shield}
         variant="accent"
+        widget={<CategoryHeroSafety />}
       />
 
       {/* ── WHAT IS CERTIFIED ── */}
