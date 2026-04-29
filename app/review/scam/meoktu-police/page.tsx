@@ -198,20 +198,44 @@ export default function MeoktuPolicePage() {
 
           <div className="grid lg:grid-cols-2 gap-6">
             <div className="p-6 rounded-xl bg-background border-2 border-border">
-              <h3 className="text-h4 text-heading mb-4">기본 정보</h3>
-              <dl className="space-y-3">
+              <h3 className="text-h4 text-heading mb-6">기본 정보</h3>
+              
+              {/* 기본 정보 목록 */}
+              <dl className="space-y-3 mb-6 pb-6 border-b border-border/50">
                 {[
                   { label: '운영 시작', value: SITE_DATA.operationStart },
                   { label: '운영 기간', value: SITE_DATA.operationYears },
                   { label: '도메인 변경', value: `${SITE_DATA.domainChanges}회`, warn: true },
                   { label: '최근 도메인 변경', value: SITE_DATA.lastDomainChange },
                 ].map((item, i) => (
-                  <div key={i} className="flex justify-between py-2 border-b border-border/50 last:border-0">
+                  <div key={i} className="flex justify-between py-2">
                     <dt className="text-body-sm text-muted">{item.label}</dt>
                     <dd className={`text-body-sm font-medium ${item.warn ? 'text-amber-600' : 'text-heading'}`}>{item.value}</dd>
                   </div>
                 ))}
               </dl>
+
+              {/* 도메인 안정성 지수 */}
+              <div className="space-y-3">
+                <p className="text-body-sm text-muted">도메인 안정성 지수</p>
+                <div className="flex items-center gap-3">
+                  <div className="flex-1 h-2 bg-slate-200 rounded-full overflow-hidden">
+                    <div className="h-full bg-amber-500" style={{ width: '40%' }} />
+                  </div>
+                  <span className="text-h4 text-amber-600 font-bold">40%</span>
+                </div>
+                <p className="text-xs text-muted">IP 변경 3회 + 도메인 변경 2회 = 낮은 안정성</p>
+              </div>
+
+              {/* 신뢰도 뱃지 */}
+              <div className="mt-4 pt-4 border-t border-border/50">
+                <p className="text-body-sm text-muted mb-3">종합 신뢰도</p>
+                <div className="flex gap-2">
+                  <span className="px-3 py-1 rounded-full text-label font-semibold bg-red-100 text-red-700">주의 필요</span>
+                  <span className="px-3 py-1 rounded-full text-label font-semibold bg-amber-100 text-amber-700">반복 제보</span>
+                  <span className="px-3 py-1 rounded-full text-label font-semibold bg-slate-100 text-slate-700">신뢰도 낮음</span>
+                </div>
+              </div>
             </div>
 
             <div className="p-6 rounded-xl bg-background border-2 border-border">
@@ -239,81 +263,85 @@ export default function MeoktuPolicePage() {
             </div>
           </div>
 
-          {/* 운영 정보 상세 테이블 */}
-          <div className="mt-8 p-6 rounded-xl bg-background border-2 border-border">
-            <div className="flex items-center justify-between mb-6">
-              <h3 className="text-h4 text-heading">운영 정보 상세</h3>
-              <span className="text-label text-muted">검증 시점: {OPERATION_INFO.verifiedAt}</span>
-            </div>
-            <div className="grid md:grid-cols-2 gap-x-8 gap-y-1">
-              {[
-                { icon: Globe, label: '현재 도메인', value: OPERATION_INFO.currentDomain },
-                { icon: Globe, label: '이전 도메인', value: OPERATION_INFO.previousDomains.join(', ') || '없음' },
-                { icon: Server, label: '서버 위치', value: OPERATION_INFO.serverLocation, warn: true },
-                { icon: TrendingUp, label: 'IP 변경 횟수', value: `${OPERATION_INFO.ipHistory}회`, warn: OPERATION_INFO.ipHistory >= 3 },
-                { icon: Shield, label: '도메인 등록기관', value: OPERATION_INFO.registrar },
-                { icon: CheckCircle, label: 'SSL 인증서', value: OPERATION_INFO.sslStatus === 'valid' ? '유효' : '만료/미확인' },
-                { icon: Phone, label: '고객센터', value: OPERATION_INFO.customerService },
-                { icon: Clock, label: '운영 시간', value: OPERATION_INFO.operationHours },
-              ].map((item, i) => (
-                <div key={i} className="flex items-center justify-between py-3 border-b border-border/50">
-                  <div className="flex items-center gap-2">
-                    <item.icon className="w-4 h-4 text-muted" />
-                    <span className="text-body-sm text-muted">{item.label}</span>
+          {/* 운영 정보 + 제보 추이 (2칼럼) */}
+          <div className="mt-8 grid lg:grid-cols-2 gap-6">
+            {/* 운영 정보 상세 테이블 */}
+            <div className="p-6 rounded-xl bg-background border-2 border-border">
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-h4 text-heading">운영 정보 상세</h3>
+                <span className="text-label text-muted text-xs">검증: {OPERATION_INFO.verifiedAt}</span>
+              </div>
+              <div className="space-y-1">
+                {[
+                  { icon: Globe, label: '현재 도메인', value: OPERATION_INFO.currentDomain },
+                  { icon: Globe, label: '이전 도메인', value: OPERATION_INFO.previousDomains.join(', ') || '없음' },
+                  { icon: Server, label: '서버 위치', value: OPERATION_INFO.serverLocation, warn: true },
+                  { icon: TrendingUp, label: 'IP 변경 횟수', value: `${OPERATION_INFO.ipHistory}회`, warn: OPERATION_INFO.ipHistory >= 3 },
+                  { icon: Shield, label: '도메인 등록기관', value: OPERATION_INFO.registrar },
+                  { icon: CheckCircle, label: 'SSL 인증서', value: OPERATION_INFO.sslStatus === 'valid' ? '유효' : '만료/미확인' },
+                  { icon: Phone, label: '고객센터', value: OPERATION_INFO.customerService },
+                  { icon: Clock, label: '운영 시간', value: OPERATION_INFO.operationHours },
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center justify-between py-3 border-b border-border/50 last:border-0">
+                    <div className="flex items-center gap-2">
+                      <item.icon className="w-4 h-4 text-muted" />
+                      <span className="text-body-sm text-muted">{item.label}</span>
+                    </div>
+                    <span className={`text-body-sm font-medium text-right max-w-[50%] truncate ${item.warn ? 'text-amber-600' : 'text-heading'}`}>
+                      {item.value}
+                    </span>
                   </div>
-                  <span className={`text-body-sm font-medium text-right max-w-[55%] ${item.warn ? 'text-amber-600' : 'text-heading'}`}>
-                    {item.value}
-                  </span>
-                </div>
-              ))}
+                ))}
+              </div>
+              <p className="text-xs text-muted mt-4">* 검증 시점 기준이며, 실제 현황과 다를 수 있습니다.</p>
             </div>
-            <p className="text-xs text-muted mt-4">* 위 정보는 검증 시점({OPERATION_INFO.verifiedAt}) 기준이며, 실제 현황과 다를 수 있습니다.</p>
-          </div>
 
-          {/* 제보 추이 (최근 6개월) */}
-          <div className="mt-8 p-6 rounded-xl bg-background border-2 border-border">
-            <div className="flex items-center justify-between mb-6">
-              <h3 className="text-h4 text-heading">제보 추이 (최근 6개월)</h3>
-              <span className={`px-3 py-1 rounded-full text-label font-semibold ${
-                REPORT_TREND.reduce((sum, m) => sum + m.count, 0) === 0
-                  ? 'bg-green-100 text-green-700'
-                  : REPORT_TREND.reduce((sum, m) => sum + m.count, 0) >= 5
-                  ? 'bg-red-100 text-red-700'
-                  : 'bg-amber-100 text-amber-700'
-              }`}>
+            {/* 제보 추이 (최근 6개월) */}
+            <div className="p-6 rounded-xl bg-background border-2 border-border">
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-h4 text-heading">제보 추이 (6개월)</h3>
+                <span className={`px-3 py-1 rounded-full text-label font-semibold text-xs ${
+                  REPORT_TREND.reduce((sum, m) => sum + m.count, 0) === 0
+                    ? 'bg-green-100 text-green-700'
+                    : REPORT_TREND.reduce((sum, m) => sum + m.count, 0) >= 5
+                    ? 'bg-red-100 text-red-700'
+                    : 'bg-amber-100 text-amber-700'
+                }`}>
+                  {REPORT_TREND.reduce((sum, m) => sum + m.count, 0) === 0 
+                    ? '제보 없음' 
+                    : `총 ${REPORT_TREND.reduce((sum, m) => sum + m.count, 0)}건`}
+                </span>
+              </div>
+              
+              {/* 바 차트 */}
+              <div className="flex items-end gap-1.5 h-24 mb-4">
+                {REPORT_TREND.map((m, i) => {
+                  const maxCount = Math.max(...REPORT_TREND.map(r => r.count), 1)
+                  const height = m.count === 0 ? 3 : (m.count / maxCount) * 100
+                  return (
+                    <div key={i} className="flex-1 flex flex-col items-center gap-1.5">
+                      {m.count > 0 && <span className="text-xs text-muted font-semibold">{m.count}</span>}
+                      <div 
+                        className={`w-full rounded-t ${
+                          m.count === 0 ? 'bg-slate-200' :
+                          m.count >= 2 ? 'bg-red-400' : 'bg-amber-400'
+                        }`}
+                        style={{ height: `${height}%`, minHeight: '3px' }}
+                      />
+                      <span className="text-xs text-muted">{m.month.split('.')[1]}월</span>
+                    </div>
+                  )
+                })}
+              </div>
+              
+              <p className="text-xs text-muted">
                 {REPORT_TREND.reduce((sum, m) => sum + m.count, 0) === 0 
-                  ? '제보 없음' 
-                  : `총 ${REPORT_TREND.reduce((sum, m) => sum + m.count, 0)}건`}
-              </span>
+                  ? '✓ 제보 없음 (긍정적 신호)'
+                  : REPORT_TREND.reduce((sum, m) => sum + m.count, 0) >= 5
+                  ? '⚠ 반복 제보 (주의 필요)'
+                  : '⚠ 일부 제보 (확인 권장)'}
+              </p>
             </div>
-            
-            <div className="flex items-end gap-2 h-32 mb-4">
-              {REPORT_TREND.map((m, i) => {
-                const maxCount = Math.max(...REPORT_TREND.map(r => r.count), 1)
-                const height = m.count === 0 ? 4 : (m.count / maxCount) * 100
-                return (
-                  <div key={i} className="flex-1 flex flex-col items-center gap-2">
-                    <span className="text-label text-muted">{m.count}건</span>
-                    <div 
-                      className={`w-full rounded-t ${
-                        m.count === 0 ? 'bg-slate-200' :
-                        m.count >= 2 ? 'bg-red-400' : 'bg-amber-400'
-                      }`}
-                      style={{ height: `${height}%`, minHeight: '4px' }}
-                    />
-                    <span className="text-xs text-muted">{m.month.split('.')[1]}월</span>
-                  </div>
-                )
-              })}
-            </div>
-            
-            <p className="text-xs text-muted">
-              {REPORT_TREND.reduce((sum, m) => sum + m.count, 0) === 0 
-                ? '최근 6개월간 제보가 없습니다. 이는 긍정적 신호입니다.'
-                : REPORT_TREND.reduce((sum, m) => sum + m.count, 0) >= 5
-                ? '최근 6개월간 반복 제보가 확인되었습니다. 이용에 각별한 주의가 필요합니다.'
-                : '최근 6개월간 일부 제보가 확인되었습니다. 이용 전 확인을 권장합니다.'}
-            </p>
           </div>
         </div>
       </section>
