@@ -369,29 +369,6 @@ export default function MeoktuPolicePage() {
                 </div>
               </div>
               
-              {/* 요약 메시지 */}
-              <div className={`p-3 rounded-lg mb-4 ${
-                REPORT_TREND.reduce((sum, m) => sum + m.count, 0) === 0 
-                  ? 'bg-green-50 border border-green-200'
-                  : REPORT_TREND.reduce((sum, m) => sum + m.count, 0) >= 5
-                  ? 'bg-red-50 border border-red-200'
-                  : 'bg-amber-50 border border-amber-200'
-              }`}>
-                <p className={`text-body-sm font-medium ${
-                  REPORT_TREND.reduce((sum, m) => sum + m.count, 0) === 0 
-                    ? 'text-green-700'
-                    : REPORT_TREND.reduce((sum, m) => sum + m.count, 0) >= 5
-                    ? 'text-red-700'
-                    : 'text-amber-700'
-                }`}>
-                  {REPORT_TREND.reduce((sum, m) => sum + m.count, 0) === 0 
-                    ? '최근 6개월간 제보가 없습니다.'
-                    : REPORT_TREND.reduce((sum, m) => sum + m.count, 0) >= 5
-                    ? '반복 제보가 확인되었습니다. 주의가 필요합니다.'
-                    : '일부 제보가 확인되었습니다. 이용 전 확인을 권장합니다.'}
-                </p>
-              </div>
-
               {/* 통계 요약 */}
               <div className="mt-4 pt-4 border-t border-border/50 grid grid-cols-3 gap-3">
                 <div className="text-center">
