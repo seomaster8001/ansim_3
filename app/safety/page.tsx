@@ -102,7 +102,7 @@ export default function SafetyPage() {
   ]
 
   return (
-    <main className="min-h-screen bg-background font-sans">
+    <main data-category="safety" className="min-h-screen bg-background font-sans">
       {/* ── HERO SECTION ── */}
       <SectionHero
         label="Verified Directory"

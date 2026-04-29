@@ -193,6 +193,47 @@
 }
 
 
+/* Category Color System */
+[data-category="safety"] {
+  --primary: var(--brand-teal);
+  --primary-foreground: #ffffff;
+  --accent: #f0fdfa; /* teal-50 */
+  --accent-foreground: #0f766e; /* teal-700 */
+  --ring: var(--brand-teal);
+}
+
+[data-category="review"] {
+  --primary: var(--brand-amber);
+  --primary-foreground: #ffffff;
+  --accent: #fffbeb; /* amber-50 */
+  --accent-foreground: #b45309; /* amber-700 */
+  --ring: var(--brand-amber);
+}
+
+[data-category="guide"] {
+  --primary: var(--brand-blue);
+  --primary-foreground: #ffffff;
+  --accent: #eff6ff; /* blue-50 */
+  --accent-foreground: #1d4ed8; /* blue-700 */
+  --ring: var(--brand-blue);
+}
+
+[data-category="data"] {
+  --primary: var(--brand-slate);
+  --primary-foreground: #ffffff;
+  --accent: #f8fafc; /* slate-50 */
+  --accent-foreground: #334155; /* slate-700 */
+  --ring: var(--brand-slate);
+}
+
+[data-category="picks"] {
+  --primary: var(--brand-red);
+  --primary-foreground: #ffffff;
+  --accent: #fef2f2; /* red-50 */
+  --accent-foreground: #b91c1c; /* red-700 */
+  --ring: var(--brand-red);
+}
+
 /* Noise texture overlay */
 .noise-overlay::before {
   content: '';

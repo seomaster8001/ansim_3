@@ -22,7 +22,7 @@ const GUIDE_FAQ = [
 
 export default function GuidePage() {
   return (
-    <main className="min-h-screen bg-background font-sans">
+    <main data-category="guide" className="min-h-screen bg-background font-sans">
       {/* ── HERO SECTION ── */}
       <SectionHero
         label="안전 가이드"

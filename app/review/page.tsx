@@ -20,7 +20,7 @@ const FAQ_ITEMS = [
 
 export default function ReviewPage() {
   return (
-    <main className="min-h-screen bg-background font-sans">
+    <main data-category="review" className="min-h-screen bg-background font-sans">
       {/* ── HERO SECTION ── */}
       <SectionHero
         label="Verification Report"

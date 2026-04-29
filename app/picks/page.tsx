@@ -52,7 +52,7 @@ export default function PicksPage() {
   ]
 
   return (
-    <main className="min-h-screen bg-background font-sans">
+    <main data-category="picks" className="min-h-screen bg-background font-sans">
       {/* ── HERO SECTION ── */}
       <SectionHero
         label="스포츠 분석"

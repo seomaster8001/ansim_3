@@ -20,7 +20,7 @@ const FAQ_ITEMS = [
 
 export default function DataPage() {
   return (
-    <main className="min-h-screen bg-background font-sans">
+    <main data-category="data" className="min-h-screen bg-background font-sans">
       {/* ── HERO SECTION ── */}
       <SectionHero
         label="Data Center"
