@@ -25,6 +25,29 @@ const SITE_DATA = {
   screenshot: '/placeholder.svg?height=400&width=700',
 }
 
+// 운영 정보 상세 (검증 시점 기준)
+const OPERATION_INFO = {
+  currentDomain: 'meoktu-police.com',
+  previousDomains: ['mp-bet.com', 'meoktu-pol.kr'],
+  serverLocation: '해외 (소재지 불명)',
+  customerService: '텔레그램 @meoktu_cs (응답률 불명)',
+  operationHours: '24시간 (응답 지연 이력 있음)',
+  verifiedAt: '2025.04.15',
+  registrar: 'Namecheap (해외)',
+  sslStatus: 'valid',
+  ipHistory: 3, // IP 변경 횟수
+}
+
+// 제보 추이 (최근 6개월)
+const REPORT_TREND = [
+  { month: '2024.11', count: 0 },
+  { month: '2024.12', count: 1 },
+  { month: '2025.01', count: 2 },
+  { month: '2025.02', count: 1 },
+  { month: '2025.03', count: 2 },
+  { month: '2025.04', count: 1 },
+]
+
 const TIMELINE_DATA = [
   { date: '2025.04', event: '분기 재점검 완료', status: 'warn', detail: '누적 제보 증가로 [주의 필요] 분류 유지' },
   { date: '2024.08', event: '도메인 변경', status: 'alert', detail: '기존 도메인에서 신규 도메인으로 이전' },
@@ -220,6 +243,83 @@ export default function MeoktuPolicePage() {
               </div>
             </div>
           </div>
+
+          {/* 운영 정보 상세 테이블 */}
+          <div className="mt-8 p-6 rounded-xl bg-background border-2 border-border">
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-h4 text-heading">운영 정보 상세</h3>
+              <span className="text-label text-muted">검증 시점: {OPERATION_INFO.verifiedAt}</span>
+            </div>
+            <div className="grid md:grid-cols-2 gap-x-8 gap-y-1">
+              {[
+                { label: '현재 도메인', value: OPERATION_INFO.currentDomain },
+                { label: '이전 도메인', value: OPERATION_INFO.previousDomains.join(', ') || '없음' },
+                { label: '서버 위치', value: OPERATION_INFO.serverLocation, warn: OPERATION_INFO.serverLocation.includes('해외') },
+                { label: 'IP 변경 횟수', value: `${OPERATION_INFO.ipHistory}회`, warn: OPERATION_INFO.ipHistory >= 3 },
+                { label: '도메인 등록기관', value: OPERATION_INFO.registrar },
+                { label: 'SSL 인증서', value: OPERATION_INFO.sslStatus === 'valid' ? '유효' : '만료/미확인', warn: OPERATION_INFO.sslStatus !== 'valid' },
+                { label: '고객센터', value: OPERATION_INFO.customerService },
+                { label: '운영 시간', value: OPERATION_INFO.operationHours },
+              ].map((item, i) => (
+                <div key={i} className="flex justify-between py-3 border-b border-border/50">
+                  <span className="text-body-sm text-muted">{item.label}</span>
+                  <span className={`text-body-sm font-medium text-right max-w-[60%] ${item.warn ? 'text-amber-600' : 'text-heading'}`}>
+                    {item.value}
+                  </span>
+                </div>
+              ))}
+            </div>
+            <p className="text-xs text-muted mt-4">
+              * 위 정보는 검증 시점({OPERATION_INFO.verifiedAt}) 기준이며, 실제 현황과 다를 수 있습니다.
+            </p>
+          </div>
+
+          {/* 제보 추이 (최근 6개월) */}
+          <div className="mt-8 p-6 rounded-xl bg-background border-2 border-border">
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-h4 text-heading">제보 추이 (최근 6개월)</h3>
+              <span className={`px-3 py-1 rounded-full text-label font-semibold ${
+                REPORT_TREND.reduce((sum, m) => sum + m.count, 0) === 0
+                  ? 'bg-green-100 text-green-700'
+                  : REPORT_TREND.reduce((sum, m) => sum + m.count, 0) >= 5
+                  ? 'bg-red-100 text-red-700'
+                  : 'bg-amber-100 text-amber-700'
+              }`}>
+                {REPORT_TREND.reduce((sum, m) => sum + m.count, 0) === 0 
+                  ? '제보 없음' 
+                  : `총 ${REPORT_TREND.reduce((sum, m) => sum + m.count, 0)}건`}
+              </span>
+            </div>
+            
+            {/* 간단한 바 차트 */}
+            <div className="flex items-end gap-2 h-32 mb-4">
+              {REPORT_TREND.map((m, i) => {
+                const maxCount = Math.max(...REPORT_TREND.map(r => r.count), 1)
+                const height = m.count === 0 ? 4 : (m.count / maxCount) * 100
+                return (
+                  <div key={i} className="flex-1 flex flex-col items-center gap-2">
+                    <span className="text-label text-muted">{m.count}건</span>
+                    <div 
+                      className={`w-full rounded-t ${
+                        m.count === 0 ? 'bg-slate-200' :
+                        m.count >= 2 ? 'bg-red-400' : 'bg-amber-400'
+                      }`}
+                      style={{ height: `${height}%`, minHeight: '4px' }}
+                    />
+                    <span className="text-xs text-muted">{m.month.split('.')[1]}월</span>
+                  </div>
+                )
+              })}
+            </div>
+            
+            <p className="text-xs text-muted">
+              {REPORT_TREND.reduce((sum, m) => sum + m.count, 0) === 0 
+                ? '최근 6개월간 제보가 없습니다. 이는 긍정적 신호입니다.'
+                : REPORT_TREND.reduce((sum, m) => sum + m.count, 0) >= 5
+                ? '최근 6개월간 반복 제보가 확인되었습니다. 이용에 각별한 주의가 필요합니다.'
+                : '최근 6개월간 일부 제보가 확인되었습니다. 이용 전 확인을 권장합니다.'}
+            </p>
+          </div>
         </div>
       </section>
 
@@ -270,14 +370,46 @@ export default function MeoktuPolicePage() {
             <h2 className="text-h2 text-heading">사용자 후기</h2>
           </div>
           
-          {/* 누적 제보 현황 */}
+          {/* 제보 유형 분포 */}
           <div className="p-6 rounded-xl bg-background border-2 border-border mb-6">
             <div className="flex items-center justify-between mb-6">
-              <h3 className="text-h4 text-heading">누적 제보 현황</h3>
-              <span className="px-3 py-1 rounded-full bg-amber-100 text-amber-700 text-label font-semibold">
+              <h3 className="text-h4 text-heading">제보 유형 분포</h3>
+              <span className={`px-3 py-1 rounded-full text-label font-semibold ${
+                SITE_DATA.totalReports === 0 
+                  ? 'bg-green-100 text-green-700' 
+                  : SITE_DATA.totalReports >= 5 
+                  ? 'bg-red-100 text-red-700' 
+                  : 'bg-amber-100 text-amber-700'
+              }`}>
                 총 {SITE_DATA.totalReports}건
               </span>
             </div>
+            
+            {/* 비율 바 차트 */}
+            <div className="space-y-4 mb-6">
+              {REPORT_STATS.map((stat, i) => {
+                const percentage = SITE_DATA.totalReports > 0 
+                  ? Math.round((stat.count / SITE_DATA.totalReports) * 100) 
+                  : 0
+                const colors = ['bg-red-500', 'bg-amber-500', 'bg-slate-400']
+                return (
+                  <div key={i}>
+                    <div className="flex justify-between mb-2">
+                      <span className="text-body-sm text-heading font-medium">{stat.label}</span>
+                      <span className="text-body-sm text-muted">{stat.count}건 ({percentage}%)</span>
+                    </div>
+                    <div className="h-3 bg-slate-100 rounded-full overflow-hidden">
+                      <div 
+                        className={`h-full ${colors[i]} rounded-full transition-all`}
+                        style={{ width: `${percentage}%` }}
+                      />
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+            
+            {/* 요약 카드 */}
             <div className="grid md:grid-cols-3 gap-4">
               {REPORT_STATS.map((stat, i) => (
                 <div key={i} className="text-center p-4 rounded-lg bg-secondary">
@@ -286,6 +418,14 @@ export default function MeoktuPolicePage() {
                 </div>
               ))}
             </div>
+            
+            <p className="text-xs text-muted mt-4">
+              {SITE_DATA.totalReports === 0 
+                ? '현재까지 접수된 제보가 없습니다. 이는 긍정적 신호입니다.'
+                : SITE_DATA.totalReports >= 5
+                ? '반복 제보가 확인되었습니다. 이용에 각별한 주의가 필요합니다.'
+                : '일부 제보가 확인되었습니다. 이용 전 확인을 권장합니다.'}
+            </p>
           </div>
 
           {/* 제보 이력 + 증빙 자료 */}
