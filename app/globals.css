@@ -4,56 +4,104 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.13 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.13 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.13 0 0);
-  --primary: oklch(0.46 0.17 255);
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.2 0 0);
-  --muted: oklch(0.96 0 0);
-  --muted-foreground: oklch(0.52 0 0);
-  --accent: oklch(0.94 0.04 255);
-  --accent-foreground: oklch(0.3 0.1 255);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.92 0 0);
-  --input: oklch(0.92 0 0);
-  --ring: oklch(0.46 0.17 255);
+  /* 기본 배경/텍스트 - white background */
+  --background: #ffffff;
+  --foreground: #171717; /* neutral-900 */
+
+  /* 카드 - white with dark text */
+  --card: #ffffff;
+  --card-foreground: #171717;
+
+  /* 팝오버 */
+  --popover: #ffffff;
+  --popover-foreground: #171717;
+
+  /* 프라이머리 - blue-600 */
+  --primary: #2563eb;
+  --primary-foreground: #ffffff;
+
+  /* 세컨더리 - slate-50 보조 배경 */
+  --secondary: #f8fafc;
+  --secondary-foreground: #171717;
+
+  /* 뮤트 - 본문 텍스트용 neutral-700 */
+  --muted: #f8fafc;
+  --muted-foreground: #404040; /* neutral-700 */
+
+  /* 액센트 - blue-50 배경, blue-700 텍스트 */
+  --accent: #eff6ff;
+  --accent-foreground: #1d4ed8;
+
+  /* 경고/위험 - red */
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+
+  /* 주의 - amber */
+  --warning: #fef3c7;
+  --warning-foreground: #92400e;
+
+  /* 보더/인풋 */
+  --border: #e5e5e5; /* neutral-200 */
+  --input: #e5e5e5;
+  --ring: #2563eb;
   --radius: 0.75rem;
 
-  /* brand */
+  /* 브랜드 컬러 */
   --brand-blue: #2563eb;
+  --brand-blue-light: #eff6ff;
+  --brand-blue-dark: #1d4ed8;
   --brand-teal: #0d9488;
   --brand-amber: #d97706;
   --brand-red: #dc2626;
   --brand-slate: #0f172a;
+  --brand-indigo: #4f46e5;
+
+  /* 텍스트 계층 */
+  --text-primary: #171717; /* 제목 - neutral-900 */
+  --text-secondary: #404040; /* 본문 - neutral-700 */
+  --text-tertiary: #737373; /* 보조 텍스트 - neutral-500 */
+  --text-muted: #a3a3a3; /* 비활성 - neutral-400 */
 }
 
 @theme inline {
   --font-sans: 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  
+  /* 배경색 */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
+  
+  /* 브랜드/프라이머리 */
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  
+  /* 상태색 */
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  
+  /* UI 요소 */
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  
+  /* 텍스트 계층 - 시맨틱 */
+  --color-heading: var(--text-primary);
+  --color-body: var(--text-secondary);
+  --color-subtle: var(--text-tertiary);
+  --color-disabled: var(--text-muted);
+  
+  /* 반경 */
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -80,6 +128,111 @@
   word-break: keep-all;
   letter-spacing: -0.03em;
   line-height: 1.15;
+}
+
+/* Unified Typography System */
+@layer components {
+  /* Display / H1 */
+  .text-h1 {
+    @apply text-[3.375rem] font-bold leading-[1.15] tracking-[-0.03em] break-keep;
+  }
+  @media (max-width: 768px) {
+    .text-h1 {
+      @apply text-2xl;
+    }
+  }
+
+  /* Heading 2 */
+  .text-h2 {
+    @apply text-[2.25rem] font-bold leading-[1.2] tracking-[-0.02em] break-keep;
+  }
+  @media (max-width: 768px) {
+    .text-h2 {
+      @apply text-[1.75rem];
+    }
+  }
+
+  /* Heading 3 */
+  .text-h3 {
+    @apply text-2xl font-bold leading-[1.25] tracking-[-0.02em] break-keep;
+  }
+  @media (max-width: 768px) {
+    .text-h3 {
+      @apply text-xl;
+    }
+  }
+
+  /* Heading 4 */
+  .text-h4 {
+    @apply text-[1.125rem] font-bold leading-[1.3] tracking-[-0.01em] break-keep;
+  }
+
+  /* Body Large */
+  .text-body-lg {
+    @apply text-[1.0625rem] font-normal leading-[1.6] break-keep;
+  }
+
+  /* Body Regular */
+  .text-body {
+    @apply text-base font-normal leading-[1.6] break-keep;
+  }
+
+  /* Body Small */
+  .text-body-sm {
+    @apply text-sm font-normal leading-[1.6] break-keep;
+  }
+
+  /* Caption */
+  .text-caption {
+    @apply text-xs font-normal leading-[1.4] break-keep;
+  }
+
+  /* Label / Small Bold */
+  .text-label {
+    @apply text-xs font-semibold leading-[1.4] tracking-widest uppercase break-keep;
+  }
+}
+
+
+/* Category Color System */
+[data-category="safety"] {
+  --primary: var(--brand-teal);
+  --primary-foreground: #ffffff;
+  --accent: #f0fdfa; /* teal-50 */
+  --accent-foreground: #0f766e; /* teal-700 */
+  --ring: var(--brand-teal);
+}
+
+[data-category="review"] {
+  --primary: var(--brand-amber);
+  --primary-foreground: #ffffff;
+  --accent: #fffbeb; /* amber-50 */
+  --accent-foreground: #b45309; /* amber-700 */
+  --ring: var(--brand-amber);
+}
+
+[data-category="guide"] {
+  --primary: var(--brand-blue);
+  --primary-foreground: #ffffff;
+  --accent: #eff6ff; /* blue-50 */
+  --accent-foreground: #1d4ed8; /* blue-700 */
+  --ring: var(--brand-blue);
+}
+
+[data-category="data"] {
+  --primary: var(--brand-slate);
+  --primary-foreground: #ffffff;
+  --accent: #f8fafc; /* slate-50 */
+  --accent-foreground: #334155; /* slate-700 */
+  --ring: var(--brand-slate);
+}
+
+[data-category="picks"] {
+  --primary: var(--brand-red);
+  --primary-foreground: #ffffff;
+  --accent: #f8fafc; /* slate-50, neutral white */
+  --accent-foreground: #b91c1c; /* red-700 */
+  --ring: var(--brand-red);
 }
 
 /* Noise texture overlay */
